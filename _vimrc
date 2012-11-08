@@ -329,3 +329,7 @@ endif
 
 autocmd BufWritePre *.py :%s/\s\+$//e
 autocmd BufWritePre *.java :%s/\s\+$//e
+
+
+" TagBarOpen
+nmap <leader>o :TagbarToggle<CR>
