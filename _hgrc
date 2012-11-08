@@ -1,0 +1,16 @@
+[ui]
+username="Ali-Akber Saifee" <ali@indydevs.org>
+
+[extensions]
+pager=
+color=
+graphlog =
+fetch = 
+hgk =
+highlight =
+progress =
+transplant =
+
+[pager]
+pager = LESS='FSRX' less
+
