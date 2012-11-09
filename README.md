@@ -3,7 +3,8 @@ Installation pre-requisites
 * vim (duh)
 * python
 * ruby
-* exuberant ctags
+* exuberant ctags (for TabList)
+ *  on a mac install with homebrew or port (brew install ctags / sudo port install ctags)
 
 
 Interesting remaps
