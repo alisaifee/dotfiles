@@ -15,6 +15,11 @@ if [ "$1" = "vim" ]; then
     do
        link_file $i
     done
+elif [ "$1" = "zsh" ]; then
+    for i in _zsh*
+    do 
+        link_file $i
+    done
 else
     for i in _*
     do
