@@ -244,8 +244,7 @@ if has("gui_running")
     " Remove toolbar
     set guioptions-=T
 else
-    let g:solarized_termcolors=256
-    colorscheme solarized
+    colorscheme jellybeans
 endif
 
 " Paste from clipboard
