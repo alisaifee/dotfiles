@@ -47,9 +47,5 @@ zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*' group-name ''
 export TERM=xterm-256color
 export FUSION_BASE_PATH=~/_dev/_git/fusion-in-a-box
-alias fusionsql="mysql -ufusion -pabalone5KG fusion -A"
-export JAVA_HOME=/usr/local/java/jdk1.7.0_07
 export ICE_HOME=/usr/
-export AWS_ACCESS_KEY_ID=AKIAJ35BUG5XP7PK43DQ
-export AWS_SECRET_ACCESS_KEY=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
 source ~/.zshextras/themes/ali.zsh-theme
