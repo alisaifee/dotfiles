@@ -29,8 +29,4 @@ zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*' group-name ''
 export TERM=xterm-256color
 export FUSION_BASE_PATH=~/_dev/_git/fusion-in-a-box
-alias fusionsql="mysql -ufusion -pabalone5KG fusion -A"
-
-
-
 source ~/.zshextras/themes/ali.zsh-theme
