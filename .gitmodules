@@ -64,3 +64,6 @@
 [submodule "_vim/bundle/vim-css-color"]
 	path = _vim/bundle/vim-css-color
 	url = git://github.com/ap/vim-css-color.git
+[submodule "_vim/bundle/syntastic"]
+	path = _vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git

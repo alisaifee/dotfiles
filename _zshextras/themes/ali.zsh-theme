@@ -15,6 +15,6 @@ function battery_charge {
     echo `$BAT_CHARGE` 2>/dev/null
 }
 
-# RPROMPT='$(battery_charge)'
+RPROMPT='$(battery_charge)'
 
 
