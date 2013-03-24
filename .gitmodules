@@ -67,3 +67,9 @@
 [submodule "_vim/bundle/tagbar"]
 	path = _vim/bundle/tagbar
 	url = git://github.com/majutsushi/tagbar
+[submodule "_vim/bundle/tablemode"]
+	path = _vim/bundle/tablemode
+	url = https://github.com/dhruvasagar/vim-table-mode.git
+[submodule "_vim/bundle/tabular"]
+	path = _vim/bundle/tabular
+	url = git://github.com/godlygeek/tabular.git

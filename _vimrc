@@ -303,3 +303,10 @@ autocmd BufWritePre *.java :%s/\s\+$//e
 
 " TagBarOpen
 nmap <leader>o :TagbarToggle<CR>
+
+" Tabular shortcuts 
+nmap <leader>t= :Tabularize /=<CR>
+vmap <leader>t= :Tabularize /=<CR>
+nmap <leader>t: :Tabularize /:<CR>
+vmap <leader>t: :Tabularize /:<CR>
+
