@@ -309,5 +309,7 @@ nmap <leader>t= :Tabularize /=<CR>
 vmap <leader>t= :Tabularize /=<CR>
 nmap <leader>t: :Tabularize /:<CR>
 vmap <leader>t: :Tabularize /:<CR>
+nmap <leader>t, :Tabularize /,<CR>
+vmap <leader>t, :Tabularize /,<CR>
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
