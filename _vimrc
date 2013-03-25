@@ -311,5 +311,10 @@ nmap <leader>t: :Tabularize /:<CR>
 vmap <leader>t: :Tabularize /:<CR>
 nmap <leader>t, :Tabularize /,<CR>
 vmap <leader>t, :Tabularize /,<CR>
+
+" Powerline
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
+
+" Hack to get minibufexplorer working with fugitive diff  
+let g:miniBufExplorerMoreThanOne=3
