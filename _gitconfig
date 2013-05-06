@@ -23,6 +23,7 @@
     co = checkout
     df = diff
     lg = log --graph --pretty=oneline --abbrev-commit --all --decorate
+    tree = !sh -c 'git-forest | less -r \"$@\"' 
     up = !sh -c 'git pull --rebase --prune && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
     backout = reset --hard HEAD
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
@@ -32,3 +33,5 @@
     cleanadd = !bash -c 'git diff -w --no-color \"$@\" | git apply --cached' -
 
 
+[init]
+	templatedir = ~/.git_template

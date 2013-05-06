@@ -76,3 +76,15 @@
 [submodule "_vim/bundle/powerline"]
 	path = _vim/bundle/powerline
 	url = git://github.com/Lokaltog/powerline.git
+[submodule "_git-scripts"]
+	path = _git-scripts
+	url = https://github.com/jwiegley/git-scripts
+[submodule "_vim/bundle/dbext"]
+	path = _vim/bundle/dbext
+	url = git://github.com/vim-scripts/dbext.vim.git
+[submodule "_vim/bundle/vim-rst-tables"]
+	path = _vim/bundle/vim-rst-tables
+	url = git://github.com/nvie/vim-rst-tables.git
+[submodule "_vim/bundle/vim-coffee-script"]
+	path = _vim/bundle/vim-coffee-script
+	url = git://github.com/kchmck/vim-coffee-script.git
