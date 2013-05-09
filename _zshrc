@@ -5,20 +5,13 @@ export DISABLE_AUTO_TITLE="true"
 plugins=(svn git git-extras)
 
 PATH=/usr/local/bin:$PATH
-PATH=$PATH:/Users/ali/_dev/sdks/android-sdk-mac_86/tools
 PATH=$PATH:~/bin/
 PATH=$PATH:/usr/local/bin
 PATH=$PATH:/opt/local/include
-PATH=$PATH:~/_qa/tools
-#PATH=$PATH:/opt/Ice-3.3.1-mac/bin
-PATH=$PATH:/Library/Developer/Ice-3.5/bin
 PATH=$PATH:~/.git-scripts 
 PATH=$PATH:/usr/local/share/npm/bin/ 
 export PATH
 
-export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/opt/Ice-3.3.1-mac/lib
-
-export PYTHONPATH=/opt/Ice-3.3.1-mac/python:.:$PYTHONPATH
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 source $ZSH/oh-my-zsh.sh
 export ANT_OPTS=-Xmx640m
@@ -30,7 +23,6 @@ zstyle ':completion:*' verbose yes
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*' group-name ''
 export TERM=xterm-256color
-export FUSION_BASE_PATH=~/_dev/_git/fusion-in-a-box
 
 autoload -U compinit
 compinit
