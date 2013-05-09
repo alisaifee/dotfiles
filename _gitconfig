@@ -1,6 +1,6 @@
 [user]
     name = Ali-Akber Saifee
-    email = ali@mig33global.com\
+    email = ali@indydevs.org\
 
 [color]
     diff = auto
@@ -32,6 +32,3 @@
     cleanstage = !bash -c 'git diff -w --no-color | git apply --cached'
     cleanadd = !bash -c 'git diff -w --no-color \"$@\" | git apply --cached' -
 
-
-[init]
-	templatedir = ~/.git_template
