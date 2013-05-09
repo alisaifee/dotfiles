@@ -9,6 +9,9 @@ function link_file {
 
     ln -sf ${source} ${target}
 }
+if [ ! -e "~/.oh-my-zsh" ]; then
+    curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+fi;
 
 if [ "$1" = "vim" ]; then
     for i in _vim*
