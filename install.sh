@@ -9,7 +9,7 @@ function link_file {
 
     ln -sf ${source} ${target}
 }
-if [ ! -e "~/.oh-my-zsh" ]; then
+if [ ! -e ~/.oh-my-zsh ]; then
     curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 fi;
 
@@ -26,8 +26,15 @@ elif [ "$1" = "zsh" ]; then
 else
     for i in _*
     do
-        link_file $i
+        if [ $i != "_config" ]; then
+            link_file $i
+        fi;
     done
+    for i in _config/*
+    do
+        ln -sf ${PWD}/$i ~/.config/$name ;
+    done;
+
 fi
 
 git submodule sync
