@@ -21,22 +21,35 @@
 	"segments": {
 		"right": [
 			{
-				"name": "uptime",
-				"priority": 50
-			},
-			{
-				"name": "external_ip",
-				"priority": 50
-			},
-			{
 				"name": "system_load",
 				"priority": 50
 			},
 			{
 				"name": "date",
 				"args": {
-					"format": "%Y-%m-%d %H:%M",
-					"istime": true
+					"format": "%m-%d %H:%M",
+					"istime": true,
+					"local_time":true
+				},
+				"priority": 50
+			},
+			{
+				"name": "date",
+				"args": {
+					"format": "%m-%d %H:%M",
+					"istime": true,
+					"local_time": false
+				},
+				"priority": 50
+			},
+			{
+				"name": "date",
+				"args": {
+					"format": "%m-%d %H:%M",
+					"istime": true,
+					"utc_offset": -7,
+					"tz_name":"SF",
+					"local_time":false
 				},
 				"priority": 50
 			}
