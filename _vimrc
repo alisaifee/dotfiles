@@ -1,60 +1,8 @@
 " https://bitbucket.org/ali/dotfiles
-" ==========================================================
-" Dependencies - Libraries/Applications outside of vim
-" ==========================================================
-" Pep8 - http://pypi.python.org/pypi/pep8
-" Pyflakes
-" Ack
-" Rake & Ruby for command-t
-" nose, django-nose
 
-" ==========================================================
-" Plugins included
-" ==========================================================
-" Pathogen
-"     Better Management of VIM plugins
-"
-" GunDo
-"     Visual Undo in vim with diff's to check the differences
-"
-" Pytest
-"     Runs your Python tests in Vim.
-"
-" Commant-T
-"     Allows easy search and opening of files within a given path
-"
-" Snipmate
-"     Configurable snippets to avoid re-typing common comands
-"
-" PyFlakes
-"     Underlines and displays errors with Python on-the-fly
-"
-" Fugitive
-"    Interface with git from vim
-"
-" Git
-"    Syntax highlighting for git config files
-"
-" Pydoc
-"    Opens up pydoc within vim
-"
-" Surround
-"    Allows you to surround text with open/close tags
-"
-" Py.test
-"    Run py.test test's from within vim
-"
-" MakeGreen
-"    Generic test runner that works with nose
-"
-" ==========================================================
-" Shortcuts
-" ==========================================================
 set nocompatible              " Don't be compatible with vi
 set encoding=utf-8
 let mapleader=","             " change the leader to be a comma vs slash
-
-" Seriously, guys. It's not like :W is bound to anything anyway.
 command! W :w
 
 fu! SplitScroll()
@@ -67,13 +15,8 @@ fu! SplitScroll()
 endfu
 
 nmap <leader>sb :call SplitScroll()<CR>
-
-
-"<CR><C-w>l<C-f>:set scrollbind<CR>
-
 " sudo write this
 cmap W! w !sudo tee % >/dev/null
-
 
 " Toggle the tasklist
 map <leader>td <Plug>TaskList
@@ -89,8 +32,6 @@ nmap <silent><Leader>tn <Esc>:Pytest next<CR>
 nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
 nmap <silent><Leader>te <Esc>:Pytest error<CR>
 
-" Run django tests
-map <leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>
 
 " ,v brings up my .vimrc
 " ,V reloads it -- making all changes active (have to save first)
@@ -116,12 +57,10 @@ imap <C-W> <C-O><C-W>
 
 " Open NerdTree
 map <leader>n :NERDTreeToggle<CR>
-
 " Run command-t file search
 map <leader>f :CommandT<CR>
 " Ack searching
 nmap <leader>a <Esc>:Ack!
-
 " Load the Gundo window
 map <leader>g :GundoToggle<CR>
 
@@ -130,10 +69,6 @@ map <leader>j :RopeGotoDefinition<CR>
 
 " Rename whatever the cursor is on (including references to it)
 map <leader>r :RopeRename<CR>
-" ==========================================================
-" Pathogen - Allows us to organize our vim plugins
-" ==========================================================
-" Load pathogen with docs for all plugins
 filetype off
 
 let g:pathogen_disabled = []
@@ -151,7 +86,6 @@ filetype on                   " try to detect filetypes
 filetype plugin indent on     " enable loading indent file for filetype
 set number                    " Display line numbers
 set numberwidth=1             " using only 1 column (and 1 space) while possible
-set background=dark           " We are using dark background in vim
 set title                     " show title in console title bar
 set wildmenu                  " Menu completion in command mode on <Tab>
 set wildmode=full             " <Tab> cycles between all matching choices.
@@ -189,7 +123,7 @@ set nowrap                  " don't wrap text
 set linebreak               " don't wrap textin the middle of a word
 set autoindent              " always set autoindenting on
 set smartindent             " use smart indent if there is no indent file
-set tabstop=4               " <tab> inserts 4 spaces 
+set tabstop=4               " <tab> inserts 4 spaces
 set shiftwidth=4            " but an indent level is 2 spaces wide.
 set softtabstop=4           " <BS> over an autoindent deletes both spaces.
 set expandtab               " Use spaces, not tabs, for autoindent/tab key.
@@ -197,6 +131,12 @@ set shiftround              " rounds indent to a multiple of shiftwidth
 set matchpairs+=<:>         " show matching <> (html mainly) as well
 set foldmethod=indent       " allow us to fold on indents
 set foldlevel=99            " don't fold by default
+
+inoremap <leader>f <C-O>za
+nnoremap <leader>f za
+onoremap <leader>f <C-C>za
+vnoremap <leader>f zf
+
 
 " don't outdent hashes
 inoremap # #
@@ -231,21 +171,14 @@ set list
 """ Searching and Patterns
 set ignorecase              " Default to using case insensitive searches,
 set smartcase               " unless uppercase letters are used in the regex.
-set smarttab                " Handle tabs more intelligently 
+set smarttab                " Handle tabs more intelligently
 set hlsearch                " Highlight searches by default.
 set incsearch               " Incrementally search while typing a /regex
 
-"""" Display
-if has("gui_running")
-    colorscheme desert
-    " Remove menu bar
-    set guioptions-=m
-
-    " Remove toolbar
-    set guioptions-=T
-else
-    colorscheme jellybeans
-endif
+set background=dark
+let g:solarized_termtrans=1
+let g:solarized_termcolors=16
+colorscheme solarized
 
 " Paste from clipboard
 map <leader>p "+gP
@@ -262,9 +195,6 @@ nnoremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
 " Select the item in the list with enter
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" ==========================================================
-" Javascript
-" ==========================================================
 au BufRead *.js set makeprg=jslint\ %
 
 " Don't allow snipmate to take over tab
@@ -275,10 +205,6 @@ autocmd VimEnter * imap <expr> <S-Tab> pumvisible() ? "<C-P>" : "<S-Tab>"
 snor <c-j> <esc>i<right><c-r>=TriggerSnippet()<cr>
 let g:acp_completeoptPreview=1
 
-" ===========================================================
-" FileType specific changes
-" ============================================================
-" Mako/HTML
 autocmd BufNewFile,BufRead *.mako,*.mak,*.jinja2 setlocal ft=html
 autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
@@ -286,7 +212,7 @@ let g:pyflakes_use_quickfix = 0
 set colorcolumn=79
 
 " figure out tab or spaces...
-function Kees_settabs()
+function! Kees_settabs()
     if len(filter(getbufline(winbufnr(0), 1, "$"), 'v:val =~ "^\\t"')) > len(filter(getbufline(winbufnr(0), 1, "$"), 'v:val =~ "^ "'))
         set noet ts=8 sw=8
     endif
@@ -304,7 +230,7 @@ autocmd BufWritePre *.java :%s/\s\+$//e
 " TagBarOpen
 nmap <leader>o :TagbarToggle<CR>
 
-" Tabular shortcuts 
+" Tabular shortcuts
 nmap <leader>t= :Tabularize /=<CR>
 vmap <leader>t= :Tabularize /=<CR>
 nmap <leader>t: :Tabularize /:<CR>
@@ -316,5 +242,5 @@ vmap <leader>t, :Tabularize /,<CR>
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 
-" Hack to get minibufexplorer working with fugitive diff  
+" Hack to get minibufexplorer working with fugitive diff
 let g:miniBufExplorerMoreThanOne=3
