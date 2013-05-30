@@ -75,7 +75,7 @@
 	url = git://github.com/godlygeek/tabular.git
 [submodule "_vim/bundle/powerline"]
 	path = _vim/bundle/powerline
-	url = git://github.com/Lokaltog/powerline.git
+	url = git://github.com/alisaifee/powerline.git
 [submodule "_git-scripts"]
 	path = _git-scripts
 	url = https://github.com/jwiegley/git-scripts
@@ -91,3 +91,6 @@
 [submodule "_vim/bundle/vim-distinguished"]
 	path = _vim/bundle/vim-distinguished
 	url = git@github.com:Lokaltog/vim-distinguished.git
+[submodule "_vim/bundle/vim-golang"]
+	path = _vim/bundle/vim-golang
+	url = git@github.com:jnwhiteh/vim-golang.git

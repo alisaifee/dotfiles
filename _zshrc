@@ -47,3 +47,8 @@ PATH=$PATH:~/.vim/bundle/powerline/scripts
 source ~/.vim/bundle/powerline/powerline/bindings/zsh/powerline.zsh
 # hack for rvm trust 
 source ~/.rvm/scripts/base 
+if [ -e ~/.profile ]; 
+then
+    source ~/.profile ;
+fi;
+

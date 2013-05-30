@@ -9,7 +9,7 @@ Installation pre-requisites
 
 Interesting remaps
 ==================
-* leaderkey is ,
+* leaderkey is -
 * <leaderkey>o : toggle TabList
 * <leaderkey>f : start Command-T search 
 * <leaderkey>n : toggle nerdtree 

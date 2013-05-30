@@ -2,7 +2,7 @@
 
 set nocompatible              " Don't be compatible with vi
 set encoding=utf-8
-let mapleader=","             " change the leader to be a comma vs slash
+let mapleader="-"             " change the leader to be a - vs slash
 command! W :w
 
 fu! SplitScroll()
@@ -63,12 +63,7 @@ map <leader>f :CommandT<CR>
 nmap <leader>a <Esc>:Ack!
 " Load the Gundo window
 map <leader>g :GundoToggle<CR>
-
-" Jump to the definition of whatever the cursor is on
-map <leader>j :RopeGotoDefinition<CR>
-
-" Rename whatever the cursor is on (including references to it)
-map <leader>r :RopeRename<CR>
+map <leader>w :wqa!<CR>
 filetype off
 
 let g:pathogen_disabled = []
@@ -101,10 +96,6 @@ set grepprg=ack-grep          " replace the default grep program with ack
 " Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
 
-" Disable the colorcolumn when switching modes.  Make sure this is the
-" first autocmd for the filetype here
-"autocmd FileType * setlocal colorcolumn=0
-
 """ Insert completion
 " don't select first item, follow typing in autocomplete
 set completeopt=menuone,longest,preview
@@ -129,14 +120,8 @@ set softtabstop=4           " <BS> over an autoindent deletes both spaces.
 set expandtab               " Use spaces, not tabs, for autoindent/tab key.
 set shiftround              " rounds indent to a multiple of shiftwidth
 set matchpairs+=<:>         " show matching <> (html mainly) as well
-set foldmethod=indent       " allow us to fold on indents
-set foldlevel=99            " don't fold by default
-
-inoremap <leader>f <C-O>za
-nnoremap <leader>f za
-onoremap <leader>f <C-C>za
-vnoremap <leader>f zf
-
+set foldmethod=syntax       " allow us to fold on indents
+set foldlevel=4             " don't fold by default
 
 " don't outdent hashes
 inoremap # #
@@ -162,7 +147,6 @@ set report=0                " : commands always print changed line count.
 set shortmess+=a            " Use [+]/[RO]/[w] for modified/readonly/written.
 set ruler                   " Show some info, even without statuslines.
 set laststatus=2            " Always show statusline, even if only 1 window.
-set statusline=[%l,%v\ %P%M]\ %f\ %r%h%w\ (%{&ff})\ %{fugitive#statusline()}
 
 " displays tabs with :set list & displays when a line runs off-screen
 set listchars=tab:>-,eol:$,trail:-,precedes:<,extends:>
@@ -209,7 +193,7 @@ autocmd BufNewFile,BufRead *.mako,*.mak,*.jinja2 setlocal ft=html
 autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 let g:pyflakes_use_quickfix = 0
-set colorcolumn=79
+"set colorcolumn=79
 
 " figure out tab or spaces...
 function! Kees_settabs()
@@ -219,13 +203,10 @@ function! Kees_settabs()
 endfunction
 autocmd BufReadPost * call Kees_settabs()
 
-if has("statusline")
- set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
-endif
-
 " clean up dangling spaces on save.
 autocmd BufWritePre *.py :%s/\s\+$//e
 autocmd BufWritePre *.java :%s/\s\+$//e
+autocmd BufWritePre *.rb :%s/\s\+$//e
 
 " TagBarOpen
 nmap <leader>o :TagbarToggle<CR>
@@ -244,3 +225,7 @@ set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 " Hack to get minibufexplorer working with fugitive diff
 let g:miniBufExplorerMoreThanOne=3
+
+" cheap tricks 
+:nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+:inoremap jk <esc>
