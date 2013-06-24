@@ -1,4 +1,4 @@
-" https://bitbucket.org/ali/dotfiles
+"https://github.com/alisaifee/dotfiles 
 
 set nocompatible              " Don't be compatible with vi
 set encoding=utf-8
@@ -58,7 +58,7 @@ imap <C-W> <C-O><C-W>
 " Open NerdTree
 map <leader>n :NERDTreeToggle<CR>
 " Run command-t file search
-map <leader>f :CommandT<CR>
+map <leader>f :CtrlPMixed<CR>
 " Ack searching
 nmap <leader>a <Esc>:Ack!
 " Load the Gundo window
@@ -139,14 +139,16 @@ set modelines=5             " they must be within the first or last 5 lines.
 set ffs=unix,dos,mac        " Try recognizing dos, unix, and mac line endings.
 
 """" Messages, Info, Status
-set ls=2                    " allways show status line
-set vb t_vb=                " Disable all bells.  I hate ringing/flashing.
-set confirm                 " Y-N-C prompt if closing with unsaved changes.
-set showcmd                 " Show incomplete normal mode commands as I type.
-set report=0                " : commands always print changed line count.
-set shortmess+=a            " Use [+]/[RO]/[w] for modified/readonly/written.
-set ruler                   " Show some info, even without statuslines.
-set laststatus=2            " Always show statusline, even if only 1 window.
+set ls=2         " allways show status line
+set vb t_vb=     " Disable all bells.  I hate ringing/flashing.
+set confirm      " Y-N-C prompt if closing with unsaved changes.
+set showcmd      " Show incomplete normal mode commands as I type.
+set report=0     " : commands always print changed line count.
+set shortmess+=a " Use [+]/[RO]/[w] for modified/readonly/written.
+set ruler        " Show some info, even without statuslines.
+set laststatus=2 " Always show statusline, even if only 1 window.
+set ttyfast 
+set lazyredraw
 
 " displays tabs with :set list & displays when a line runs off-screen
 set listchars=tab:>-,eol:$,trail:-,precedes:<,extends:>
@@ -190,6 +192,7 @@ snor <c-j> <esc>i<right><c-r>=TriggerSnippet()<cr>
 let g:acp_completeoptPreview=1
 
 autocmd BufNewFile,BufRead *.mako,*.mak,*.jinja2 setlocal ft=html
+autocmd BufNewFile,BufRead *.gradle setlocal ft=groovy 
 autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 let g:pyflakes_use_quickfix = 0
@@ -202,6 +205,18 @@ function! Kees_settabs()
     endif
 endfunction
 autocmd BufReadPost * call Kees_settabs()
+function! CheckSpaces()
+python << CHECK_SPACES_FOR_TABS
+import re 
+two_spaces = re.compile("^\s{2}\w+", re.MULTILINE).findall("\n".join(vim.current.buffer[0:100]))
+four_spaces = re.compile("^\s{4}\w+", re.MULTILINE).findall("\n".join(vim.current.buffer[0:100]))
+tab_size = 2 if two_spaces > four_spaces else 4 
+vim.command("set tabstop=%d" % tab_size )
+vim.command("set softtabstop=%d" % tab_size )
+vim.command("set shiftwidth=%d" % tab_size )
+CHECK_SPACES_FOR_TABS
+endfunction 
+autocmd BufReadPost * call CheckSpaces()
 
 " clean up dangling spaces on save.
 autocmd BufWritePre *.py :%s/\s\+$//e
@@ -218,6 +233,7 @@ nmap <leader>t: :Tabularize /:<CR>
 vmap <leader>t: :Tabularize /:<CR>
 nmap <leader>t, :Tabularize /,<CR>
 vmap <leader>t, :Tabularize /,<CR>
+vmap <leader>t" :Tabularize /"<CR>
 
 " Powerline
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
@@ -229,3 +245,12 @@ let g:miniBufExplorerMoreThanOne=3
 " cheap tricks 
 :nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 :inoremap jk <esc>
+
+" ensure profile is loaded
+set shell=zsh\ -l
+
+" ruby autocomplete options 
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+

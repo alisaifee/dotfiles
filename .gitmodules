@@ -94,3 +94,21 @@
 [submodule "_vim/bundle/vim-golang"]
 	path = _vim/bundle/vim-golang
 	url = git@github.com:jnwhiteh/vim-golang.git
+[submodule "_vim/bundle/actionscript"]
+	path = _vim/bundle/actionscript
+	url = git@github.com:jeroenbourgois/vim-actionscript.git
+[submodule "_vim/bundle/vim-preview"]
+	path = _vim/bundle/vim-preview
+	url = git@github.com:greyblake/vim-preview.git
+[submodule "_vim/bundle/vim-ruby"]
+	path = _vim/bundle/vim-ruby
+	url = git@github.com:vim-ruby/vim-ruby.git
+[submodule "_vim/bundle/ctrlp"]
+	path = _vim/bundle/ctrlp
+	url = https://github.com/kien/ctrlp.vim
+[submodule "_vim/bundle/neocomplete"]
+	path = _vim/bundle/neocomplete
+	url = https://github.com/Shougo/neocomplete.vim
+[submodule "_vim/bundle/vim-rvm"]
+	path = _vim/bundle/vim-rvm
+	url = git://github.com/tpope/vim-rvm.git
