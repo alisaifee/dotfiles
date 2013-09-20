@@ -120,7 +120,7 @@ set softtabstop=4           " <BS> over an autoindent deletes both spaces.
 set expandtab               " Use spaces, not tabs, for autoindent/tab key.
 set shiftround              " rounds indent to a multiple of shiftwidth
 set matchpairs+=<:>         " show matching <> (html mainly) as well
-set foldmethod=syntax       " allow us to fold on indents
+set foldmethod=manual       " allow us to fold on indents
 set foldlevel=4             " don't fold by default
 
 " don't outdent hashes
@@ -249,8 +249,9 @@ let g:miniBufExplorerMoreThanOne=3
 " ensure profile is loaded
 set shell=zsh\ -l
 
-" ruby autocomplete options 
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+" gist settings 
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1 
+let g:gist_show_privates = 1 
+let g:gist_post_private = 1
 

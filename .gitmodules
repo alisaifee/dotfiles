@@ -112,3 +112,18 @@
 [submodule "_vim/bundle/vim-rvm"]
 	path = _vim/bundle/vim-rvm
 	url = git://github.com/tpope/vim-rvm.git
+[submodule "_vim/bundle/funcoo"]
+	path = _vim/bundle/funcoo
+	url = https://github.com/rizzatti/funcoo.vim.git
+[submodule "_vim/bundle/dash"]
+	path = _vim/bundle/dash
+	url = https://github.com/rizzatti/dash.vim.git
+[submodule "_vim/bundle/vim-gist"]
+	path = _vim/bundle/vim-gist
+	url = https://github.com/mattn/gist-vim.git
+[submodule "_vim/bundle/webapi-vim"]
+	path = _vim/bundle/webapi-vim
+	url = https://github.com/mattn/webapi-vim.git
+[submodule "_vim/bundle/salt-vim"]
+	path = _vim/bundle/salt-vim
+	url = https://github.com/saltstack/salt-vim
