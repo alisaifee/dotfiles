@@ -127,3 +127,12 @@
 [submodule "_vim/bundle/salt-vim"]
 	path = _vim/bundle/salt-vim
 	url = https://github.com/saltstack/salt-vim
+[submodule "_vim/bundle/vim-yaml"]
+	path = _vim/bundle/vim-yaml
+	url = https://github.com/avakhov/vim-yaml.git
+[submodule "_vim/bundle/vim-instant-markdown"]
+	path = _vim/bundle/vim-instant-markdown
+	url = https://github.com/suan/vim-instant-markdown.git
+[submodule "_vim/bundle/vimwiki"]
+	path = _vim/bundle/vimwiki
+	url = https://github.com/vimwiki/vimwiki.git
