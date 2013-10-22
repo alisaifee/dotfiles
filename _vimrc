@@ -208,6 +208,7 @@ autocmd BufReadPost * call Kees_settabs()
 function! CheckSpaces()
 python << CHECK_SPACES_FOR_TABS
 import re 
+import vim
 two_spaces = re.compile("^\s{2}\w+", re.MULTILINE).findall("\n".join(vim.current.buffer[0:100]))
 four_spaces = re.compile("^\s{4}\w+", re.MULTILINE).findall("\n".join(vim.current.buffer[0:100]))
 tab_size = 2 if two_spaces > four_spaces else 4 
