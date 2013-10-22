@@ -13,9 +13,6 @@
 [submodule "_vim/bundle/git"]
 	path = _vim/bundle/git
 	url = https://github.com/tpope/vim-git.git
-[submodule "_vim/bundle/command-t"]
-	path = _vim/bundle/command-t
-	url = https://github.com/wincent/Command-T.git
 [submodule "_vim/bundle/pyflakes"]
 	path = _vim/bundle/pyflakes
 	url = https://github.com/mitechie/pyflakes-pathogen.git
@@ -127,3 +124,12 @@
 [submodule "_vim/bundle/salt-vim"]
 	path = _vim/bundle/salt-vim
 	url = https://github.com/saltstack/salt-vim
+[submodule "_vim/bundle/vim-yaml"]
+	path = _vim/bundle/vim-yaml
+	url = https://github.com/avakhov/vim-yaml.git
+[submodule "_vim/bundle/vim-instant-markdown"]
+	path = _vim/bundle/vim-instant-markdown
+	url = https://github.com/suan/vim-instant-markdown.git
+[submodule "_vim/bundle/vimwiki"]
+	path = _vim/bundle/vimwiki
+	url = https://github.com/vimwiki/vimwiki.git

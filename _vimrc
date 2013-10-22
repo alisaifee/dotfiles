@@ -1,6 +1,7 @@
 "https://github.com/alisaifee/dotfiles 
 
 set nocompatible              " Don't be compatible with vi
+set maxmempattern=5000
 set encoding=utf-8
 let mapleader="-"             " change the leader to be a - vs slash
 command! W :w
@@ -104,6 +105,7 @@ set pumheight=6             " Keep a small completion window
 
 """ Moving Around/Editing
 set cursorline              " have a line indicate the cursor location
+set colorcolumn=80            " have a line indicate the cursor location
 set ruler                   " show the cursor position all the time
 set nostartofline           " Avoid moving cursor to BOL when jumping around
 set virtualedit=block       " Let cursor move past the last char in <C-v> mode
@@ -193,6 +195,7 @@ let g:acp_completeoptPreview=1
 
 autocmd BufNewFile,BufRead *.mako,*.mak,*.jinja2 setlocal ft=html
 autocmd BufNewFile,BufRead *.gradle setlocal ft=groovy 
+autocmd BufNewFile,BufRead *.task setlocal ft=ruby 
 autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 let g:pyflakes_use_quickfix = 0
@@ -255,4 +258,5 @@ let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1 
 let g:gist_show_privates = 1 
 let g:gist_post_private = 1
+let g:instant_markdown_slow = 1
 
