@@ -21,10 +21,6 @@
 	"segments": {
 		"right": [
 			{
-				"name": "system_load",
-				"priority": 50
-			},
-			{
 				"name": "date",
 				"args": {
 					"format": "%m-%d %H:%M",
