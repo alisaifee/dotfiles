@@ -7,9 +7,6 @@
 				"only_if_ssh": true
 			}
 		},
-		"virtualenv": {
-			"before": "ⓔ  "
-		},
 		"branch": {
 			"before": " "
 		}
@@ -21,9 +18,6 @@
 			},
 			{
 				"name": "user"
-			},
-			{
-				"name": "virtualenv"
 			},
 			{
 				"name": "cwd",
@@ -42,7 +36,11 @@
 				"args": {
 					"status_colors":true
 				}
-			}
+			},
+            {
+                "module": "segments",
+                "name": "pyenv"
+            }
 		]
 	}
 }
