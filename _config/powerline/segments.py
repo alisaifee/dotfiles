@@ -13,7 +13,9 @@ def pyenv(*a, **k):
 		virtualenvs = os.popen("pyenv virtualenvs 2>&1 | cut -d ' ' -f 2- | awk '{print $1}'").read().strip().split("\n")
 		if env in virtualenvs:
 			segs.insert(0, "venv")
-		env = "ℙ %s" % env
+			env = "ℙv %s" % env
+		else:
+			env = "ℙ %s" % env
 		return [{"contents": env, "highlight_group": segs}]
 	except:
 		pass
