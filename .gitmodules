@@ -72,7 +72,7 @@
 	url = git://github.com/godlygeek/tabular.git
 [submodule "_vim/bundle/powerline"]
 	path = _vim/bundle/powerline
-	url = git://github.com/lokaltog/powerline.git
+	url = git://github.com/Lokaltog/powerline.git
 [submodule "_git-scripts"]
 	path = _git-scripts
 	url = https://github.com/jwiegley/git-scripts
