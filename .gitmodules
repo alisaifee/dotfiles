@@ -127,3 +127,6 @@
 [submodule "_vim/bundle/vimwiki"]
 	path = _vim/bundle/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git
+[submodule "_pyenv"]
+	path = _pyenv
+	url = git://github.com/yyuu/pyenv.git
