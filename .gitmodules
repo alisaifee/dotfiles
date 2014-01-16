@@ -88,9 +88,6 @@
 [submodule "_vim/bundle/vim-distinguished"]
 	path = _vim/bundle/vim-distinguished
 	url = git@github.com:Lokaltog/vim-distinguished.git
-[submodule "_vim/bundle/actionscript"]
-	path = _vim/bundle/actionscript
-	url = git@github.com:jeroenbourgois/vim-actionscript.git
 [submodule "_vim/bundle/vim-preview"]
 	path = _vim/bundle/vim-preview
 	url = git@github.com:greyblake/vim-preview.git
