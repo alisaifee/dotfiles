@@ -14,6 +14,8 @@ if [ ! -e ~/.oh-my-zsh ]; then
 fi;
 
 if [ "$1" = "vim" ]; then
+    sudo bundle install 
+    sudo npm -g install 
     for i in _vim*
     do
        link_file $i

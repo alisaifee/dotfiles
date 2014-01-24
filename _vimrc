@@ -67,7 +67,7 @@ nmap <leader>a <Esc>:Ack!
 " Load the Gundo window
 map <leader>g :GundoToggle<CR>
 map <leader>w :wqa!<CR>
-filetype off
+filetype on
 
 let g:pathogen_disabled = []
 call add(g:pathogen_disabled, "pydoc")
