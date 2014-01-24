@@ -28,7 +28,7 @@ path=( /usr/local/sbin $path)
 path=( ~/bin $path)
 path=( $PYENV_ROOT/bin $path)
 path=( $PYENV_ROOT/shims $path)
-
+path=( $HOME/.rvm/bin $path )
 
 eval "$(pyenv init -)"
 
@@ -49,4 +49,3 @@ function set-aws-credentials
 }
 
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
