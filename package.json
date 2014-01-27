@@ -1,0 +1,16 @@
+{
+  "author": "",
+  "name": "dotfiles",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/alisaifee/dotfiles.git" 
+  },
+  "engines": {
+    "node": "~0.10"
+  },
+  "dependencies": {
+    "instant-markdown-d": "*"
+  },
+  "private": true
+}
