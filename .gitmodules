@@ -100,9 +100,6 @@
 [submodule "_vim/bundle/neocomplete"]
 	path = _vim/bundle/neocomplete
 	url = https://github.com/Shougo/neocomplete.vim
-[submodule "_vim/bundle/vim-rvm"]
-	path = _vim/bundle/vim-rvm
-	url = git://github.com/tpope/vim-rvm.git
 [submodule "_vim/bundle/funcoo"]
 	path = _vim/bundle/funcoo
 	url = https://github.com/rizzatti/funcoo.vim.git
