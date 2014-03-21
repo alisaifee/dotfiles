@@ -127,3 +127,6 @@
 [submodule "_pyenv"]
 	path = _pyenv
 	url = git://github.com/yyuu/pyenv.git
+[submodule "_vim/bundle/vim-elixir"]
+	path = _vim/bundle/vim-elixir
+	url = https://github.com/elixir-lang/vim-elixir.git

@@ -71,10 +71,11 @@ filetype on
 
 let g:pathogen_disabled = []
 call add(g:pathogen_disabled, "pydoc")
-
-
-call pathogen#runtime_append_all_bundles()
+call pathogen#infect()
 call pathogen#helptags()
+
+
+
 
 " ==========================================================
 " Basic Settings
