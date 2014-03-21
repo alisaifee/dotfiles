@@ -14,7 +14,7 @@ Interesting remaps
 ==================
 * leaderkey is -
 * <leaderkey>o : toggle TabList
-* <leaderkey>f : start Command-T search 
+* <leaderkey>f : start Ctrl-P search 
 * <leaderkey>n : toggle nerdtree 
 
 
