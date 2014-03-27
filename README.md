@@ -41,3 +41,9 @@ Therefore::
     ./install.sh gitconfig 
 
 etc..
+
+
+Removing the dotfiles
+=====================
+./implode.sh 
+
