@@ -39,7 +39,7 @@
 	url = git@github.com:vim-scripts/AutoComplPop.git
 [submodule "_vim/bundle/solarized"]
 	path = _vim/bundle/solarized
-	url = git@github.com:altercation/vim-colors-solarized.git
+	url = git://github.com/altercation/vim-colors-solarized.git
 [submodule "_vim/bundle/vim-less"]
 	path = _vim/bundle/vim-less
 	url = git@github.com:groenewege/vim-less.git
@@ -103,3 +103,6 @@
 [submodule "_pyenv"]
 	path = _pyenv
 	url = git@github.com:yyuu/pyenv.git
+[submodule "_vim/bundle/colorschemes"]
+	path = _vim/bundle/colorschemes
+	url = git@github.com:flazz/vim-colorschemes.git
