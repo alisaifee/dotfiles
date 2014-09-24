@@ -3,10 +3,12 @@ export ZSH_THEME=robbyrussell
 alias ls=ls -G
 export EDITOR=vim
 export DOCKER_HOST=tcp://127.0.0.1:4243
-plugins=(git git-extras ruby rvm gem brew tmux colorize colored-man fabric python pip history-substring-search jsontools tmuxinator)
+plugins=(git git-extras ruby rvm gem brew tmux colorize colored-man fabric python pip history-substring-search jsontools pass tmuxinator)
 source $ZSH/oh-my-zsh.sh
 
 PYTHONPATH=.:$PYTHONPATH
+autoload -U url-quote-magic
+zle -N self-insert url-quote-magic
 export PYTHONPATH=$PYTHONPATH:~/.vim/bundle/powerline
 export TERM=xterm-256color
 export LC_ALL=en_US.UTF-8
