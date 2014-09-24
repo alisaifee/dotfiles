@@ -25,28 +25,10 @@ map <leader>td <Plug>TaskList
 " Run pep8
 let g:pep8_map='<leader>8'
 
-" run py.test's
-nmap <silent><Leader>tf <Esc>:Pytest file<CR>
-nmap <silent><Leader>tc <Esc>:Pytest class<CR>
-nmap <silent><Leader>tm <Esc>:Pytest method<CR>
-nmap <silent><Leader>tn <Esc>:Pytest next<CR>
-nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
-nmap <silent><Leader>te <Esc>:Pytest error<CR>
-
-
-" ,v brings up my .vimrc
-" ,V reloads it -- making all changes active (have to save first)
+" -v brings up my .vimrc
+" -V reloads it -- making all changes active (have to save first)
 map <leader>v :sp ~/.vimrc<CR><C-W>_
 map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
-
-" open/close the quickfix window
-nmap <leader>c :copen<CR>
-nmap <leader>cc :cclose<CR>
-nmap <leader>xx :%!xxd<CR>
-nmap <leader>xxx :%!xxd -r<CR>
-
-" for when we forget to use sudo to open/edit a file
-cmap w!! w !sudo tee % >/dev/null
 
 " ctrl-jklm  changes to that split
 map <c-j> <c-w>j
@@ -73,9 +55,6 @@ let g:pathogen_disabled = []
 call add(g:pathogen_disabled, "pydoc")
 call pathogen#infect()
 call pathogen#helptags()
-
-
-
 
 " ==========================================================
 " Basic Settings
@@ -195,9 +174,10 @@ autocmd VimEnter * imap <expr> <S-Tab> pumvisible() ? "<C-P>" : "<S-Tab>"
 snor <c-j> <esc>i<right><c-r>=TriggerSnippet()<cr>
 let g:acp_completeoptPreview=1
 
-autocmd BufNewFile,BufRead *.mako,*.mak,*.jinja2 setlocal ft=html
-autocmd BufNewFile,BufRead *.gradle setlocal ft=groovy 
-autocmd BufNewFile,BufRead *.task setlocal ft=ruby 
+autocmd BufNewFile,BufRead *.mako,*.mak,*.jinja2,*.jxml setlocal ft=html
+autocmd BufNewFile,BufRead *.gradle setlocal ft=groovy
+autocmd BufNewFile,BufRead *.task setlocal ft=ruby
+autocmd BufNewFile,BufRead *.jxml setlocal ft=html
 autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 let g:pyflakes_use_quickfix = 0
