@@ -3,6 +3,8 @@
 set nocompatible              " Don't be compatible with vi
 set maxmempattern=5000
 set encoding=utf-8
+set showtabline=2
+
 let mapleader="-"             " change the leader to be a - vs slash
 command! W :w
 
@@ -146,8 +148,10 @@ set hlsearch                " Highlight searches by default.
 set incsearch               " Incrementally search while typing a /regex
 
 set background=dark
-let g:solarized_termcolors=256
 colorscheme solarized
+hi Normal ctermbg=none
+let g:solarized_termcolors=16
+
 
 " Paste from clipboard
 map <leader>p "+gP
@@ -181,7 +185,6 @@ autocmd BufNewFile,BufRead *.jxml setlocal ft=html
 autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 let g:pyflakes_use_quickfix = 0
-"set colorcolumn=79
 
 " figure out tab or spaces...
 function! Kees_settabs()
@@ -225,9 +228,6 @@ vmap <leader>t" :Tabularize /"<CR>
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 
-" Hack to get minibufexplorer working with fugitive diff
-let g:miniBufExplorerMoreThanOne=3
-
 " cheap tricks 
 :nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 :inoremap jk <esc>
@@ -241,4 +241,5 @@ let g:gist_open_browser_after_post = 1
 let g:gist_show_privates = 1 
 let g:gist_post_private = 1
 let g:instant_markdown_slow = 1
+
 
