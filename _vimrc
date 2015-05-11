@@ -244,5 +244,5 @@ let g:gist_post_private = 1
 let g:instant_markdown_slow = 1
 
 " jedi settings
-let g:jedi#usages_command = "<leader>gu"
-let g:jedi#goto_command = "<leader>gd"
+let g:jedi#usages_command = "gu"
+let g:jedi#goto_command = "gd"
