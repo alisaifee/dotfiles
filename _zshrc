@@ -3,6 +3,10 @@ export ZSH_THEME=robbyrussell
 alias ls=ls -G
 export EDITOR=vim
 export DOCKER_HOST=tcp://127.0.0.1:4243
+if [ -e ~/.profile ];
+then
+    source ~/.profile ;
+fi;
 plugins=(git git-extras ruby rvm gem brew tmux colorize colored-man fabric python pip history-substring-search jsontools pass tmuxinator)
 source $ZSH/oh-my-zsh.sh
 
@@ -16,12 +20,10 @@ export LANG=en_US.utf8
 
 source ~/.vim/bundle/powerline/powerline/bindings/zsh/powerline.zsh
 
-if [ -e ~/.profile ];
-then
-    source ~/.profile ;
-fi;
 
 export PYENV_ROOT="$HOME/.pyenv"
+export GOPATH=~/gohome
+export GOROOT=$(go env GOROOT)
 
 typeset -aU path
 path=( $path ~/.vim/bundle/powerline/scripts)
@@ -29,6 +31,8 @@ path=( /usr/local/bin $path)
 path=( ~/.git-scripts $path)
 path=( /usr/local/sbin $path)
 path=( ~/bin $path)
+path=( $GOPATH/bin $path)
+path=( $GOROOT/bin $path)
 path=( $PYENV_ROOT/bin $path)
 path=( $PYENV_ROOT/shims $path)
 path=( $HOME/.rvm/bin $path )
@@ -51,4 +55,6 @@ function set-aws-credentials
 
 }
 
+
+alias ctags="`brew --prefix`/bin/ctags"
 
