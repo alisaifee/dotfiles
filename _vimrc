@@ -175,6 +175,7 @@ autocmd VimEnter * ino <c-j> <c-r>=TriggerSnippet()<cr>
 " Use tab to scroll through autocomplete menus
 autocmd VimEnter * imap <expr> <Tab> pumvisible() ? "<C-N>" : "<Tab>"
 autocmd VimEnter * imap <expr> <S-Tab> pumvisible() ? "<C-P>" : "<S-Tab>"
+autocmd VimEnter * PyenvActivate
 snor <c-j> <esc>i<right><c-r>=TriggerSnippet()<cr>
 let g:acp_completeoptPreview=1
 
@@ -242,4 +243,6 @@ let g:gist_show_privates = 1
 let g:gist_post_private = 1
 let g:instant_markdown_slow = 1
 
-
+" jedi settings
+let g:jedi#usages_command = "<leader>gu"
+let g:jedi#goto_command = "<leader>gd"

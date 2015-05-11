@@ -33,7 +33,7 @@
 	url = https://github.com/vim-scripts/The-NERD-tree.git
 [submodule "_vim/bundle/ropevim"]
 	path = _vim/bundle/ropevim
-	url = https://github.com/sontek/rope-vim.git
+	url = https://github.com/python-rope/ropevim.git
 [submodule "_vim/bundle/acp"]
 	path = _vim/bundle/acp
 	url = https://github.com/vim-scripts/AutoComplPop.git
@@ -118,3 +118,12 @@
 [submodule "_vim/bundle/neocomplete"]
 	path = _vim/bundle/neocomplete
 	url = https://github.com/Shougo/neocomplete.vim.git
+[submodule "_vim/bundle/python-mode"]
+	path = _vim/bundle/python-mode
+	url = git://github.com/klen/python-mode.git
+[submodule "_vim/bundle/vim-pyenv"]
+	path = _vim/bundle/vim-pyenv
+	url = https://github.com/lambdalisue/vim-pyenv.git
+[submodule "_vim/bundle/jedi-vim"]
+	path = _vim/bundle/jedi-vim
+	url = https://github.com/davidhalter/jedi-vim
