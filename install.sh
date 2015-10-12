@@ -46,6 +46,3 @@ git submodule foreach git pull origin master
 git submodule foreach git submodule init
 git submodule foreach git submodule update
 pushd .
-cd _vim/bundle/powerline 
-git pull origin develop 
-popd 
