@@ -60,7 +60,7 @@
 	url = https://github.com/godlygeek/tabular.git
 [submodule "_vim/bundle/powerline"]
 	path = _vim/bundle/powerline
-	url = https://github.com/Lokaltog/powerline.git
+	url = https://github.com/powerline/powerline.git
 [submodule "_git-scripts"]
 	path = _git-scripts
 	url = https://github.com/jwiegley/git-scripts
