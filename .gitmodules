@@ -115,9 +115,6 @@
 [submodule "_vim/bundle/vim-go"]
 	path = _vim/bundle/vim-go
 	url = https://github.com/fatih/vim-go.git
-[submodule "_vim/bundle/neocomplete"]
-	path = _vim/bundle/neocomplete
-	url = https://github.com/Shougo/neocomplete.vim.git
 [submodule "_vim/bundle/python-mode"]
 	path = _vim/bundle/python-mode
 	url = git://github.com/klen/python-mode.git
