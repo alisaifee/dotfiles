@@ -35,9 +35,10 @@ path=( $GOPATH/bin $path)
 path=( $GOROOT/bin $path)
 path=( $PYENV_ROOT/bin $path)
 path=( $PYENV_ROOT/shims $path)
-path=( $HOME/.rvm/bin $path )
+path=( $HOME/.rbenv/bin $path)
 
 eval "$(pyenv init -)"
+eval "$(rbenv init -)"
 
 CLICOLOR=1
 LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx

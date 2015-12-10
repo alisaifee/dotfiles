@@ -127,3 +127,9 @@
 [submodule "_vim/bundle/jedi-vim"]
 	path = _vim/bundle/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim
+[submodule "_vim/bundle/vim-rbenv"]
+	path = _vim/bundle/vim-rbenv
+	url = https://github.com/tpope/vim-rbenv.git
+[submodule "_vim/bundle/nerd-commenter"]
+	path = _vim/bundle/nerd-commenter
+	url = https://github.com/scrooloose/nerdcommenter.git
