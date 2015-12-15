@@ -12,6 +12,9 @@ function link_file {
 if [ ! -e ~/.oh-my-zsh ]; then
     curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 fi;
+if [ ! -e ~/.emacs.d ]; then
+    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d;
+fi;
 
 if [ "$1" = "vim" ]; then
     sudo bundle install 
