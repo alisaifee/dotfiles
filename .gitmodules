@@ -126,7 +126,19 @@
 	url = https://github.com/davidhalter/jedi-vim
 [submodule "_vim/bundle/vim-rbenv"]
 	path = _vim/bundle/vim-rbenv
-	url = https://github.com/tpope/vim-rbenv.git
+	url = git://github.com/tpope/vim-rbenv.git
 [submodule "_vim/bundle/nerd-commenter"]
 	path = _vim/bundle/nerd-commenter
 	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "_vim/bundle/alchemist"]
+	path = _vim/bundle/alchemist
+	url = https://github.com/slashmili/alchemist.vim.git
+[submodule "_vim/bundle/vim-elixir"]
+	path = _vim/bundle/vim-elixir
+	url = https://github.com/elixir-lang/vim-elixir.git
+[submodule "_vim/bundle/vim-notes"]
+	path = _vim/bundle/vim-notes
+	url = https://github.com/xolox/vim-notes.git
+[submodule "_vim/bundle/vim-misc"]
+	path = _vim/bundle/vim-misc
+	url = https://github.com/xolox/vim-misc.git
