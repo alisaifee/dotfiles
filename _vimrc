@@ -1,31 +1,11 @@
-"https://github.com/alisaifee/dotfiles 
+"https://github.com/alisaifee/dotfiles
 
-set nocompatible              " Don't be compatible with vi
-set maxmempattern=5000
-set encoding=utf-8
-set showtabline=2
 
 let mapleader="-"             " change the leader to be a - vs slash
 command! W :w
-
-fu! SplitScroll()
-    :wincmd v
-    :wincmd w
-    execute "normal! \<C-d>"
-    :set scrollbind
-    :wincmd w
-    :set scrollbind
-endfu
-
-nmap <leader>sb :call SplitScroll()<CR>
 " sudo write this
 cmap W! w !sudo tee % >/dev/null
 
-" Toggle the tasklist
-map <leader>td <Plug>TaskList
-
-" Run pep8
-let g:pep8_map='<leader>8'
 
 " -v brings up my .vimrc
 " -V reloads it -- making all changes active (have to save first)
@@ -37,7 +17,6 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
-
 " and lets make these all work in insert mode too ( <C-O> makes next cmd
 "  happen as if in command mode )
 imap <C-W> <C-O><C-W>
@@ -46,13 +25,6 @@ imap <C-W> <C-O><C-W>
 map <leader>n :NERDTreeToggle<CR>
 " Run command-t file search
 map <leader>f :CtrlPMixed<CR>
-" Ack searching
-nmap <leader>a <Esc>:Ack!
-" Load the Gundo window
-map <leader>g :GundoToggle<CR>
-map <leader>w :wqa!<CR>
-filetype on
-
 let g:pathogen_disabled = []
 call add(g:pathogen_disabled, "pydoc")
 call pathogen#infect()
@@ -61,6 +33,10 @@ call pathogen#helptags()
 " ==========================================================
 " Basic Settings
 " ==========================================================
+set nocompatible              " Don't be compatible with vi
+set maxmempattern=5000
+set encoding=utf-8
+set showtabline=2
 syntax on                     " syntax highlighing
 filetype on                   " try to detect filetypes
 filetype plugin indent on     " enable loading indent file for filetype
@@ -133,7 +109,7 @@ set report=0     " : commands always print changed line count.
 set shortmess+=a " Use [+]/[RO]/[w] for modified/readonly/written.
 set ruler        " Show some info, even without statuslines.
 set laststatus=2 " Always show statusline, even if only 1 window.
-set ttyfast 
+set ttyfast
 set lazyredraw
 
 " displays tabs with :set list & displays when a line runs off-screen
@@ -170,79 +146,49 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 au BufRead *.js set makeprg=jslint\ %
 
-" Don't allow snipmate to take over tab
-autocmd VimEnter * ino <c-j> <c-r>=TriggerSnippet()<cr>
+au BufEnter /private/tmp/crontab.* setl backupcopy=yes
+
+
 " Use tab to scroll through autocomplete menus
 autocmd VimEnter * imap <expr> <Tab> pumvisible() ? "<C-N>" : "<Tab>"
 autocmd VimEnter * imap <expr> <S-Tab> pumvisible() ? "<C-P>" : "<S-Tab>"
-autocmd VimEnter * PyenvActivate
+autocmd VimEnter *.py PyenvActivate
 snor <c-j> <esc>i<right><c-r>=TriggerSnippet()<cr>
 let g:acp_completeoptPreview=1
 
-autocmd BufNewFile,BufRead *.mako,*.mak,*.jinja2,*.jxml setlocal ft=html
-autocmd BufNewFile,BufRead *.gradle setlocal ft=groovy
-autocmd BufNewFile,BufRead *.task setlocal ft=ruby
-autocmd BufNewFile,BufRead *.jxml setlocal ft=html
-autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
-
-let g:pyflakes_use_quickfix = 0
-
-" figure out tab or spaces...
-function! Kees_settabs()
-    if len(filter(getbufline(winbufnr(0), 1, "$"), 'v:val =~ "^\\t"')) > len(filter(getbufline(winbufnr(0), 1, "$"), 'v:val =~ "^ "'))
-        set noet ts=8 sw=8
-    endif
-endfunction
-autocmd BufReadPost * call Kees_settabs()
 function! CheckSpaces()
 python << CHECK_SPACES_FOR_TABS
-import re 
+import re
 import vim
 two_spaces = re.compile("^\s{2}\w+", re.MULTILINE).findall("\n".join(vim.current.buffer[0:100]))
 four_spaces = re.compile("^\s{4}\w+", re.MULTILINE).findall("\n".join(vim.current.buffer[0:100]))
-tab_size = 2 if two_spaces > four_spaces else 4 
+tab_size = 2 if two_spaces > four_spaces else 4
 vim.command("set tabstop=%d" % tab_size )
 vim.command("set softtabstop=%d" % tab_size )
 vim.command("set shiftwidth=%d" % tab_size )
 CHECK_SPACES_FOR_TABS
-endfunction 
+endfunction
 autocmd BufReadPost * call CheckSpaces()
 
 " clean up dangling spaces on save.
 autocmd BufWritePre *.py :%s/\s\+$//e
 autocmd BufWritePre *.java :%s/\s\+$//e
 autocmd BufWritePre *.rb :%s/\s\+$//e
+" Filetype overrides
+autocmd BufNewFile,BufRead *.mako,*.mak,*.jinja2,*.jxml setlocal ft=html
+autocmd BufNewFile,BufRead *.gradle setlocal ft=groovy
+autocmd BufNewFile,BufRead *.task setlocal ft=ruby
+autocmd BufNewFile,BufRead *.jxml setlocal ft=html
+autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 " TagBarOpen
 nmap <leader>o :TagbarToggle<CR>
 
-" Tabular shortcuts
-nmap <leader>t= :Tabularize /=<CR>
-vmap <leader>t= :Tabularize /=<CR>
-nmap <leader>t: :Tabularize /:<CR>
-vmap <leader>t: :Tabularize /:<CR>
-nmap <leader>t, :Tabularize /,<CR>
-vmap <leader>t, :Tabularize /,<CR>
-vmap <leader>t" :Tabularize /"<CR>
-
 " Powerline
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-
-
-" cheap tricks 
+" quote string under cursor
 :nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+" exit from insert to normal mode
 :inoremap jk <esc>
-
 " ensure profile is loaded
 set shell=zsh\ -l
-
-" gist settings 
-let g:gist_detect_filetype = 1
-let g:gist_open_browser_after_post = 1 
-let g:gist_show_privates = 1 
-let g:gist_post_private = 1
-let g:instant_markdown_slow = 1
-
-" jedi settings
-let g:jedi#usages_command = "gu"
-let g:jedi#goto_command = "gd"
