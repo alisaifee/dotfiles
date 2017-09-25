@@ -61,7 +61,7 @@ function set-aws-credentials
 alias ctags="`brew --prefix`/bin/ctags"
 alias mux=tmuxinator
 ~/.vim/bundle/powerline/scripts/powerline-daemon
-if [ -n "$TMUX"];
+if [ -n "$TMUX" ];
 then
     alias terminal-notifier='reattach-to-user-namespace terminal-notifier'
     alias ssh='reattach-to-user-namespace ssh'
