@@ -23,8 +23,11 @@ imap <C-W> <C-O><C-W>
 
 " Open NerdTree
 map <leader>n :NERDTreeToggle<CR>
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
 " Run command-t file search
-map <leader>f :CtrlPMixed<CR>
+map <c-f> :CommandT<CR>
 let g:pathogen_disabled = []
 call add(g:pathogen_disabled, "pydoc")
 call pathogen#infect()
@@ -144,6 +147,10 @@ nnoremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
 " Select the item in the list with enter
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
+" Copy/Paste to mac clipboard
+vmap <C-x> :!pbcopy<CR>  
+vmap <C-c> :w !pbcopy<CR><CR>"
+
 au BufRead *.js set makeprg=jslint\ %
 
 au BufEnter /private/tmp/crontab.* setl backupcopy=yes
@@ -192,3 +199,20 @@ set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 :inoremap jk <esc>
 " ensure profile is loaded
 set shell=zsh\ -l
+
+
+" Syntastic Settings
+" set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_wq = 0
+
+
+" Buffer navigation
+"
+:nnoremap <C-n> :bnext<CR>
+:nnoremap <C-p> :bprevious<CR>
+
