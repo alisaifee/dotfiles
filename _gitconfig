@@ -9,7 +9,7 @@
     ui = auto
 
 [push]
-    default = matching
+	default = simple
 
 [core]
     editor = vim
@@ -34,3 +34,9 @@
     move-tree = !bash -c 'git-move-tree \"$@\"'
     vanish = !bash -c 'git-vanish \"$1\"'
 
+[branch]
+	autosetuprebase = always
+[rebase]
+	autosquash = true
+[gpg]
+	program = gpg1
