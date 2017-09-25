@@ -82,9 +82,6 @@
 [submodule "_vim/bundle/vim-ruby"]
 	path = _vim/bundle/vim-ruby
 	url = https://github.com/vim-ruby/vim-ruby.git
-[submodule "_vim/bundle/ctrlp"]
-	path = _vim/bundle/ctrlp
-	url = https://github.com/kien/ctrlp.vim
 [submodule "_vim/bundle/vim-gist"]
 	path = _vim/bundle/vim-gist
 	url = https://github.com/mattn/gist-vim.git
@@ -145,3 +142,15 @@
 [submodule "_vim/bundle/vim-tags"]
 	path = _vim/bundle/vim-tags
 	url = https://github.com/szw/vim-tags.git
+[submodule "_vim/bundle/vim-syntastic"]
+	path = _vim/bundle/vim-syntastic
+	url = https://github.com/vim-syntastic/syntastic.git
+[submodule "_vim/bundle/command-t"]
+	path = _vim/bundle/command-t
+	url = https://github.com/wincent/command-t.git
+[submodule "_vim/bundle/vim-rails"]
+	path = _vim/bundle/vim-rails
+	url = https://github.com/tpope/vim-rails.git
+[submodule "_vim/bundle/vim-slim"]
+	path = _vim/bundle/vim-slim
+	url = https://github.com/slim-template/vim-slim.git
