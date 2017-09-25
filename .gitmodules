@@ -30,7 +30,7 @@
 	url = https://github.com/vim-scripts/TaskList.vim.git
 [submodule "_vim/bundle/nerdtree"]
 	path = _vim/bundle/nerdtree
-	url = https://github.com/vim-scripts/The-NERD-tree.git
+	url = https://github.com/scrooloose/nerdtree
 [submodule "_vim/bundle/ropevim"]
 	path = _vim/bundle/ropevim
 	url = https://github.com/python-rope/ropevim.git
