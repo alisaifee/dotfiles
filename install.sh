@@ -39,8 +39,16 @@ else
     do
         ln -sf ${PWD}/$i ~/.config/$name ;
     done;
-
 fi
 
 git submodule init
-pushd .
+
+# compile command-t
+if [ -e "_vim/bundle/command-t/ruby" ]; then
+    pushd .
+    cd _vim/bundle/command-t/ruby/command-t/ext/command-t 
+    make clean
+    ruby extconf.rb 
+    make
+    popd
+fi;
