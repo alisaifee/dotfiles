@@ -127,9 +127,9 @@ set hlsearch                " Highlight searches by default.
 set incsearch               " Incrementally search while typing a /regex
 
 set background=dark
+let g:solarized_termcolors=256
 colorscheme solarized
 hi Normal ctermbg=none
-let g:solarized_termcolors=16
 
 
 " Paste from clipboard
