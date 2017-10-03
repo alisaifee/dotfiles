@@ -42,6 +42,7 @@ else
 fi
 
 git submodule init
+git submodule update --recursive
 
 # compile command-t
 if [ -e "_vim/bundle/command-t/ruby" ]; then
