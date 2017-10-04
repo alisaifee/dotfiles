@@ -23,6 +23,8 @@ imap <C-W> <C-O><C-W>
 
 " Open NerdTree
 map <leader>n :NERDTreeToggle<CR>
+" Close current buffer 
+map <leader>x :bd<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
