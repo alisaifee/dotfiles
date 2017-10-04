@@ -144,7 +144,10 @@
 	url = https://github.com/wincent/command-t.git
 [submodule "_vim/bundle/vim-rails"]
 	path = _vim/bundle/vim-rails
-	url = https://github.com/tpope/vim-rails.git
+	url = https://github.com/tpope/vim-rails
 [submodule "_vim/bundle/vim-slim"]
 	path = _vim/bundle/vim-slim
 	url = https://github.com/slim-template/vim-slim.git
+[submodule "_vim/bundle/vim-fugitive"]
+	path = _vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
