@@ -151,3 +151,6 @@
 [submodule "_vim/bundle/vim-fugitive"]
 	path = _vim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
+[submodule "_vim/bundle/vim-easytags"]
+	path = _vim/bundle/vim-easytags
+	url = https://github.com/xolox/vim-easytags
