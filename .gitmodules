@@ -154,3 +154,6 @@
 [submodule "_vim/bundle/vim-easytags"]
 	path = _vim/bundle/vim-easytags
 	url = https://github.com/xolox/vim-easytags
+[submodule "_vim/bundle/ctrlp.vim"]
+	path = _vim/bundle/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim
