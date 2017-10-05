@@ -66,4 +66,9 @@ then
     alias terminal-notifier='reattach-to-user-namespace terminal-notifier'
     alias ssh='reattach-to-user-namespace ssh'
 fi;
+alias current_branch=git branch | grep '*' | awk '{print $2}'
+if [ -e "`which hub`" ];
+then
+    alias git=hub
+fi;
 

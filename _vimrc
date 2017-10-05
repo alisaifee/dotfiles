@@ -128,6 +128,7 @@ set smarttab                " Handle tabs more intelligently
 set hlsearch                " Highlight searches by default.
 set incsearch               " Incrementally search while typing a /regex
 
+let g:solarized_termcolors=256
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
