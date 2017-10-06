@@ -1,46 +1,26 @@
 "https://github.com/alisaifee/dotfiles
 
+"""""""""""""""""""'
+" utility functions
+"""""""""""""""""""'
+function! CheckSpaces()
+python << CHECK_SPACES_FOR_TABS
+import re
+import vim
+two_spaces = re.compile("^\s{2}\w+", re.MULTILINE).findall("\n".join(vim.current.buffer[0:100]))
+four_spaces = re.compile("^\s{4}\w+", re.MULTILINE).findall("\n".join(vim.current.buffer[0:100]))
+tab_size = 2 if two_spaces > four_spaces else 4
+vim.command("set tabstop=%d" % tab_size )
+vim.command("set softtabstop=%d" % tab_size )
+vim.command("set shiftwidth=%d" % tab_size )
+CHECK_SPACES_FOR_TABS
+endfunction
 
-let mapleader="-"             " change the leader to be a - vs slash
-command! W :w
-" sudo write this
-cmap W! w !sudo tee % >/dev/null
-
-
-" -v brings up my .vimrc
-" -V reloads it -- making all changes active (have to save first)
-map <leader>v :sp ~/.vimrc<CR><C-W>_
-map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
-
-" ctrl-jklm  changes to that split
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
-" and lets make these all work in insert mode too ( <C-O> makes next cmd
-"  happen as if in command mode )
-imap <C-W> <C-O><C-W>
-
-" Open NerdTree
-map <leader>n :NERDTreeToggle<CR>
-" Close current buffer 
-map <leader>x :bd<CR>
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-
-" Run command-t file search
-map <c-f> :CommandT<CR>
-let g:CommandTFileScanner = "watchman"
-
-
-let g:pathogen_disabled = []
-call add(g:pathogen_disabled, "pydoc")
-call pathogen#infect()
-call pathogen#helptags()
-
-" ==========================================================
-" Basic Settings
-" ==========================================================
+"""""""""""""""
+" global config
+""""""""""""""'
+" ensure profile is loaded
+set shell=zsh\ -l
 set nocompatible              " Don't be compatible with vi
 set maxmempattern=5000
 set encoding=utf-8
@@ -61,9 +41,6 @@ set vb t_vb=
 " Ignore these files when completing
 set wildignore+=*.o,*.obj,.git,*.pyc
 set grepprg=ack-grep          " replace the default grep program with ack
-
-" Set working directory
-nnoremap <leader>. :lcd %:p:h<CR>
 
 """ Insert completion
 " don't select first item, follow typing in autocomplete
@@ -96,10 +73,6 @@ set mouse=a
 " don't outdent hashes
 inoremap # #
 
-" close preview window automatically when we move around
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
 """" Reading/Writing
 set noautowrite             " Never write a file unless I request it.
 set noautowriteall          " NEVER.
@@ -131,94 +104,105 @@ set smarttab                " Handle tabs more intelligently
 set hlsearch                " Highlight searches by default.
 set incsearch               " Incrementally search while typing a /regex
 
+
+""""""""""""""'
+" plugin setup
+""""""""""""""'
+let g:pathogen_disabled = []
+call add(g:pathogen_disabled, "pydoc")
+call pathogen#infect()
+call pathogen#helptags()
+
+
+""""""""""""""'
+" look and feel
+""""""""""""""'
+" set solarized dark
 let g:solarized_termcolors=256
 set background=dark
-let g:solarized_termcolors=256
 colorscheme solarized
 hi Normal ctermbg=none
-
-
-" Paste from clipboard
-map <leader>p "+gP
-
-" Quit window on <leader>q
-nnoremap <leader>q :q<CR>
-"
-" hide matches on <leader>space
-nnoremap <leader><space> :nohlsearch<cr>
-
-" Remove trailing whitespace on <leader>S
-nnoremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
-
-" Select the item in the list with enter
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Copy/Paste to mac clipboard
-vmap <C-x> :!pbcopy<CR>  
-vmap <C-c> :w !pbcopy<CR><CR>"
-
-au BufRead *.js set makeprg=jslint\ %
-
-au BufEnter /private/tmp/crontab.* setl backupcopy=yes
-
-
-" Use tab to scroll through autocomplete menus
-autocmd VimEnter * imap <expr> <Tab> pumvisible() ? "<C-N>" : "<Tab>"
-autocmd VimEnter * imap <expr> <S-Tab> pumvisible() ? "<C-P>" : "<S-Tab>"
-autocmd VimEnter *.py PyenvActivate
-snor <c-j> <esc>i<right><c-r>=TriggerSnippet()<cr>
-let g:acp_completeoptPreview=1
-
-function! CheckSpaces()
-python << CHECK_SPACES_FOR_TABS
-import re
-import vim
-two_spaces = re.compile("^\s{2}\w+", re.MULTILINE).findall("\n".join(vim.current.buffer[0:100]))
-four_spaces = re.compile("^\s{4}\w+", re.MULTILINE).findall("\n".join(vim.current.buffer[0:100]))
-tab_size = 2 if two_spaces > four_spaces else 4
-vim.command("set tabstop=%d" % tab_size )
-vim.command("set softtabstop=%d" % tab_size )
-vim.command("set shiftwidth=%d" % tab_size )
-CHECK_SPACES_FOR_TABS
-endfunction
-autocmd BufReadPost * call CheckSpaces()
-
-" clean up dangling spaces on save.
-autocmd BufWritePre *.py :%s/\s\+$//e
-autocmd BufWritePre *.java :%s/\s\+$//e
-autocmd BufWritePre *.rb :%s/\s\+$//e
-" Filetype overrides
-autocmd BufNewFile,BufRead *.mako,*.mak,*.jinja2,*.jxml setlocal ft=html
-autocmd BufNewFile,BufRead *.gradle setlocal ft=groovy
-autocmd BufNewFile,BufRead *.task setlocal ft=ruby
-autocmd BufNewFile,BufRead *.jxml setlocal ft=html
-autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
-
-" TagBarOpen
-nmap <leader>o :TagbarToggle<CR>
-
 " Powerline
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-" quote string under cursor
-:nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
-" exit from insert to normal mode
-:inoremap jk <esc>
-" ensure profile is loaded
-set shell=zsh\ -l
 
 
+"""""""""""""""""""
+" start up commands
+""""""""""""""""""'
+autocmd StdinReadPre * let s:std_in=1
+" open nerdtree automatically if started with a directory
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" close preview window automatically when we move around
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" enable pyenv if found
+autocmd VimEnter *.py PyenvActivate
+" figure out utabs or spaces 
+autocmd BufReadPost * call CheckSpaces()
+" clean up dangling spaces on save.
+autocmd BufWritePre *.* :%s/\s\+$//e
+" Filetype overrides
+autocmd BufNewFile,BufRead *.mako,*.mak,*.jinja2,*.jxml setlocal ft=html
+autocmd BufNewFile,BufRead *.task setlocal ft=ruby
+autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+
+
+""""""""""""""""""""""'
+" plugin configurations
+"""""""""""""""""""""""'
+" Run command-t file search
+let g:CommandTFileScanner = "watchman"
+let g:acp_completeoptPreview=1
 " Syntastic Settings
 " set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_wq = 0
 
 
+""""""""""""""'
+" key bindings
+""""""""""""""'
+let mapleader="-"             " change the leader to be a - vs slash
+" sudo write this
+cmap W! w !sudo tee % >/dev/null
+" TagBarOpen
+nmap <leader>o :TagbarToggle<CR>
+" Open NerdTree
+map <leader>n :NERDTreeToggle<CR>
+" open vimrc
+map <leader>v :sp ~/.vimrc<CR><C-W>_
+" reload vimrc
+map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+" close current buffer
+map <leader>x :bd<CR>
+" close current window
+nnoremap <leader>q :q<CR>
+" hide matches on <leader>space
+nnoremap <leader><space> :nohlsearch<cr>
+" Remove trailing whitespace on <leader>S
+nnoremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
+" quote string under cursor
+:nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+:nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
+" ctrl-jklm  changes to that split
+map <C-j> <c-w>j
+map <C-k> <c-w>k
+map <C-l> <c-w>l
+map <C-h> <c-w>h
+" and lets make these all work in insert mode too ( <C-O> makes next cmd
+"  happen as if in command mode )
+imap <C-W> <C-O><C-W>
 " Buffer navigation
-"
 :nnoremap <C-n> :bnext<CR>
 :nnoremap <C-p> :bprevious<CR>
-
+" Tab navigation
+":nnoremap <C-N> :tabnext<CR>
+":nnoremap <C-P> :tabprevious<CR>
+" Copy/Paste to mac clipboard
+vmap <C-x> :!pbcopy<CR>  
+vmap <C-c> :w !pbcopy<CR><CR>"
+" exit from insert to normal mode
+:inoremap jk <esc>

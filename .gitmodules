@@ -157,3 +157,6 @@
 [submodule "_vim/bundle/ctrlp.vim"]
 	path = _vim/bundle/ctrlp.vim
 	url = https://github.com/ctrlpvim/ctrlp.vim
+[submodule "_vim/bundle/tabline.vim"]
+	path = _vim/bundle/tabline.vim
+	url = https://github.com/mkitt/tabline.vim
