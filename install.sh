@@ -75,7 +75,7 @@ for version in 3.5.4 2.7.11; do
 done;
 
 # default rubies
-for version in 2.3.3; do 
+for version in 2.3.3 2.4.2; do 
     if [ ! -e ~/.rbenv/versions/$version ]; then
         rbenv install $version;
     fi
