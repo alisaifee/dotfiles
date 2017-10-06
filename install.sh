@@ -40,9 +40,9 @@ then
         curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
     fi
     brew tap caskroom/fonts
-    brew install ruby-build coreutils wget unison readline xz
-    
-    
+    brew install ruby-build coreutils wget unison readline xz watchman
+
+
     # temporary workaround as tmux 2.5 isn't supported by tmuxinator
     brew install https://raw.githubusercontent.com/Homebrew/brew/2d2034afc6e4dfab0a1c48f5edd2c5478576293b/Formula/tmux.rb
 

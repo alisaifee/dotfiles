@@ -30,6 +30,9 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 
 " Run command-t file search
 map <c-f> :CommandT<CR>
+let g:CommandTFileScanner = "watchman"
+
+
 let g:pathogen_disabled = []
 call add(g:pathogen_disabled, "pydoc")
 call pathogen#infect()
