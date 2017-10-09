@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-function link_file {
+function linkFile {
     source="${PWD}/$1"
     target="${HOME}/${1/_/.}"
 
@@ -13,6 +13,21 @@ function link_file {
 
     ln -sf ${source} ${target}
 }
+
+function addWatch {
+    path=$1
+    friendly_name=$(echo $path | sed -E -e "s#$HOME##g" -e 's/[^A-Za-z]//g');
+    watchman -j <<-EOT
+    [
+        "trigger", "$path", {
+            "name": "${friendly_name}_trigger",
+            "expression": ["anyof", ["match", "*.*"]],"command": ["$HOME/_dev/_git/dotfiles/bin/ctags_trigger", "$path"],
+            "append_files": true
+        }
+    ]
+EOT
+}
+
 # set up oh-my-zsh
 if [ ! -e ~/.oh-my-zsh ]; then
     curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
@@ -75,34 +90,39 @@ for version in 3.5.4 2.7.11; do
 done;
 
 # default rubies
-for version in 2.3.3 2.4.2; do 
+for version in 2.3.3 2.4.2; do
     if [ ! -e ~/.rbenv/versions/$version ]; then
         rbenv install $version;
     fi
 done
 
 # default nodes
-nvm install stable
 nvm install 6.3
+nvm install stable
+nvm alias default $(nvm ls | grep '6.3' | awk '{print $NF}')
 
+# install watches
+for path in ~/_sync ~/_dev ~/.pyenv ~/.rbenv; do
+    addWatch $path
+done;
 
 if [ "$1" = "vim" ]; then
     sudo bundle install
     sudo npm -g install
     for i in _vim*
     do
-       link_file $i
+       linkFile $i
     done
 elif [ "$1" = "zsh" ]; then
     for i in _zsh*
     do
-        link_file $i
+        linkFile $i
     done
 else
     for i in _*
     do
         if [ $i != "_config" ]; then
-            link_file $i
+            linkFile $i
         fi;
     done
     for i in _config/*
