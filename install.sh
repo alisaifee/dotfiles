@@ -15,8 +15,12 @@ function linkFile {
 }
 
 function addWatch {
-    path=$1
-    friendly_name=$(echo $path | sed -E -e "s#$HOME##g" -e 's/[^A-Za-z]//g');
+    if [ -L $1 ]; then
+        path=$(readlink $1);
+    else
+        path="$1";
+    fi;
+    friendly_name=$(echo $1 | sed -E -e "s#$HOME##g" -e 's/[^A-Za-z]//g');
     watchman -j <<-EOT
     [
         "trigger", "$path", {
