@@ -103,7 +103,7 @@ done
 # default nodes
 nvm install 6.3
 nvm install stable
-nvm alias default $(nvm ls | grep '6.3' | awk '{print $NF}')
+nvm alias default 6.3
 
 # install watches
 for path in ~/_sync ~/_dev ~/.pyenv ~/.rbenv; do
