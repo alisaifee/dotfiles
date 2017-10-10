@@ -145,6 +145,8 @@ autocmd BufWritePre *.* :%s/\s\+$//e
 autocmd BufNewFile,BufRead *.mako,*.mak,*.jinja2,*.jxml setlocal ft=html
 autocmd BufNewFile,BufRead *.task setlocal ft=ruby
 autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+" Ensure crontab can be saved when edited with vim
+autocmd filetype crontab setlocal nobackup nowritebackup
 
 
 """"""""""""""""""""""'
