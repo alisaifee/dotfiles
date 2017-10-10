@@ -160,3 +160,9 @@
 [submodule "_vim/bundle/tabline.vim"]
 	path = _vim/bundle/tabline.vim
 	url = https://github.com/mkitt/tabline.vim
+[submodule "_vim/bundle/neocomplete.vim"]
+	path = _vim/bundle/neocomplete.vim
+	url = https://github.com/Shougo/neocomplete.vim
+[submodule "_vim/bundle/SQLUtilities"]
+	path = _vim/bundle/SQLUtilities
+	url = https://github.com/vim-scripts/SQLUtilities
