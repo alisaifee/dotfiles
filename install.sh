@@ -20,12 +20,13 @@ function addWatch {
     else
         path="$1";
     fi;
-    friendly_name=$(echo $1 | sed -E -e "s#$HOME##g" -e 's/[^A-Za-z]//g');
+    friendly_name=$(echo $1 | sed -E -e "s#$HOME##g" -e 's/[^A-Za-z]//g')_trigger;
+    watchman trigger-del $path $friendly_name;
     watchman -j <<-EOT
     [
         "trigger", "$path", {
-            "name": "${friendly_name}_trigger",
-            "expression": ["anyof", ["match", "*.*"]],"command": ["$HOME/_dev/_git/dotfiles/bin/ctags_trigger", "$path"],
+            "name": "$friendly_name",
+            "expression": ["anyof", ["pcre", ".(cc|clj|coffee|cpp|cs|css|dart|el|erb|erl|ex|exs|go|gradle|groovy|hpp|htm|html|hxx|java|js|jsx|json|lua|php|py|rake|rb|sass|scala|scss|slim|spec|sql|vb|vim|xhtml|xml)$"]],"command": ["$HOME/_dev/_git/dotfiles/bin/ctags_trigger", "$path"],
             "append_files": true
         }
     ]
