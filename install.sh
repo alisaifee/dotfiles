@@ -47,18 +47,6 @@ then
     if [ ! "$(type brew)" ]; then
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     fi
-    if [ ! -e ~/.rbenv ]; then
-        git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-    fi
-    if [ ! -e ~/.pyenv ]; then
-        git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-    fi
-    if [ ! -e ~/.pyenv/plugins/pyenv-virtualenv ]; then
-        git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
-    fi
-    if [ ! -e ~/.nvm ]; then
-        curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
-    fi
     brew tap caskroom/fonts
     brew install ctags-exuberant ruby-build coreutils wget unison readline xz watchman
     # homebrew vim
@@ -74,6 +62,19 @@ then
     # lameness for python builds to find openssl
     export CFLAGS="-I$(brew --prefix openssl)/include"
     export LDFLAGS="-L$(brew --prefix openssl)/lib"
+fi
+
+if [ ! -e ~/.rbenv ]; then
+    git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+fi
+if [ ! -e ~/.pyenv ]; then
+    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+fi
+if [ ! -e ~/.pyenv/plugins/pyenv-virtualenv ]; then
+    git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+fi
+if [ ! -e ~/.nvm ]; then
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
 fi
 
 # make the virtualenvs available in bash
