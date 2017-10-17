@@ -109,9 +109,9 @@ nvm install stable
 nvm alias default 6.3
 
 # install watches
-for path in ~/_sync ~/_dev ~/.pyenv ~/.rbenv; do
-    addWatch $path
-done;
+#for path in ~/_sync ~/_dev ~/.pyenv ~/.rbenv; do
+#    addWatch $path
+#done;
 
 if [ "$1" = "vim" ]; then
     sudo bundle install
