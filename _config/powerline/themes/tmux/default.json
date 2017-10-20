@@ -10,6 +10,10 @@
 				"priority": 50
 			},
 			{
+				"function": "powerlinemem.mem_usage.mem_usage_percent",
+				"priority": 50
+			},
+			{
 				"function": "powerline.segments.common.time.date"
 			},
 			{
