@@ -61,9 +61,6 @@
 [submodule "_vim/bundle/dbext"]
 	path = _vim/bundle/dbext
 	url = https://github.com/vim-scripts/dbext.vim.git
-[submodule "_vim/bundle/vim-rst-tables"]
-	path = _vim/bundle/vim-rst-tables
-	url = https://github.com/nvie/vim-rst-tables.git
 [submodule "_vim/bundle/vim-coffee-script"]
 	path = _vim/bundle/vim-coffee-script
 	url = https://github.com/kchmck/vim-coffee-script.git
