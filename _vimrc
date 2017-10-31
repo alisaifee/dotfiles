@@ -4,7 +4,7 @@
 " utility functions
 """""""""""""""""""'
 function! CheckSpaces()
-python << CHECK_SPACES_FOR_TABS
+python3 << CHECK_SPACES_FOR_TABS
 import re
 import vim
 two_spaces = re.compile("^\s{2}\w+", re.MULTILINE).findall("\n".join(vim.current.buffer[0:100]))
