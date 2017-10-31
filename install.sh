@@ -33,10 +33,6 @@ function addWatch {
 EOT
 }
 
-# set up oh-my-zsh
-if [ ! -e ~/.oh-my-zsh ]; then
-    curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-fi;
 
 # ensure config directory exists
 mkdir -p ~/.config
@@ -62,10 +58,36 @@ then
     # lameness for python builds to find openssl
     export CFLAGS="-I$(brew --prefix openssl)/include"
     export LDFLAGS="-L$(brew --prefix openssl)/lib"
+else
+    if [ ! -e /etc/apt/sources.list.d/elastic-5.x.list ];
+    then
+        wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -;
+        sudo apt-get install apt-transport-https;
+        echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-5.x.list;
+    fi;
+    sudo apt-get update
+    sudo apt-get -y install keychain zsh vim-nox curl tmux ctags-exuberant
+    # development deps
+    sudo apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev libffi-dev libgdbm-dev ruby-dev libnurses5 libncurses5-dev
+    sudo apt-get -y install gnupg2 gnupg
+    sudo apt-get -y install openjdk-8-jre
+    sudo apt-get -y install postgresql postgresql-contrib libpq-dev
+    sudo apt-get -y install mysql-server mysql-client libmysqlclient-dev
+    sudo apt-get -y install memcached redis-server
+    sudo apt-get -y install nginx
+    sudo apt-get -y install awscli
+    sudo apt-get -y install elasticsearch
 fi
+
+# set up oh-my-zsh
+if [ ! -e ~/.oh-my-zsh ]; then
+    curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+fi;
 
 if [ ! -e ~/.rbenv ]; then
     git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+    mkdir -p "$(rbenv root)"/plugins
+    git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
 fi
 if [ ! -e ~/.pyenv ]; then
     git clone https://github.com/pyenv/pyenv.git ~/.pyenv
@@ -97,7 +119,7 @@ for version in 3.5.4 2.7.11; do
 done;
 
 # default rubies
-for version in 2.3.3 2.4.2; do
+for version in 2.4.2; do
     if [ ! -e ~/.rbenv/versions/$version ]; then
         rbenv install $version;
     fi
