@@ -163,6 +163,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_wq = 0
 
+" FZF
+let g:fzf_history_dir = "~/.fzf"
 
 """"""""""""""'
 " key bindings
@@ -172,6 +174,21 @@ let mapleader="-"             " change the leader to be a - vs slash
 cmap W! w !sudo tee % >/dev/null
 " TagBarOpen
 nmap <leader>o :TagbarToggle<CR>
+
+" Search
+
+let g:rg_command = '
+            \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always" --vimgrep
+            \ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf}"
+            \ -g "!{.git,node_modules,vendor}/*" '
+
+command! -bang -nargs=* Rg call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
+
+map <C-f><C-f> :Files<CR>
+map <C-f><C-t> :Tags<CR>
+map <C-f><C-b> :Buffers<CR>
+map <C-f><C-g> :GFiles<CR>
+map <C-f><C-p> :Rg<space>
 " Open NerdTree
 map <leader>n :NERDTreeToggle<CR>
 " open vimrc

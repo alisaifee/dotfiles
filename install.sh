@@ -44,7 +44,7 @@ then
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     fi
     brew tap caskroom/fonts
-    brew install ctags-exuberant ruby-build coreutils wget unison readline xz watchman
+    brew install ctags-exuberant ruby-build coreutils wget unison readline xz watchman ripgrep
     # homebrew vim
     brew install vim --with-lua --with-python3
 
@@ -66,7 +66,7 @@ else
         echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-5.x.list;
     fi;
     sudo apt-get update
-    sudo apt-get -y install keychain zsh vim-nox curl tmux ctags-exuberant
+    sudo apt-get -y install keychain zsh vim-nox curl tmux ctags-exuberant cargo
     # development deps
     sudo apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev libffi-dev libgdbm-dev ruby-dev libnurses5 libncurses5-dev
     sudo apt-get -y install gnupg2 gnupg
@@ -77,6 +77,7 @@ else
     sudo apt-get -y install nginx
     sudo apt-get -y install awscli
     sudo apt-get -y install elasticsearch
+    cargo install ripgrep
 fi
 
 # set up oh-my-zsh
@@ -170,5 +171,11 @@ if [ -e "_vim/bundle/command-t/ruby" ]; then
     make clean
     ruby extconf.rb
     make
+    popd
+fi;
+
+if [ -z "$(command -v fzf)" ]; then
+    pushd .
+    cd _vim/bundle/fzf && ./install
     popd
 fi;

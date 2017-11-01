@@ -169,3 +169,9 @@
 [submodule "misc/intellij-solarized"]
 	path = misc/intellij-solarized
 	url = git@github.com:jkaving/intellij-colors-solarized.git
+[submodule "_vim/bundle/fzf"]
+	path = _vim/bundle/fzf
+	url = https://github.com/junegunn/fzf
+[submodule "_vim/bundle/fzf.vim"]
+	path = _vim/bundle/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
