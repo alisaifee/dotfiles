@@ -14,8 +14,7 @@ if type "go" > /dev/null 2>&1; then
     export GOPATH=~/gohome
     export GOROOT=$(go env GOROOT)
 fi
-CLICOLOR=1
-LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+eval `dircolors ~/.dircolors`
 
 if [ -e ~/.profile ];
 then
