@@ -1,0 +1,218 @@
+# vim:filetype=i3
+# i3 config file (v4)
+
+
+font pango:Knack Nerd Font 10
+
+
+# start a terminal
+bindsym $mod+Return exec tilix
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec --no-startup-id "rofi -combi-modi window,drun,run,ssh -show combi -modi combi"
+
+set $mon1 "DP-0.1"
+set $mon2 "DP-0.2.8"
+
+# workaround for background getting corrupted
+gaps inner 10
+gaps outer 15
+smart_gaps on
+for_window [class=".*"] border pixel 5
+hide_edge_borders both
+
+floating_modifier Mod1
+
+set $mod Mod4
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# switch to workspace
+bindsym $mod+1 workspace dev
+bindsym $mod+2 workspace work
+bindsym $mod+3 workspace personal
+bindsym $mod+4 workspace comms
+bindsym $mod+5 workspace config
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace dev
+bindsym $mod+Shift+2 move container to workspace work
+bindsym $mod+Shift+3 move container to workspace personal
+bindsym $mod+Shift+4 move container to workspace comms
+bindsym $mod+Shift+5 move container to workspace config
+
+
+workspace "dev" output $mon2
+workspace "work" output "mon2"
+workspace "personal" output $mon2
+workspace "comms" output $mon1
+workspace "config" output $mon1
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace
+bindsym $mod+Shift+r restart
+# enter fullscreen mode for the focused container
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+#  horizontal screen
+bar {
+  output $mon2
+  status_command py3status
+  height 25
+  i3bar_command i3bar -t
+  separator_symbol 
+  position top
+  colors {
+    separator #dc322f
+    background #002b36
+    statusline #268bd2
+    focused_workspace #fdf6e3 #859900 #fdf6e3
+    active_workspace #fdf6e3 #b58900 #fdf6e3
+    inactive_workspace #586e75 #93a1a1 #002b36
+    urgent_workspace #d33682 #d33682 #fdf6e3
+  }
+}
+
+#  vertical screen
+bar {
+  output primary
+  status_command py3status -c ~/.i3status-mini.conf
+  height 25
+  i3bar_command i3bar -t 
+  separator_symbol 
+  position top
+  colors {
+    separator #dc322f
+    background #002b36
+    statusline #268bd2
+    focused_workspace #fdf6e3 #859900 #fdf6e3
+    active_workspace #fdf6e3 #b58900 #fdf6e3
+    inactive_workspace #586e75 #93a1a1 #002b36
+    urgent_workspace #d33682 #d33682 #fdf6e3
+  }
+  tray_output none
+}
+
+client.focused #859900 #859900 #fdf6e3 #6c71c4
+client.focused_inactive #073642 #073642 #eee8d5 #6c71c4
+client.unfocused #073642 #073642 #93a1a1 #586e75
+client.urgent #d33682 #d33682 #fdf6e3 #dc322f
+
+
+# Set wallpaper (need to install feh)
+exec_always feh --bg-scale /home/ali/_dev/_git/dotfiles/wallpapers/solarized.jpg
+
+# application -> workspace binding
+for_window [class="Spotify"] move to workspace personal
+for_window [class="jetbrains*"] move to workspace dev
+for_window [class="Slack"] move to workspace comms
+for_window [class="zoom"] move to workspace comms
+for_window [title=".*Zoom.*Meeting.*"] move to workspace comms
+for_window [title=".*Toptal Mail.*"] move to workspace comms
+for_window [title=".*indydevs.org Mail.*"] move to workspace comms
+for_window [title="WhatsApp.*"] move to workspace comms
+for_window [class="Gnome-calendar"] move to workspace comms
+
+# Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# media keys
+bindsym XF86AudioPlay exec "~/.i3/media_keys.py play"
+bindsym XF86AudioStop exec "~/.i3/media_keys.py stop"
+bindsym XF86AudioPrev exec "~/.i3/media_keys.py prev"
+bindsym XF86AudioNext exec "~/.i3/media_keys.py next"
+
+# startup applications
+exec --no-startup-id spotify
+exec --no-startup-id slack
+exec --no-startup-id solaar
+exec --no-startup-id gnome-keyring-daemon --start
+# enable fx
+exec_always compton -f
+
+# touchpad settings
+exec_always --no-startup-id ~/.i3/touchpad.sh
+# fix rotation
+exec_always --no-startup-id ~/.screenlayout/default.sh
+# custom notifications
+exec_always --no-startup-id dunst -config ~/.dunstrc
+# autolock
+exec_always xautolock -detectsleep -time 5 -locker "i3lock -d -t -i ~/_dev/_git/dotfiles/wallpapers/solarized.png" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
