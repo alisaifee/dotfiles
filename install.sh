@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-function linkFile {
+function link_file {
     source="${PWD}/$1"
     target="${HOME}/${1/_/.}"
 
@@ -14,7 +14,7 @@ function linkFile {
     ln -sf ${source} ${target}
 }
 
-function addWatch {
+function add_watch {
     if [ -L $1 ]; then
         path=$(readlink $1);
     else
@@ -31,6 +31,41 @@ function addWatch {
         }
     ]
 EOT
+}
+
+function install_i3_gaps {
+    pushd .
+    cd /var/tmp
+    if [ ! -e i3-gaps ]; then
+        git clone https://github.com/Airblader/i3 i3-gaps;
+    fi
+    cd i3-gaps
+    git pull
+    sudo apt-get install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake
+    autoreconf --force --install
+    rm -rf build/
+    mkdir -p build && cd build/
+    ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+    make
+    sudo make install
+    popd
+}
+
+function patch_fonts {
+    if [[ `uname` == 'Darwin' ]]
+    then
+        brew cask search nerd-font | xargs -n 1 brew cask install
+    else
+        pushd .
+        cd /var/tmp
+        if [ ! -e nerd-fonts ];then
+            git clone https://github.com/ryanoasis/nerd-fonts --depth 1
+        fi;
+        cd nerd-fonts
+        git pull
+        ./install.sh
+        popd
+fi
 }
 
 
@@ -67,6 +102,9 @@ else
     fi;
     sudo apt-get update
     sudo apt-get -y install keychain zsh vim-nox curl tmux ctags-exuberant cargo
+    # window manager
+    sudo apt-get install -y dunst py3status i3
+    install_i3_gaps
     # development deps
     sudo apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev libffi-dev libgdbm-dev ruby-dev libnurses5 libncurses5-dev
     sudo apt-get -y install gnupg2 gnupg
@@ -79,6 +117,9 @@ else
     sudo apt-get -y install elasticsearch
     cargo install ripgrep
 fi
+
+# patch fonts
+patch_fonts
 
 # set up oh-my-zsh
 if [ ! -e ~/.oh-my-zsh ]; then
@@ -133,7 +174,7 @@ nvm alias default 6.3
 
 # install watches
 #for path in ~/_sync ~/_dev ~/.pyenv ~/.rbenv; do
-#    addWatch $path
+#    add_watch $path
 #done;
 
 if [ "$1" = "vim" ]; then
@@ -141,18 +182,18 @@ if [ "$1" = "vim" ]; then
     sudo npm -g install
     for i in _vim*
     do
-       linkFile $i
+       link_file $i
     done
 elif [ "$1" = "zsh" ]; then
     for i in _zsh*
     do
-        linkFile $i
+        link_file $i
     done
 else
     for i in _*
     do
         if [ $i != "_config" ]; then
-            linkFile $i
+            link_file $i
         fi;
     done
     for i in _config/*
