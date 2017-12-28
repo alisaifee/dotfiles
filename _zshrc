@@ -106,3 +106,9 @@ _gen_fzf_default_opts() {
 # --follow: Follow symlinks
 # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+if [[ `uname` == 'Linux' ]];
+then
+    /usr/bin/keychain -q $HOME/.ssh/id_rsa
+    source $HOME/.keychain/`hostname`-sh
+fi;
