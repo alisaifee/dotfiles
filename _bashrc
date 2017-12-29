@@ -1,5 +1,7 @@
+source $HOME/.profile
 if [[ `uname` == 'Linux' ]];
 then
     /usr/bin/keychain -q $HOME/.ssh/id_rsa
     source $HOME/.keychain/`hostname`-sh
 fi;
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
