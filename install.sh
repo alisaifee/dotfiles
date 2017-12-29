@@ -79,7 +79,8 @@ then
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     fi
     brew tap caskroom/fonts
-    brew install ctags-exuberant ruby-build coreutils wget unison readline xz watchman ripgrep
+    brew tap caskroom/versions
+    brew install ctags-exuberant ruby-build coreutils wget unison readline xz watchman ripgrep reattach-to-user-namespace
     # homebrew vim
     brew install vim --with-lua --with-python3
 
@@ -87,9 +88,10 @@ then
     brew install https://raw.githubusercontent.com/Homebrew/brew/2d2034afc6e4dfab0a1c48f5edd2c5478576293b/Formula/tmux.rb
 
     # All the fonts!
-    brew cask search powerline | xargs -n 1 brew cask install
+    brew cask search powerline | grep -o 'font-.*-powerline' | xargs brew cask install
     # sigh
-    brew cask install java
+    brew cask install java8
+    brew cask install google-chrome spotify slack
     # lameness for python builds to find openssl
     export CFLAGS="-I$(brew --prefix openssl)/include"
     export LDFLAGS="-L$(brew --prefix openssl)/lib"
@@ -204,16 +206,6 @@ fi
 
 git submodule init
 git submodule update --recursive
-
-# compile command-t
-if [ -e "_vim/bundle/command-t/ruby" ]; then
-    pushd .
-    cd _vim/bundle/command-t/ruby/command-t/ext/command-t
-    make clean
-    ruby extconf.rb
-    make
-    popd
-fi;
 
 if [ -z "$(command -v fzf)" ]; then
     pushd .
