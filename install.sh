@@ -72,114 +72,114 @@ fi
 # ensure config directory exists
 mkdir -p ~/.config
 
-# mac specific bootstrap
-if [[ `uname` == 'Darwin' ]]
-then
-    if [ ! "$(type brew)" ]; then
-        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    fi
-    brew tap caskroom/fonts
-    brew tap caskroom/versions
-    brew install ctags-exuberant ruby-build coreutils wget unison readline xz watchman ripgrep reattach-to-user-namespace
-    # homebrew vim
-    brew install vim --with-lua --with-python3
-
-    # temporary workaround as tmux 2.5 isn't supported by tmuxinator
-    brew install https://raw.githubusercontent.com/Homebrew/brew/2d2034afc6e4dfab0a1c48f5edd2c5478576293b/Formula/tmux.rb
-
-    # All the fonts!
-    brew cask search powerline | grep -o 'font-.*-powerline' | xargs brew cask install
-    # sigh
-    brew cask install java8
-    brew cask install google-chrome spotify slack
-    # lameness for python builds to find openssl
-    export CFLAGS="-I$(brew --prefix openssl)/include"
-    export LDFLAGS="-L$(brew --prefix openssl)/lib"
-else
-    if [ ! -e /etc/apt/sources.list.d/elastic-5.x.list ];
+if [ "$1" == "bootstrap" ]; then
+    # mac specific bootstrap
+    if [[ `uname` == 'Darwin' ]]
     then
-        wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -;
-        sudo apt-get install apt-transport-https;
-        echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-5.x.list;
+        if [ ! "$(type brew)" ]; then
+            ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        fi
+        brew tap caskroom/fonts
+        brew tap caskroom/versions
+        brew install ctags-exuberant ruby-build coreutils wget unison readline xz watchman ripgrep reattach-to-user-namespace
+        # homebrew vim
+        brew install vim --with-lua --with-python3
+
+        # temporary workaround as tmux 2.5 isn't supported by tmuxinator
+        brew install https://raw.githubusercontent.com/Homebrew/brew/2d2034afc6e4dfab0a1c48f5edd2c5478576293b/Formula/tmux.rb
+
+        # All the fonts!
+        brew cask search powerline | grep -o 'font-.*-powerline' | xargs brew cask install
+        # sigh
+        brew cask install java8
+        brew cask install google-chrome spotify slack
+        # lameness for python builds to find openssl
+        export CFLAGS="-I$(brew --prefix openssl)/include"
+        export LDFLAGS="-L$(brew --prefix openssl)/lib"
+    else
+        if [ ! -e /etc/apt/sources.list.d/elastic-5.x.list ];
+        then
+            wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -;
+            sudo apt-get install apt-transport-https;
+            echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-5.x.list;
+        fi;
+        sudo apt-get update
+        sudo apt-get -y install keychain zsh vim-nox curl tmux ctags-exuberant cargo
+        # window manager
+        sudo apt-get install -y dunst py3status i3
+        install_i3_gaps
+        # development deps
+        sudo apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev libffi-dev libgdbm-dev ruby-dev libnurses5 libncurses5-dev
+        sudo apt-get -y install gnupg2 gnupg
+        sudo apt-get -y install openjdk-8-jre
+        sudo apt-get -y install postgresql postgresql-contrib libpq-dev
+        sudo apt-get -y install mysql-server mysql-client libmysqlclient-dev
+        sudo apt-get -y install memcached redis-server
+        sudo apt-get -y install nginx
+        sudo apt-get -y install awscli
+        sudo apt-get -y install elasticsearch
+        cargo install ripgrep
+    fi
+
+    # patch fonts
+    patch_fonts
+
+    # set up oh-my-zsh
+    if [ ! -e ~/.oh-my-zsh ]; then
+        curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
     fi;
-    sudo apt-get update
-    sudo apt-get -y install keychain zsh vim-nox curl tmux ctags-exuberant cargo
-    # window manager
-    sudo apt-get install -y dunst py3status i3
-    install_i3_gaps
-    # development deps
-    sudo apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev libffi-dev libgdbm-dev ruby-dev libnurses5 libncurses5-dev
-    sudo apt-get -y install gnupg2 gnupg
-    sudo apt-get -y install openjdk-8-jre
-    sudo apt-get -y install postgresql postgresql-contrib libpq-dev
-    sudo apt-get -y install mysql-server mysql-client libmysqlclient-dev
-    sudo apt-get -y install memcached redis-server
-    sudo apt-get -y install nginx
-    sudo apt-get -y install awscli
-    sudo apt-get -y install elasticsearch
-    cargo install ripgrep
-fi
 
-# patch fonts
-patch_fonts
-
-# set up oh-my-zsh
-if [ ! -e ~/.oh-my-zsh ]; then
-    curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-fi;
-
-if [ ! -e ~/.rbenv ]; then
-    git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-    mkdir -p "$(rbenv root)"/plugins
-    git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
-fi
-if [ ! -e ~/.pyenv ]; then
-    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-fi
-if [ ! -e ~/.pyenv/plugins/pyenv-virtualenv ]; then
-    git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
-fi
-if [ ! -e ~/.nvm ]; then
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
-fi
-
-# make the virtualenvs available in bash
-export PATH=$PATH:~/.pyenv/bin/:~/.rbenv/bin/
-eval "$(pyenv init -)"
-eval "$(rbenv init -)"
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# tmuxinator
-if [ ! "$(type tmuxinator)" ]; then
-    sudo gem install tmuxinator
-fi
-
-# default pythons
-for version in 3.5.4 2.7.11; do
-    if [ ! -e ~/.pyenv/versions/$version ]; then
-        pyenv install $version;
+    if [ ! -e ~/.rbenv ]; then
+        git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+        mkdir -p "$(rbenv root)"/plugins
+        git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
     fi
-done;
-
-# default rubies
-for version in 2.4.2; do
-    if [ ! -e ~/.rbenv/versions/$version ]; then
-        rbenv install $version;
+    if [ ! -e ~/.pyenv ]; then
+        git clone https://github.com/pyenv/pyenv.git ~/.pyenv
     fi
-done
+    if [ ! -e ~/.pyenv/plugins/pyenv-virtualenv ]; then
+        git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+    fi
+    if [ ! -e ~/.nvm ]; then
+        curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
+    fi
 
-# default nodes
-nvm install 6.3
-nvm install stable
-nvm alias default 6.3
+    # make the virtualenvs available in bash
+    export PATH=$PATH:~/.pyenv/bin/:~/.rbenv/bin/
+    eval "$(pyenv init -)"
+    eval "$(rbenv init -)"
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# install watches
-#for path in ~/_sync ~/_dev ~/.pyenv ~/.rbenv; do
-#    add_watch $path
-#done;
+    # tmuxinator
+    if [ ! "$(type tmuxinator)" ]; then
+        sudo gem install tmuxinator
+    fi
 
-if [ "$1" = "vim" ]; then
+    # default pythons
+    for version in 3.5.4 2.7.11; do
+        if [ ! -e ~/.pyenv/versions/$version ]; then
+            pyenv install $version;
+        fi
+    done;
+
+    # default rubies
+    for version in 2.4.2; do
+        if [ ! -e ~/.rbenv/versions/$version ]; then
+            rbenv install $version;
+        fi
+    done
+
+    # default nodes
+    nvm install 6.3
+    nvm install stable
+    nvm alias default 6.3
+
+    # install watches
+    #for path in ~/_sync ~/_dev ~/.pyenv ~/.rbenv; do
+    #    add_watch $path
+    #done;
+elif [ "$1" = "vim" ]; then
     sudo bundle install
     sudo npm -g install
     for i in _vim*
