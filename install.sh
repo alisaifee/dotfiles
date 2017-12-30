@@ -81,7 +81,7 @@ if [ "$1" == "bootstrap" ]; then
         fi
         brew tap caskroom/fonts
         brew tap caskroom/versions
-        brew install ctags-exuberant ruby-build coreutils wget unison readline xz watchman ripgrep reattach-to-user-namespace
+        brew install ctags-exuberant node-build ruby-build coreutils wget unison readline xz watchman ripgrep reattach-to-user-namespace
         # homebrew vim
         brew install vim --with-lua --with-python3
 
@@ -123,11 +123,9 @@ if [ "$1" == "bootstrap" ]; then
 
     # patch fonts
     patch_fonts
-
-    # set up oh-my-zsh
-    if [ ! -e ~/.oh-my-zsh ]; then
-        curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-    fi;
+    if [ ! -e ~/antigen.zsh ]; then
+        curl -L git.io/antigen > ~/antigen.zsh
+    fi
 
     if [ ! -e ~/.rbenv ]; then
         git clone https://github.com/rbenv/rbenv.git ~/.rbenv
@@ -140,16 +138,16 @@ if [ "$1" == "bootstrap" ]; then
     if [ ! -e ~/.pyenv/plugins/pyenv-virtualenv ]; then
         git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
     fi
-    if [ ! -e ~/.nvm ]; then
-        curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
+    if [ ! -e ~/.nodenv ]; then
+        git clone https://github.com/nodenv/nodenv.git ~/.nodenv
+        git clone https://github.com/nodenv/nodenv-aliases.git ~/.nodenv/plugins/nodenv-aliases
     fi
 
     # make the virtualenvs available in bash
-    export PATH=$PATH:~/.pyenv/bin/:~/.rbenv/bin/
+    export PATH=$PATH:~/.pyenv/bin/:~/.rbenv/bin/;~/.nodenv/bin/;
     eval "$(pyenv init -)"
     eval "$(rbenv init -)"
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    eval "$(nodenv init -)"
 
     # tmuxinator
     if [ ! "$(type tmuxinator)" ]; then
@@ -171,9 +169,12 @@ if [ "$1" == "bootstrap" ]; then
     done
 
     # default nodes
-    nvm install 6.3
-    nvm install stable
-    nvm alias default 6.3
+
+    nodenv alias --auto
+    for version in 6.9.5 8.9.3 9.2.1; do
+        nodenv install $version;
+    done
+    nodenv global 9
 
     # install watches
     #for path in ~/_sync ~/_dev ~/.pyenv ~/.rbenv; do
