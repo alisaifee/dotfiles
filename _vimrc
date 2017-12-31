@@ -20,7 +20,7 @@ endfunction
 " global config
 """"""""""""""'
 " ensure profile is loaded
-set shell=zsh\ -l
+set shell=zsh
 set nocompatible              " Don't be compatible with vi
 set maxmempattern=5000
 set encoding=utf-8

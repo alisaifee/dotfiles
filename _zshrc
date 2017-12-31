@@ -1,5 +1,3 @@
-[ -f ~/.shell/vars.zsh ] && source ~/.shell/vars.zsh
-
 source ~/antigen.zsh
 antigen use prezto
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -7,10 +5,11 @@ antigen bundle zsh-users/zsh-completions
 antigen bundle tarruda/zsh-autosuggestions
 antigen apply
 
-[ -f ~/.shell/utilities.zsh ] && source ~/.shell/utilities.zsh
+[ -f ~/.shell/vars.zsh ] && source ~/.shell/vars.zsh
 [ -f ~/.shell/path.zsh ] && source ~/.shell/path.zsh
-[ -f ~/.shell/os.zsh ] && source ~/.shell/os.zsh
-[ -f ~/.shell/aliases.zsh ] && source ~/.shell/aliases.zsh
-[ -f ~/.shell/fzf.zsh ] && source ~/.shell/fzf.zsh
 [ -f ~/.shell/venvs.zsh ] && source ~/.shell/venvs.zsh
+[ -f ~/.shell/aliases.zsh ] && source ~/.shell/aliases.zsh
+[ -f ~/.shell/os.zsh ] && source ~/.shell/os.zsh
+[ -f ~/.shell/fzf.zsh ] && source ~/.shell/fzf.zsh
+[ -f ~/.shell/utilities.zsh ] && source ~/.shell/utilities.zsh
 [ -f ~/.shell/prompt.zsh ] && source ~/.shell/prompt.zsh
