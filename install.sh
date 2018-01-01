@@ -54,7 +54,7 @@ function install_i3_gaps {
 function patch_fonts {
     if [[ `uname` == 'Darwin' ]]
     then
-        brew cask search nerd-font | xargs -n 1 brew cask install
+        brew cask search nerd-font | grep fura | xargs -n 1 brew cask install
     else
         pushd .
         cd /var/tmp
