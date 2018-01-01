@@ -1,21 +1,5 @@
 "https://github.com/alisaifee/dotfiles
 
-"""""""""""""""""""'
-" utility functions
-"""""""""""""""""""'
-function! CheckSpaces()
-python3 << CHECK_SPACES_FOR_TABS
-import re
-import vim
-two_spaces = re.compile("^\s{2}\w+", re.MULTILINE).findall("\n".join(vim.current.buffer[0:100]))
-four_spaces = re.compile("^\s{4}\w+", re.MULTILINE).findall("\n".join(vim.current.buffer[0:100]))
-tab_size = 2 if two_spaces > four_spaces else 4
-vim.command("set tabstop=%d" % tab_size )
-vim.command("set softtabstop=%d" % tab_size )
-vim.command("set shiftwidth=%d" % tab_size )
-CHECK_SPACES_FOR_TABS
-endfunction
-
 """""""""""""""
 " global config
 """"""""""""""'
@@ -137,8 +121,6 @@ autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " enable pyenv if found
 autocmd VimEnter *.py PyenvActivate
-" figure out utabs or spaces 
-autocmd BufReadPost * call CheckSpaces()
 " clean up dangling spaces on save.
 autocmd BufWritePre *.* :%s/\s\+$//e
 " Filetype overrides

@@ -175,3 +175,6 @@
 [submodule "_vim/bundle/fzf.vim"]
 	path = _vim/bundle/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
+[submodule "_vim/bundle/vim-sleuth"]
+	path = _vim/bundle/vim-sleuth
+	url = https://github.com/tpope/vim-sleuth
