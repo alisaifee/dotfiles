@@ -160,9 +160,6 @@
 [submodule "_vim/bundle/neocomplete.vim"]
 	path = _vim/bundle/neocomplete.vim
 	url = https://github.com/Shougo/neocomplete.vim
-[submodule "_vim/bundle/SQLUtilities"]
-	path = _vim/bundle/SQLUtilities
-	url = https://github.com/vim-scripts/SQLUtilities
 [submodule "_vim/bundle/powerline_mem_segment"]
 	path = _vim/bundle/powerline_mem_segment
 	url = https://github.com/mKaloer/powerline_mem_segment
