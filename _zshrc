@@ -1,5 +1,8 @@
 source ~/antigen.zsh
 antigen use prezto
+antigen bundle git
+antigen bundle dfurnes/purer
+antigen bundle therealklanni/purity
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
 antigen bundle tarruda/zsh-autosuggestions
