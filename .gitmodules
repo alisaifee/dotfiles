@@ -31,9 +31,6 @@
 [submodule "_vim/bundle/ropevim"]
     path = _vim/bundle/ropevim
     url = https://github.com/python-rope/ropevim.git
-[submodule "_vim/bundle/solarized"]
-    path = _vim/bundle/solarized
-    url = git://github.com/altercation/vim-colors-solarized.git
 [submodule "_vim/bundle/vim-less"]
     path = _vim/bundle/vim-less
     url = https://github.com/groenewege/vim-less.git
@@ -67,24 +64,15 @@
 [submodule "_vim/bundle/vim-distinguished"]
     path = _vim/bundle/vim-distinguished
     url = https://github.com/Lokaltog/vim-distinguished.git
-[submodule "_vim/bundle/vim-preview"]
-    path = _vim/bundle/vim-preview
-    url = https://github.com/greyblake/vim-preview.git
 [submodule "_vim/bundle/vim-ruby"]
     path = _vim/bundle/vim-ruby
     url = https://github.com/vim-ruby/vim-ruby.git
 [submodule "_vim/bundle/vim-gist"]
     path = _vim/bundle/vim-gist
     url = https://github.com/mattn/gist-vim.git
-[submodule "_vim/bundle/webapi-vim"]
-    path = _vim/bundle/webapi-vim
-    url = https://github.com/mattn/webapi-vim.git
 [submodule "_vim/bundle/vim-yaml"]
     path = _vim/bundle/vim-yaml
     url = https://github.com/avakhov/vim-yaml.git
-[submodule "_vim/bundle/vim-instant-markdown"]
-    path = _vim/bundle/vim-instant-markdown
-    url = https://github.com/suan/vim-instant-markdown.git
 [submodule "_vim/bundle/vimwiki"]
     path = _vim/bundle/vimwiki
     url = https://github.com/vimwiki/vimwiki.git
@@ -116,18 +104,12 @@
 [submodule "_vim/bundle/vim-rbenv"]
     path = _vim/bundle/vim-rbenv
     url = git://github.com/tpope/vim-rbenv.git
-[submodule "_vim/bundle/nerd-commenter"]
-    path = _vim/bundle/nerd-commenter
-    url = https://github.com/scrooloose/nerdcommenter.git
 [submodule "_vim/bundle/alchemist"]
     path = _vim/bundle/alchemist
     url = https://github.com/slashmili/alchemist.vim.git
 [submodule "_vim/bundle/vim-elixir"]
     path = _vim/bundle/vim-elixir
     url = https://github.com/elixir-lang/vim-elixir.git
-[submodule "_vim/bundle/vim-notes"]
-    path = _vim/bundle/vim-notes
-    url = https://github.com/xolox/vim-notes.git
 [submodule "_vim/bundle/vim-misc"]
     path = _vim/bundle/vim-misc
     url = https://github.com/xolox/vim-misc.git
@@ -137,9 +119,6 @@
 [submodule "_vim/bundle/vim-syntastic"]
     path = _vim/bundle/vim-syntastic
     url = https://github.com/vim-syntastic/syntastic.git
-[submodule "_vim/bundle/command-t"]
-    path = _vim/bundle/command-t
-    url = https://github.com/wincent/command-t.git
 [submodule "_vim/bundle/vim-rails"]
     path = _vim/bundle/vim-rails
     url = https://github.com/tpope/vim-rails
