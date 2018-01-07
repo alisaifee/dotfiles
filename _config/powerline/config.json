@@ -4,13 +4,13 @@
 	},
 	"ext": {
 		"shell": {
-			"colorscheme": "solarized"
+			"colorscheme": "default"
 		},
 		"tmux": {
-			"colorscheme": "solarized"
+			"colorscheme": "default"
 		},
 		"vim": {
-			"colorscheme": "solarized"
+			"colorscheme": "default"
 		}
 	}
 }

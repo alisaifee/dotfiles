@@ -101,11 +101,8 @@ call pathogen#helptags()
 """"""""""""""'
 " look and feel
 """"""""""""""'
-" set solarized dark
-let g:solarized_termcolors=256
-set background=dark
-colorscheme solarized
-hi Normal ctermbg=none
+let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox
 " Powerline
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
