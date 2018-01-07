@@ -156,6 +156,8 @@ if [ "$1" == "bootstrap" ]; then
 
     if [[ `uname` == 'Darwin' ]]; then
         export PYTHON_CONFIGURE_OPTS="--enable-framework"
+    else
+        export PYTHON_CONFIGURE_OPTS="--enable-shared"
     fi;
     # default pythons
     for version in 3.5.4 2.7.14; do
