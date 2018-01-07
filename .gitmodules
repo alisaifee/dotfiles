@@ -176,3 +176,6 @@
 [submodule "_vim/bundle/gruvbox"]
 	path = _vim/bundle/gruvbox
 	url = https://github.com/morhetz/gruvbox
+[submodule "misc/gruvbox-idea"]
+	path = misc/gruvbox-idea
+	url = git@github.com:caleb/gruvbox-idea
