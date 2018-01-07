@@ -130,22 +130,36 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# gruvbox colors
+set $bg #282828
+set $red #cc241d
+set $green #98971a
+set $brightgreen #b8bb26
+set $yellow #d79921
+set $blue #458588
+set $aqua #689d68
+set $brightaqua #8ec07c
+set $gray #a89984
+set $darkgray #1d2021
+set $fg #ebdbb2
+set $orange #d65d0e
+
 #  horizontal screen
 bar {
   output $mon2
   status_command py3status
   height 25
   i3bar_command i3bar -t
-  separator_symbol 
+  i3bar_command i3bar -t 
+  separator_symbol   
   position top
   colors {
-    separator #dc322f
-    background #002b36
-    statusline #268bd2
-    focused_workspace #fdf6e3 #859900 #fdf6e3
-    active_workspace #fdf6e3 #b58900 #fdf6e3
-    inactive_workspace #586e75 #93a1a1 #002b36
-    urgent_workspace #d33682 #d33682 #fdf6e3
+    background $bg
+    statusline $fg
+    focused_workspace    $yellow $yellow $darkgray
+    inactive_workspace   $darkgray $darkgray $fg
+    active_workspace     $darkgray $darkgray $yellow
+    urgent_workspace     $red $red $bg
   }
 }
 
@@ -155,28 +169,28 @@ bar {
   status_command py3status -c ~/.i3status-mini.conf
   height 25
   i3bar_command i3bar -t 
-  separator_symbol 
+  separator_symbol   
   position top
   colors {
-    separator #dc322f
-    background #002b36
-    statusline #268bd2
-    focused_workspace #fdf6e3 #859900 #fdf6e3
-    active_workspace #fdf6e3 #b58900 #fdf6e3
-    inactive_workspace #586e75 #93a1a1 #002b36
-    urgent_workspace #d33682 #d33682 #fdf6e3
+    background $bg
+    statusline $yellow
+    focused_workspace    $yellow $yellow $darkgray
+    inactive_workspace   $darkgray $darkgray $yellow
+    active_workspace     $darkgray $darkgray $yellow
+    urgent_workspace     $red $red $bg
   }
   tray_output none
 }
-
-client.focused #859900 #859900 #fdf6e3 #6c71c4
-client.focused_inactive #073642 #073642 #eee8d5 #6c71c4
-client.unfocused #073642 #073642 #93a1a1 #586e75
-client.urgent #d33682 #d33682 #fdf6e3 #dc322f
+# class                 border|backgr|text|indicator|child_border
+client.focused          $yellow $yellow $darkgray $orange $yellow
+client.focused_inactive $darkgray $darkgray $yellow $orange $darkgray
+client.unfocused        $darkgray $darkgray $yellow $orange $darkgray
+client.urgent           $red $red $white $red $red
 
 
 # Set wallpaper (need to install feh)
-exec_always feh --bg-scale /home/ali/_dev/_git/dotfiles/wallpapers/solarized.jpg
+# exec_always feh --bg-scale /home/ali/_dev/_git/dotfiles/wallpapers/solarized.jpg
+exec_always --no-startup-id hsetroot -solid "$bg"
 
 # application -> workspace binding
 for_window [class="Spotify"] move to workspace personal
@@ -213,6 +227,6 @@ exec_always --no-startup-id ~/.i3/touchpad.sh
 # fix rotation
 exec_always --no-startup-id ~/.screenlayout/default.sh
 # custom notifications
-exec_always --no-startup-id dunst -config ~/.dunstrc
+exec_always --no-startup-id pkill dunst && dunst -config ~/.dunstrc
 # autolock
-exec_always xautolock -detectsleep -time 5 -locker "i3lock -d -t -i ~/_dev/_git/dotfiles/wallpapers/solarized.png" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
+exec_always xautolock -detectsleep -time 5 -locker "i3lock -d -t -c $bg -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"

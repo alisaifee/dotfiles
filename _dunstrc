@@ -1,11 +1,8 @@
-# dunst solarized theme
-# tostiheld 2015
-
 [global]
-    font                 = Ubuntu 10
+    font                 = FuraMono Nerd Font Bold 9
     allow_markup         = yes
     plain_text           = no
-    format               = "%s\n%b"
+    format               = "<b>%s</b>\n%b"
     transparency         = 0
     ignore_newline       = no
     show_indicators      = yes
@@ -35,12 +32,12 @@
     history_length       = 20
 
     startup_notification = false
-    dmenu                = /usr/bin/dmenu -p dunst:
+    dmenu                = /usr/bin/rofi -dmenu -p dunst:
     browser              = /usr/bin/google-chrome -new-tab
 
 [frame]
     width = 1
-    color = "#93a1a1"
+    color = "#ebdbb2"
 
 [shortcuts]
     close     = ctrl+space
@@ -49,16 +46,16 @@
     context   = ctrl+shift+period
 
 [urgency_low]
-    background = "#586e75"
-    foreground = "#eee8d5"
-    timeout = 10
+    background = "#282828"
+    foreground = "#ebdbb2"
+    timeout = 5
 
 [urgency_normal]
-    background = "#073642"
-    foreground = "#eee8d5"
+    background = "#282828"
+    foreground = "#ebdbb2"
     timeout = 5
 
 [urgency_critical]
-    background = "#dc322f"
-    foreground = "#eee8d5"
+    background = "#282828"
+    foreground = "#ebdbb2"
     timeout = 0
