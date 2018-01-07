@@ -176,3 +176,6 @@
 [submodule "_vim/bundle/vim-sleuth"]
     path = _vim/bundle/vim-sleuth
     url = https://github.com/tpope/vim-sleuth
+[submodule "_vim/bundle/gruvbox"]
+	path = _vim/bundle/gruvbox
+	url = https://github.com/morhetz/gruvbox
