@@ -12,4 +12,7 @@ if type "go" > /dev/null 2>&1; then
     path+=$GOPATH/bin
     path+=$GOROOT/bin
 fi
+path=(/usr/local/opt/coreutils/libexec/gnubin $path)
 path+=~/bin
+
+manpath=(/usr/local/opt/coreutils/libexec/gnuman $manpath)
