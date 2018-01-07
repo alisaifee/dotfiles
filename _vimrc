@@ -102,7 +102,12 @@ call pathogen#helptags()
 " look and feel
 """"""""""""""'
 set termguicolors
+set background=dark
 let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_invert_selection = 0
+let g:gruvbox_improved_strings = 1
+let g:gruvbox_improved_warnings = 1
+
 colorscheme gruvbox
 " Powerline
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
@@ -201,7 +206,7 @@ imap <C-W> <C-O><C-W>
 ":nnoremap <C-N> :tabnext<CR>
 ":nnoremap <C-P> :tabprevious<CR>
 " Copy/Paste to mac clipboard
-vmap <C-x> :!pbcopy<CR>  
+vmap <C-x> :!pbcopy<CR>
 vmap <C-c> :w !pbcopy<CR><CR>"
 " exit from insert to normal mode
 :inoremap jk <esc>
