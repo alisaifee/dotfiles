@@ -137,11 +137,7 @@ autocmd filetype crontab setlocal nobackup nowritebackup
 """"""""""""""""""""""'
 " plugin configurations
 """""""""""""""""""""""'
-" Run command-t file search
-let g:CommandTFileScanner = "watchman"
-let g:acp_completeoptPreview=1
 " Syntastic Settings
-" set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
