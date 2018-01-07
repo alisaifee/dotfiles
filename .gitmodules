@@ -164,9 +164,6 @@
 [submodule "_vim/bundle/powerline_mem_segment"]
     path = _vim/bundle/powerline_mem_segment
     url = https://github.com/mKaloer/powerline_mem_segment
-[submodule "misc/intellij-solarized"]
-    path = misc/intellij-solarized
-    url = git@github.com:alisaifee/intellij-colors-solarized.git
 [submodule "_vim/bundle/fzf"]
     path = _vim/bundle/fzf
     url = https://github.com/junegunn/fzf
