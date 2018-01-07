@@ -154,7 +154,9 @@ if [ "$1" == "bootstrap" ]; then
         sudo gem install tmuxinator
     fi
 
-    export PYTHON_CONFIGURE_OPTS="--enable-framework"
+    if [[ `uname` == 'Darwin' ]]; then
+        export PYTHON_CONFIGURE_OPTS="--enable-framework"
+    fi;
     # default pythons
     for version in 3.5.4 2.7.14; do
         if [ ! -e ~/.pyenv/versions/$version ]; then
