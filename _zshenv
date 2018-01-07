@@ -1,6 +1,5 @@
 if [ -z "$PS1" ]; then
     [ -f ~/.shell/vars.zsh ] && source ~/.shell/vars.zsh
     [ -f ~/.shell/path.zsh ] && source ~/.shell/path.zsh
-    [ -f ~/.shell/venvs.zsh ] && source ~/.shell/venvs.zsh
 fi
 
