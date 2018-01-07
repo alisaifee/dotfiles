@@ -81,7 +81,7 @@ if [ "$1" == "bootstrap" ]; then
         fi
         brew tap caskroom/fonts
         brew tap caskroom/versions
-        brew install ctags-exuberant node-build ruby-build coreutils wget unison readline xz watchman ripgrep reattach-to-user-namespace
+        brew install cmake ctags-exuberant node-build ruby-build coreutils wget unison readline xz watchman ripgrep reattach-to-user-namespace
         # homebrew vim
         brew install vim --with-lua --with-python3
 
@@ -154,8 +154,9 @@ if [ "$1" == "bootstrap" ]; then
         sudo gem install tmuxinator
     fi
 
+    export PYTHON_CONFIGURE_OPTS="--enable-framework"
     # default pythons
-    for version in 3.5.4 2.7.11; do
+    for version in 3.5.4 2.7.14; do
         if [ ! -e ~/.pyenv/versions/$version ]; then
             pyenv install $version;
         fi
@@ -206,10 +207,14 @@ else
 fi
 
 git submodule init
-git submodule update --recursive
+git submodule update --init --recursive
 
 if [ -z "$(command -v fzf)" ]; then
     pushd .
     cd _vim/bundle/fzf && ./install
     popd
 fi;
+pushd .
+cd _vim/bundle/YouCompleteMe
+./install.py
+popd
