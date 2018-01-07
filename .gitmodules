@@ -82,9 +82,6 @@
 [submodule "_vim/bundle/colorschemes"]
     path = _vim/bundle/colorschemes
     url = https://github.com/flazz/vim-colorschemes.git
-[submodule "_vim/bundle/YouCompleteMe"]
-    path = _vim/bundle/YouCompleteMe
-    url = https://github.com/Valloric/YouCompleteMe.git
 [submodule "_vim/bundle/vim-gocode"]
     path = _vim/bundle/vim-gocode
     url = https://github.com/Blackrush/vim-gocode.git
