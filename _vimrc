@@ -101,6 +101,7 @@ call pathogen#helptags()
 """"""""""""""'
 " look and feel
 """"""""""""""'
+set termguicolors
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 " Powerline
