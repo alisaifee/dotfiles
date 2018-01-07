@@ -158,3 +158,9 @@
 [submodule "_vim/bundle/YouCompleteMe"]
 	path = _vim/bundle/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe
+[submodule "_vim/bundle/lightline.vim"]
+	path = _vim/bundle/lightline.vim
+	url = https://github.com/itchyny/lightline.vim
+[submodule "_vim/bundle/vim-buftabline"]
+	path = _vim/bundle/vim-buftabline
+	url = https://github.com/ap/vim-buftabline

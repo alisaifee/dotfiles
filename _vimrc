@@ -109,9 +109,17 @@ let g:gruvbox_improved_strings = 1
 let g:gruvbox_improved_warnings = 1
 
 colorscheme gruvbox
-" Powerline
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ 'active': {
+      \   'left': [ [ 'mode'],
+      \             [ 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo', 'percent'], [ 'gitbranch'] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
 
 """""""""""""""""""
 " start up commands
