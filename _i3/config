@@ -229,4 +229,4 @@ exec_always --no-startup-id ~/.screenlayout/default.sh
 # custom notifications
 exec_always --no-startup-id pkill dunst && dunst -config ~/.dunstrc
 # autolock
-exec_always xautolock -detectsleep -time 1 -locker "i3lock -d -t -c '#282828'" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
+exec_always xautolock -detectsleep -time 5 -locker "i3lock -d -t -c '#282828'" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
