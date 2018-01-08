@@ -6,6 +6,7 @@ antigen bundle therealklanni/purity
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
 antigen bundle tarruda/zsh-autosuggestions
+antigen bundle thewtex/tmux-mem-cpu-load
 antigen apply
 
 [ -f ~/.shell/vars.zsh ] && source ~/.shell/vars.zsh
