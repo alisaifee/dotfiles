@@ -1,9 +1,8 @@
 # vim:filetype=i3
-# i3 config file (v4)
+# i3 config file
 
 
-font pango:Knack Nerd Font 10
-
+font pango:FuraCode Nerd Font 12
 
 # start a terminal
 bindsym $mod+Return exec tilix
@@ -18,8 +17,8 @@ set $mon1 "DP-0.1"
 set $mon2 "DP-0.2.8"
 
 # workaround for background getting corrupted
-gaps inner 10
-gaps outer 15
+gaps inner 5
+gaps outer 10 
 smart_gaps on
 for_window [class=".*"] border pixel 5
 hide_edge_borders both
@@ -78,25 +77,35 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace dev
-bindsym $mod+2 workspace work
-bindsym $mod+3 workspace personal
-bindsym $mod+4 workspace comms
-bindsym $mod+5 workspace config
+bindsym $mod+1 workspace work
+bindsym $mod+2 workspace ide
+bindsym $mod+3 workspace doc
+bindsym $mod+4 workspace personal
+bindsym $mod+5 workspace comms
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace dev
-bindsym $mod+Shift+2 move container to workspace work
-bindsym $mod+Shift+3 move container to workspace personal
-bindsym $mod+Shift+4 move container to workspace comms
-bindsym $mod+Shift+5 move container to workspace config
+bindsym $mod+Shift+1 move container to workspace work
+bindsym $mod+Shift+2 move container to workspace ide
+bindsym $mod+Shift+3 move container to workspace doc
+bindsym $mod+Shift+4 move container to workspace personal
+bindsym $mod+Shift+5 move container to workspace comms
 
 
-workspace "dev" output $mon2
-workspace "work" output "mon2"
+workspace "work" output $mon1
+workspace "ide" output $mon2
+workspace "docs" output $mon2
 workspace "personal" output $mon2
-workspace "comms" output $mon1
-workspace "config" output $mon1
+workspace "comms" output $mon2
+
+
+# application -> workspace binding
+for_window [class="Spotify"] move to workspace personal
+for_window [class="jetbrains*"] move to workspace ide
+for_window [class="Atom*"] move to workspace ide
+for_window [class="Slack"] move to workspace comms
+for_window [class="zoom"] move to workspace comms
+for_window [title="WhatsApp.*"] move to workspace comms
+for_window [class="Gnome-calendar"] move to workspace comms
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -136,6 +145,7 @@ set $red #cc241d
 set $green #98971a
 set $brightgreen #b8bb26
 set $yellow #d79921
+set $brightyellow #fabd2f
 set $blue #458588
 set $aqua #689d68
 set $brightaqua #8ec07c
@@ -150,8 +160,7 @@ bar {
   status_command py3status
   height 25
   i3bar_command i3bar -t
-  i3bar_command i3bar -t 
-  separator_symbol   
+  separator_symbol  "|" 
   position top
   colors {
     background $bg
@@ -169,7 +178,7 @@ bar {
   status_command py3status -c ~/.i3status-mini.conf
   height 25
   i3bar_command i3bar -t 
-  separator_symbol   
+  separator_symbol "|"  
   position top
   colors {
     background $bg
@@ -182,26 +191,13 @@ bar {
   tray_output none
 }
 # class                 border|backgr|text|indicator|child_border
-client.focused          $yellow $yellow $darkgray $orange $yellow
-client.focused_inactive $darkgray $darkgray $yellow $orange $darkgray
-client.unfocused        $darkgray $darkgray $yellow $orange $darkgray
+client.focused          $yellow $yellow $darkgray $yellow $yellow
+client.focused_inactive $darkgray $gray $darkgray $darkgray $darkgray
+client.unfocused        $darkgray $gray $darkgray $darkgray $darkgray
 client.urgent           $red $red $white $red $red
 
-
 # Set wallpaper (need to install feh)
-# exec_always feh --bg-scale /home/ali/_dev/_git/dotfiles/wallpapers/solarized.jpg
 exec_always --no-startup-id hsetroot -solid "$bg"
-
-# application -> workspace binding
-for_window [class="Spotify"] move to workspace personal
-for_window [class="jetbrains*"] move to workspace dev
-for_window [class="Slack"] move to workspace comms
-for_window [class="zoom"] move to workspace comms
-for_window [title=".*Zoom.*Meeting.*"] move to workspace comms
-for_window [title=".*Toptal Mail.*"] move to workspace comms
-for_window [title=".*indydevs.org Mail.*"] move to workspace comms
-for_window [title="WhatsApp.*"] move to workspace comms
-for_window [class="Gnome-calendar"] move to workspace comms
 
 # Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
