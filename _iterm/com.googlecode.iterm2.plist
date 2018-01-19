@@ -42274,6 +42274,8 @@
 				<key>Red Component</key>
 				<real>0.11759927868843079</real>
 			</dict>
+			<key>Background Image Location</key>
+			<string>/Users/ali/_dev/_git/dotfiles/wallpapers/texture.png</string>
 			<key>Badge Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -42290,7 +42292,7 @@
 			<key>Badge Text</key>
 			<string></string>
 			<key>Blend</key>
-			<real>0.050000000000000003</real>
+			<real>0.48063526642628202</real>
 			<key>Blinking Cursor</key>
 			<false/>
 			<key>Blur</key>
