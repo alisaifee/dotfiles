@@ -164,3 +164,12 @@
 [submodule "_vim/bundle/vim-buftabline"]
 	path = _vim/bundle/vim-buftabline
 	url = https://github.com/ap/vim-buftabline
+[submodule "_vim/bundle/ale"]
+	path = _vim/bundle/ale
+	url = https://github.com/w0rp/ale
+[submodule "_vim/bundle/SQLUtilities"]
+	path = _vim/bundle/SQLUtilities
+	url = git@github.com:vim-scripts/SQLUtilities
+[submodule "_vim/bundle/Align"]
+	path = _vim/bundle/Align
+	url = https://github.com/vim-scripts/Align

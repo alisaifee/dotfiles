@@ -21,8 +21,6 @@ gaps inner 5
 gaps outer 10 
 smart_gaps on
 for_window [class=".*"] border pixel 5
-hide_edge_borders both
-
 floating_modifier Mod1
 
 set $mod Mod4
