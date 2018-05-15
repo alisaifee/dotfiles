@@ -81,12 +81,14 @@ set $ws2 2: ide
 set $ws3 3: doc
 set $ws4 4: personal
 set $ws5 5: comms
+set $ws6 6: monitoring
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -94,6 +96,7 @@ bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
 
 
 workspace "$ws1" output $mon1
@@ -101,6 +104,7 @@ workspace "$ws2" output $mon2
 workspace "$ws3" output $mon2
 workspace "$ws4" output $mon2
 workspace "$ws5" output $mon2
+workspace "$ws6" output $mon2
 
 
 # application -> workspace binding
