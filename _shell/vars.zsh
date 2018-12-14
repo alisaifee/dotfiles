@@ -8,4 +8,4 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.utf8
 export GPG_TTY=$(tty)
 unsetopt nomatch
-
+[ -f ~/.shell/secrets.zsh ] && source ~/.shell/secrets.zsh
