@@ -143,15 +143,27 @@ autocmd filetype crontab setlocal nobackup nowritebackup
 """"""""""""""""""""""'
 " plugin configurations
 """""""""""""""""""""""'
-" Syntastic Settings
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq = 0
-
+" ALE
+let g:ale_fixers = {
+            \ '*': ['remove_trailing_lines', 'time_whitespace'],
+            \   'javascript': ['eslint'],
+            \   'ruby': ['rubocop'],
+            \   'python': ['autopep8', 'yapf'],
+            \   'elixir': ['credo'],
+            \   'go': ['gofmt']
+            \}
 " FZF
 let g:fzf_history_dir = "~/.fzf"
+" AutoFormat
+let g:formatter_yapf_style = 'pep8'
+
+" Search
+let g:rg_command = '
+            \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always" --vimgrep
+            \ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf}"
+            \ -g "!{.git,node_modules,vendor}/*" '
+
+command! -bang -nargs=* Rg call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
 
 """"""""""""""'
 " key bindings
@@ -161,15 +173,7 @@ let mapleader="-"             " change the leader to be a - vs slash
 cmap W! w !sudo tee % >/dev/null
 " TagBarOpen
 nmap <leader>o :TagbarToggle<CR>
-
-" Search
-
-let g:rg_command = '
-            \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always" --vimgrep
-            \ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf}"
-            \ -g "!{.git,node_modules,vendor}/*" '
-
-command! -bang -nargs=* Rg call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
+noremap == :Autoformat<CR>
 
 map <C-f><C-f> :Files<CR>
 map <C-f><C-t> :Tags<CR>
@@ -179,7 +183,7 @@ map <C-f><C-p> :Rg<space>
 " Open NerdTree
 map <leader>n :NERDTreeToggle<CR>
 " open vimrc
-map <leader>v :sp ~/.vimrc<CR><C-W>_
+map <leader>v :e ~/.vimrc<CR><C-W>_
 " reload vimrc
 map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 " close current buffer
@@ -204,9 +208,6 @@ imap <C-W> <C-O><C-W>
 " Buffer navigation
 :nnoremap <C-n> :bnext<CR>
 :nnoremap <C-p> :bprevious<CR>
-" Tab navigation
-":nnoremap <C-N> :tabnext<CR>
-":nnoremap <C-P> :tabprevious<CR>
 " Copy/Paste to mac clipboard
 vmap <C-x> :!pbcopy<CR>
 vmap <C-c> :w !pbcopy<CR><CR>"

@@ -164,3 +164,9 @@
 [submodule "_vim/bundle/vim-buftabline"]
 	path = _vim/bundle/vim-buftabline
 	url = https://github.com/ap/vim-buftabline
+[submodule "_vim/bundle/ale"]
+	path = _vim/bundle/ale
+	url = https://github.com/w0rp/ale
+[submodule "_vim/bundle/vim-autoformat"]
+	path = _vim/bundle/vim-autoformat
+	url = https://github.com/Chiel92/vim-autoformat

@@ -82,6 +82,8 @@ if [ "$1" == "bootstrap" ]; then
         brew tap caskroom/fonts
         brew tap caskroom/versions
         brew install cmake ctags-exuberant node-build ruby-build coreutils wget unison readline xz watchman ripgrep reattach-to-user-namespace
+        brew install grep --with-default-names
+        brew install gawk
         # homebrew vim
         brew install vim --with-lua --with-python3
 
