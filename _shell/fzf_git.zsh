@@ -52,10 +52,10 @@ fzfgs() {
 fzfgo() {
   is_in_git_repo || return
   local branches branch
-  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+  branches=$(git for-each-ref --sort=-committerdate --format="%(refname:short)") &&
   branch=$(echo "$branches" |
            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+             git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##" | sed "s#origin[^/]*/##")
 }
 
 
