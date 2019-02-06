@@ -169,7 +169,7 @@ if [ "$1" == "bootstrap" ]; then
     done;
 
     # default rubies
-    for version in 2.4.2; do
+    for version in 2.4.2 2.5.3; do
         if [ ! -e ~/.rbenv/versions/$version ]; then
             rbenv install $version;
         fi
