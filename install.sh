@@ -178,7 +178,7 @@ if [ "$1" == "bootstrap" ]; then
     # default nodes
 
     nodenv alias --auto
-    for version in 6.9.5 8.9.3 9.2.1; do
+    for version in 6.9.5 8.15 9.2.1; do
         nodenv install $version;
     done
     nodenv global 9
