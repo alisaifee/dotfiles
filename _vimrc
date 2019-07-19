@@ -92,6 +92,14 @@ set incsearch               " Incrementally search while typing a /regex
 """"""""""""""'
 " plugin setup
 """"""""""""""'
+let g:pyenv#auto_activate = 1
+let g:ycm_python_interpreter_path = '~/.pyenv/shims/python'
+let g:ycm_python_sys_path = []
+let g:ycm_extra_conf_vim_data = [
+  \  'g:ycm_python_interpreter_path',
+  \  'g:ycm_python_sys_path'
+  \]
+let g:ycm_global_ycm_extra_conf = '~/.vim/local/ycm_extra.py'
 let g:pathogen_disabled = []
 call add(g:pathogen_disabled, "pydoc")
 call pathogen#infect()
@@ -129,7 +137,6 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " enable pyenv if found
-autocmd VimEnter *.py PyenvActivate
 " clean up dangling spaces on save.
 autocmd BufWritePre *.* :%s/\s\+$//e
 " Filetype overrides
