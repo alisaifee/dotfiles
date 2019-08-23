@@ -173,3 +173,30 @@
 [submodule "_vim/bundle/Align"]
 	path = _vim/bundle/Align
 	url = https://github.com/vim-scripts/Align
+[submodule "_vim/bundle/goyo.vim"]
+	path = _vim/bundle/goyo.vim
+	url = https://github.com/junegunn/limelight.vim
+[submodule "_vim/bundle/vim-devicons"]
+	path = _vim/bundle/vim-devicons
+	url = https://github.com/ryanoasis/vim-devicons
+[submodule "_vim/bundle/emmet-vim"]
+	path = _vim/bundle/emmet-vim
+	url = https://github.com/mattn/emmet-vim
+[submodule "_vim/bundle/nerdcommenter"]
+	path = _vim/bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter
+[submodule "_vim/bundle/vim-toml"]
+	path = _vim/bundle/vim-toml
+	url = https://github.com/cespare/vim-toml
+[submodule "_vim/bundle/vim-test"]
+	path = _vim/bundle/vim-test
+	url = https://github.com/janko/vim-test
+[submodule "_vim/bundle/vim-dirvish"]
+	path = _vim/bundle/vim-dirvish
+	url = https://github.com/justinmk/vim-dirvish
+[submodule "_vim/bundle/vim-javascript"]
+	path = _vim/bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript
+[submodule "_vim/bundle/limelight.vim"]
+	path = _vim/bundle/limelight.vim
+	url = https://github.com/junegunn/limelight.vim

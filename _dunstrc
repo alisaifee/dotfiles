@@ -1,5 +1,5 @@
 [global]
-    font                 = Fira Sans Condensed Nerd Font 10
+    font                 = FiraGO Nerd Font 12
     markup               = full
     plain_text           = no
     format               = "<b>%s</b>\n%b"
@@ -37,6 +37,7 @@
     frame_width          = 5
     frame_color          = "#ebdbb2"
     verbosity            = debug
+    icon_folders         = /usr/share/icons/Numix/64@2x/status
 
 [shortcuts]
     close     = ctrl+space
