@@ -199,3 +199,6 @@
 [submodule "_vim/bundle/goyo.vim"]
 	path = _vim/bundle/goyo.vim
 	url = https://github.com/junegunn/goyo.vim
+[submodule "_vim/bundle/ale"]
+	path = _vim/bundle/ale
+	url = https://github.com/dense-analysis/ale
