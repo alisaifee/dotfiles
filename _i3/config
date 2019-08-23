@@ -21,8 +21,6 @@ gaps inner 5
 gaps outer 10 
 smart_gaps on
 for_window [class=".*"] border pixel 5
-hide_edge_borders both
-
 floating_modifier Mod1
 
 set $mod Mod4
@@ -77,35 +75,46 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace work
-bindsym $mod+2 workspace ide
-bindsym $mod+3 workspace doc
-bindsym $mod+4 workspace personal
-bindsym $mod+5 workspace comms
+
+set $ws1 1: work
+set $ws2 2: ide
+set $ws3 3: doc
+set $ws4 4: personal
+set $ws5 5: comms
+set $ws6 6: monitoring
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace work
-bindsym $mod+Shift+2 move container to workspace ide
-bindsym $mod+Shift+3 move container to workspace doc
-bindsym $mod+Shift+4 move container to workspace personal
-bindsym $mod+Shift+5 move container to workspace comms
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
 
 
-workspace "work" output $mon1
-workspace "ide" output $mon2
-workspace "docs" output $mon2
-workspace "personal" output $mon2
-workspace "comms" output $mon2
+workspace "$ws1" output $mon1
+workspace "$ws2" output $mon2
+workspace "$ws3" output $mon2
+workspace "$ws4" output $mon2
+workspace "$ws5" output $mon2
+workspace "$ws6" output $mon2
 
 
 # application -> workspace binding
-for_window [class="Spotify"] move to workspace personal
-for_window [class="jetbrains*"] move to workspace ide
-for_window [class="Atom*"] move to workspace ide
-for_window [class="Slack"] move to workspace comms
-for_window [class="zoom"] move to workspace comms
-for_window [title="WhatsApp.*"] move to workspace comms
-for_window [class="Gnome-calendar"] move to workspace comms
+for_window [class="Spotify"] move to workspace $ws4
+for_window [class="jetbrains*"] move to workspace $ws2
+for_window [class="Atom*"] move to workspace $ws2
+for_window [class="Slack"] move to workspace $ws5
+for_window [class="zoom"] move to workspace $ws5
+for_window [title="WhatsApp.*"] move to workspace $ws5
+for_window [class="Gnome-calendar"] move to workspace $ws5
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -200,8 +209,8 @@ client.urgent           $red $red $white $red $red
 exec_always feh --bg-scale /home/ali/_dev/_git/dotfiles/wallpapers/texture.png
 
 # Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 5%+ unmute
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 5%- unmute
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # media keys

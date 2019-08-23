@@ -24,7 +24,8 @@ set vb t_vb=
 
 " Ignore these files when completing
 set wildignore+=*.o,*.obj,.git,*.pyc
-set grepprg=ack-grep          " replace the default grep program with ack
+" replace the default grep program with rg
+set grepprg=rg
 
 """ Insert completion
 " don't select first item, follow typing in autocomplete
@@ -60,7 +61,7 @@ inoremap # #
 """" Reading/Writing
 set noautowrite             " Never write a file unless I request it.
 set noautowriteall          " NEVER.
-set noautoread              " Don't automatically re-read changed files.
+set autoread              " Don't automatically re-read changed files.
 set modeline                " Allow vim options to be embedded in files;
 set modelines=5             " they must be within the first or last 5 lines.
 set ffs=unix,dos,mac        " Try recognizing dos, unix, and mac line endings.
@@ -92,8 +93,15 @@ set incsearch               " Incrementally search while typing a /regex
 """"""""""""""'
 " plugin setup
 """"""""""""""'
-let g:pathogen_disabled = []
-call add(g:pathogen_disabled, "pydoc")
+let g:pyenv#auto_activate = 1
+let g:ycm_python_interpreter_path = '~/.pyenv/shims/python'
+let g:ycm_python_sys_path = []
+let g:ycm_extra_conf_vim_data = [
+  \  'g:ycm_python_interpreter_path',
+  \  'g:ycm_python_sys_path'
+  \]
+let g:ycm_global_ycm_extra_conf = '~/.vim/local/ycm_extra.py'
+let g:pathogen_disabled = ['pydoc']
 call pathogen#infect()
 call pathogen#helptags()
 
@@ -102,22 +110,12 @@ call pathogen#helptags()
 " look and feel
 """"""""""""""'
 set background=dark
+set termguicolors
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_selection = 0
 let g:gruvbox_improved_warnings = 1
 
 colorscheme gruvbox
-let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
-      \ 'active': {
-      \   'left': [ [ 'mode'],
-      \             [ 'readonly', 'filename', 'modified' ] ],
-      \   'right': [ [ 'lineinfo', 'percent'], [ 'gitbranch'] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
-      \ },
-      \ }
 
 """""""""""""""""""
 " start up commands
@@ -129,7 +127,6 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " enable pyenv if found
-autocmd VimEnter *.py PyenvActivate
 " clean up dangling spaces on save.
 autocmd BufWritePre *.* :%s/\s\+$//e
 " Filetype overrides
@@ -144,14 +141,21 @@ autocmd filetype crontab setlocal nobackup nowritebackup
 " plugin configurations
 """""""""""""""""""""""'
 " ALE
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
 let g:ale_fixers = {
-            \ '*': ['remove_trailing_lines', 'time_whitespace'],
-            \   'javascript': ['eslint'],
-            \   'ruby': ['rubocop'],
-            \   'python': ['autopep8', 'yapf'],
-            \   'elixir': ['credo'],
-            \   'go': ['gofmt']
-            \}
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint', 'prettier'],
+\   'python': ['yapf', 'autopep8'],
+\   'ruby': ['rubocop'],
+\   'go': ['gofmt'],
+\   'elixir': ['credo'],
+\   'html': ['prettier'],
+\   'rust': ['rustfmt'],
+\   'sh': ['shfmt']
+\}
 " FZF
 let g:fzf_history_dir = "~/.fzf"
 " AutoFormat
@@ -165,6 +169,53 @@ let g:rg_command = '
 
 command! -bang -nargs=* Rg call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
 
+" Lightline
+"
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ▲', all_non_errors)
+endfunction
+
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+
+function! LightlineLinterOK() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return "🗸"
+endfunction
+
+autocmd User ALELint call lightline#update()
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ 'active': {
+      \   'left': [ [ 'mode'],
+      \             [ 'readonly', 'filename', 'modified' ] ],
+      \   'right': [
+      \     [ 'lineinfo', 'percent'], [ 'gitbranch'],
+      \     [ 'ale_error', 'ale_warning', 'ale_ok', 'filetype']
+      \   ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ 'component_expand' : {
+      \   'ale_error': 'LightlineLinterErrors',
+      \   'ale_warning': 'LightlineLinterWarnings',
+      \   'ale_ok': 'LightlineLinterOK'
+      \ },
+      \ 'componment_type': {
+      \   'linter_warnings': 'warning',
+      \   'linter_errors': 'error'
+      \ }
+      \ }
 """"""""""""""'
 " key bindings
 """"""""""""""'
@@ -173,21 +224,37 @@ let mapleader="-"             " change the leader to be a - vs slash
 cmap W! w !sudo tee % >/dev/null
 " TagBarOpen
 nmap <leader>o :TagbarToggle<CR>
-noremap == :Autoformat<CR>
+" Code completion
+nnoremap <Leader>] :YcmCompleter GoTo<CR>
+nnoremap <Leader>rr :YcmCompleter RefactorRename
+" Code completion
+nnoremap <silent> <Leader>= :ALEFix<CR>
 
+" Search
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+
+" Search
 map <C-f><C-f> :Files<CR>
 map <C-f><C-t> :Tags<CR>
 map <C-f><C-b> :Buffers<CR>
 map <C-f><C-g> :GFiles<CR>
-map <C-f><C-p> :Rg<space>
+map <C-f><C-p> :Rg<CR>
 " Open NerdTree
 map <leader>n :NERDTreeToggle<CR>
+map <leader>nf :NERDTreeFind<CR>
 " open vimrc
 map <leader>v :e ~/.vimrc<CR><C-W>_
 " reload vimrc
 map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 " close current buffer
-map <leader>x :bd<CR>
+" map <leader>x :bd<CR>
+nnoremap <leader>x :bp<cr>:bd #<cr>
 " close current window
 nnoremap <leader>q :q<CR>
 " hide matches on <leader>space
@@ -213,3 +280,11 @@ vmap <C-x> :!pbcopy<CR>
 vmap <C-c> :w !pbcopy<CR><CR>"
 " exit from insert to normal mode
 :inoremap jk <esc>
+
+" Testing
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
+set t_RV=
