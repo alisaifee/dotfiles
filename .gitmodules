@@ -167,12 +167,15 @@
 [submodule "_vim/bundle/ale"]
 	path = _vim/bundle/ale
 	url = https://github.com/w0rp/ale
+	ignore = dirty
 [submodule "_vim/bundle/SQLUtilities"]
 	path = _vim/bundle/SQLUtilities
 	url = git@github.com:vim-scripts/SQLUtilities
+	ignore = dirty
 [submodule "_vim/bundle/Align"]
 	path = _vim/bundle/Align
 	url = https://github.com/vim-scripts/Align
+	ignore = dirty
 [submodule "_vim/bundle/vim-devicons"]
 	path = _vim/bundle/vim-devicons
 	url = https://github.com/ryanoasis/vim-devicons
