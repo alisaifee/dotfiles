@@ -173,9 +173,6 @@
 [submodule "_vim/bundle/Align"]
 	path = _vim/bundle/Align
 	url = https://github.com/vim-scripts/Align
-[submodule "_vim/bundle/goyo.vim"]
-	path = _vim/bundle/goyo.vim
-	url = https://github.com/junegunn/limelight.vim
 [submodule "_vim/bundle/vim-devicons"]
 	path = _vim/bundle/vim-devicons
 	url = https://github.com/ryanoasis/vim-devicons
