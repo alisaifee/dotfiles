@@ -148,6 +148,7 @@ highlight link ALEErrorSign Title
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint', 'prettier'],
+\   'javascript.jsx': ['eslint', 'prettier'],
 \   'python': ['yapf', 'autopep8'],
 \   'ruby': ['rubocop'],
 \   'go': ['gofmt'],
@@ -189,7 +190,11 @@ function! LightlineLinterOK() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
   let l:all_non_errors = l:counts.total - l:all_errors
-  return "🗸"
+  return "✓"
+endfunction
+
+function! LightlineFiletype()
+    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
 endfunction
 
 autocmd User ALELint call lightline#update()
@@ -204,7 +209,8 @@ let g:lightline = {
       \   ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
+      \   'gitbranch': 'fugitive#head',
+      \   'filetype': 'LightlineFiletype',
       \ },
       \ 'component_expand' : {
       \   'ale_error': 'LightlineLinterErrors',
@@ -288,3 +294,6 @@ nmap <silent> t<C-s> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
 set t_RV=
+if exists('g:loaded_webdevicons')
+    call webdevicons#refresh()
+endif
