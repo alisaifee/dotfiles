@@ -63,7 +63,7 @@ if [ "$1" == "bootstrap" ]; then
         fi
         brew tap caskroom/fonts
         brew tap caskroom/versions
-        brew install cmake ctags-exuberant node-build ruby-build coreutils wget unison readline xz ripgrep reattach-to-user-namespace
+        brew install cmake ctags-exuberant node-build ruby-build coreutils wget unison readline jq xz ripgrep reattach-to-user-namespace
         brew install grep --with-default-names
         brew install gawk
         # homebrew vim
@@ -102,6 +102,7 @@ if [ "$1" == "bootstrap" ]; then
         sudo apt-get -y install nginx
         sudo apt-get -y install awscli
         sudo apt-get -y install elasticsearch
+        sudo apt-get -y install jq
         cargo install ripgrep
     fi
 

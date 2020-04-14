@@ -147,6 +147,7 @@ highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'json': ['jq'],
 \   'javascript': ['eslint', 'prettier'],
 \   'javascript.jsx': ['eslint', 'prettier'],
 \   'python': ['yapf', 'autopep8'],
