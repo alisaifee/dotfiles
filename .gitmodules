@@ -155,9 +155,6 @@
 [submodule "misc/gruvbox-idea"]
 	path = misc/gruvbox-idea
 	url = git@github.com:caleb/gruvbox-idea
-[submodule "_vim/bundle/YouCompleteMe"]
-	path = _vim/bundle/YouCompleteMe
-	url = https://github.com/Valloric/YouCompleteMe
 [submodule "_vim/bundle/lightline.vim"]
 	path = _vim/bundle/lightline.vim
 	url = https://github.com/itchyny/lightline.vim
