@@ -4,6 +4,8 @@ path=($NODENV_ROOT/bin $path)
 path=($PYENV_ROOT/bin $path)
 path=($HOME/.rbenv/bin $path)
 path=($HOME/.cargo/bin $path)
+path=($HOME/tizen-studio/tools $path)
+path=($HOME/tizen-studio/tools/ide/bin $path)
 if type "go" > /dev/null 2>&1; then
     export GOPATH=~/gohome
     export GOROOT=$(go env GOROOT)
@@ -11,6 +13,8 @@ if type "go" > /dev/null 2>&1; then
     path+=$GOROOT/bin
 fi
 path=(/usr/local/opt/coreutils/libexec/gnubin $path)
+path=(/usr/local/opt/grep/libexec/gnubin $path)
 path=(~/bin $path)
 
 manpath=(/usr/local/opt/coreutils/libexec/gnuman $manpath)
+manpath=(/usr/local/opt/grep/libexec/gnuman $manpath)
