@@ -199,8 +199,6 @@ if [ "$1" == "bootstrap" ]; then
     done
     nodenv global 9
 elif [ "$1" = "vim" ]; then
-    sudo bundle install
-    sudo npm -g install
     for i in _vim*
     do
        link_file $i
