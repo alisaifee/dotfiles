@@ -23,14 +23,43 @@ function install_i3_gaps {
     fi
     cd i3-gaps
     git pull
-    sudo apt-get install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake
+    sudo apt-get install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
+        libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev \
+        libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev \
+        libxkbcommon-dev libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake \
+        gnome-fallback fontforge
     autoreconf --force --install
     rm -rf build/
     mkdir -p build && cd build/
     ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
     make
     sudo make install
-    popd
+    pushd +3
+}
+
+function install_rofi {
+    pushd .
+    cd /var/tmp/
+    sudo apt-get install -y flex libjson-glib-dev
+    if [ ! -e rofi ]; then
+        git clone --recursive https://github.com/davatorium/rofi
+    fi;
+    cd rofi; git pull; git submodule update --init
+    autoreconf -i
+    mkdir build && cd build;
+    ../configure --disable-check;
+    sudo make install
+    pushd +2
+    if [ ! -e rofi-blocks ]; then
+        git clone git@github.com:fogine/rofi-blocks.git
+    fi;
+    cd rofi-blocks; git pull; git checkout next;
+    autoreconf -i
+    mkdir -p build && cd build;
+    ../configure
+    make
+    sudo make install
+    pushd +3
 }
 
 function patch_fonts {
