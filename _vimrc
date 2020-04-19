@@ -126,7 +126,6 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 " close preview window automatically when we move around
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-" enable pyenv if found
 " clean up dangling spaces on save.
 autocmd BufWritePre *.* :%s/\s\+$//e
 " Filetype overrides
@@ -294,7 +293,16 @@ nmap <silent> t<C-f> :TestFile<CR>
 nmap <silent> t<C-s> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
-set t_RV=
+
+" Devicons
 if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
 endif
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+set t_RV=
