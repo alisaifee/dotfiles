@@ -193,15 +193,9 @@
 [submodule "_vim/bundle/limelight.vim"]
 	path = _vim/bundle/limelight.vim
 	url = https://github.com/junegunn/limelight.vim
-[submodule "_vim/bundle/goyo.vim"]
-	path = _vim/bundle/goyo.vim
-	url = https://github.com/junegunn/goyo.vim
 [submodule "_vim/bundle/ale"]
 	path = _vim/bundle/ale
 	url = https://github.com/dense-analysis/ale
-[submodule "_vim/bundle/vim-jsx"]
-	path = _vim/bundle/vim-jsx
-	url = https://github.com/mxw/vim-jsx
 [submodule "_vim/bundle/vim-easy-align"]
 	path = _vim/bundle/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align
