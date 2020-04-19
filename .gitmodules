@@ -202,9 +202,3 @@
 [submodule "_vim/bundle/vim-jsx"]
 	path = _vim/bundle/vim-jsx
 	url = https://github.com/mxw/vim-jsx
-[submodule "_vim/bundle/YouCompleteMe"]
-	path = _vim/bundle/YouCompleteMe
-	url = https://github.com/Valloric/YouCompleteMe
-[submodule "_vim/bundle/vim-easy-align"]
-	path = _vim/bundle/vim-easy-align
-	url = https://github.com/junegunn/vim-easy-align
