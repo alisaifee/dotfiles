@@ -176,6 +176,18 @@ elif [ "$1" = "vim" ]; then
     do
        link_file $i
     done
+    git submodule init
+    git submodule update --init --recursive
+
+    if [ -z "$(command -v fzf)" ]; then
+        pushd .
+        cd _vim/bundle/fzf && ./install
+        popd
+    fi;
+    pushd .
+    cd _vim/bundle/YouCompleteMe
+    ./install.py
+    popd
 elif [ "$1" = "zsh" ]; then
     for i in _zsh*
     do
@@ -192,17 +204,8 @@ else
     do
         ln -sf ${PWD}/$i ~/.config/$name ;
     done;
+    if [[ `uname` == 'Darwin' ]]; then
+        ln -sf ~/.ubersicht/widgets ~/Library/Application\ Support/Übersicht
+    fi
 fi
 
-git submodule init
-git submodule update --init --recursive
-
-if [ -z "$(command -v fzf)" ]; then
-    pushd .
-    cd _vim/bundle/fzf && ./install
-    popd
-fi;
-pushd .
-cd _vim/bundle/YouCompleteMe
-./install.py
-popd
