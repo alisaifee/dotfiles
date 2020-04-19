@@ -25,7 +25,7 @@ smart_gaps inverse_outer
 smart_borders on
 for_window [class=".*"] border pixel 2
 floating_modifier Mod1
-font pango:FiraGO Nerd Font Medium 8 
+font pango:FiraGO Nerd Font Medium 10
 # gruvbox colors
 set $bg #282828
 set $red #cc241d
@@ -189,42 +189,18 @@ bar {
   }
 }
 
-#  vertical screen
-#bar {
-#  output $mon1
-#  status_command py3status -c ~/.i3status-mini.conf
-#  i3bar_command i3bar -t
-#  separator_symbol "|"
-#  position top
-#  colors {
-#    background $bg
-#    statusline $yellow
-#    focused_workspace    $yellow $yellow $darkgray
-#    inactive_workspace   $darkgray $darkgray $yellow
-#    active_workspace     $darkgray $darkgray $yellow
-#    urgent_workspace     $red $red $bg
-#  }
-#  tray_output none
-#}
-# class                 border|backgr|text|indicator|child_border
 client.focused          $aqua $aqua $darkgray $aqua $aqua
 client.focused_inactive $darkgray $gray $darkgray $darkgray $darkgray
 client.unfocused        $darkgray $gray $darkgray $darkgray $darkgray
 client.urgent           $red $red $white $red $red
 
-# Set wallpaper (need to install feh)
+# Set wallpaper 
 exec_always --no-startup-id feh --bg-scale /home/ali/_dev/_git/dotfiles/wallpapers/texture.png
 
 # Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%-
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-
-# media keys
-bindsym XF86AudioPlay exec "~/.i3/media_keys.py play"
-bindsym XF86AudioStop exec "~/.i3/media_keys.py stop"
-bindsym XF86AudioPrev exec "~/.i3/media_keys.py prev"
-bindsym XF86AudioNext exec "~/.i3/media_keys.py next"
 
 # touchpad settings
 exec_always --no-startup-id ~/.i3/touchpad.sh
