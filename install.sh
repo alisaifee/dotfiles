@@ -72,11 +72,15 @@ if [ "$1" == "bootstrap" ]; then
         # temporary workaround as tmux 2.5 isn't supported by tmuxinator
         brew install https://raw.githubusercontent.com/Homebrew/brew/2d2034afc6e4dfab0a1c48f5edd2c5478576293b/Formula/tmux.rb
 
+        # Yabai
+        brew install koekeishiya/formulae/yabai
+        brew install koekeishiya/formulae/skhd
+        brew cask install ubersicht
         # All the fonts!
         brew cask search powerline | grep -o 'font-.*-powerline' | xargs brew cask install
-        # sigh
         brew cask install java8
-        brew cask install google-chrome spotify slack
+        brew cask install google-chrome slack
+
         # lameness for python builds to find openssl
         export CFLAGS="-I$(brew --prefix openssl)/include"
         export LDFLAGS="-L$(brew --prefix openssl)/lib"
