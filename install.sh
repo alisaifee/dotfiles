@@ -96,7 +96,7 @@ if [ "$1" == "bootstrap" ]; then
         brew install grep
         brew install gawk
         # homebrew vim
-        brew install vim --with-lua --with-python3
+        brew install vim
 
         # temporary workaround as tmux 2.5 isn't supported by tmuxinator
         brew install https://raw.githubusercontent.com/Homebrew/brew/2d2034afc6e4dfab0a1c48f5edd2c5478576293b/Formula/tmux.rb
