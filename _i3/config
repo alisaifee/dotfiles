@@ -7,7 +7,7 @@ set $mon1 "HDMI-0"
 bindsym $mod+d exec --no-startup-id "zsh -c 'rofi -show combi'"
 
 # startup applications
-exec --no-startup-id spotify
+exec --no-startup-id youtube-music-desktop-app
 exec --no-startup-id firefox --new-window https://web.whatsapp.com
 exec --no-startup-id solaar
 exec --no-startup-id gnome-keyring-daemon --start
