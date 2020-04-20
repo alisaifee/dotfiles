@@ -1,38 +1,50 @@
 # Navigation
-alt - h:         yabai -m window --focus west
-alt - j:         yabai -m window --focus south
-alt - k:         yabai -m window --focus north
-alt - l:         yabai -m window --focus east
-alt - 1:         yabai -m space --focus 1
-alt - 2:         yabai -m space --focus 2
-alt - 3:         yabai -m space --focus 3
-alt - 4:         yabai -m space --focus 4
-alt - 5:         yabai -m space --focus 5
-alt - 6:         yabai -m space --focus 6
+alt - h:             yabai -m window --focus west
+alt - left:          yabai -m window --focus west
+alt - j:             yabai -m window --focus south
+alt - up:            yabai -m window --focus south
+alt - k:             yabai -m window --focus north
+alt - down:          yabai -m window --focus north
+alt - l:             yabai -m window --focus east
+alt - right:         yabai -m window --focus east
+
+alt - p:             yabai -m space --focus prev
+alt - n:             yabai -m space --focus next
+alt - 1:             yabai -m space --focus 1
+alt - 2:             yabai -m space --focus 2
+alt - 3:             yabai -m space --focus 3
+alt - 4:             yabai -m space --focus 4
+alt - 5:             yabai -m space --focus 5
+alt - 6:             yabai -m space --focus 6
 
 # Moving windows
-shift + alt - h: yabai -m window --warp west
-shift + alt - j: yabai -m window --warp south
-shift + alt - k: yabai -m window --warp north
-shift + alt - l: yabai -m window --warp east
+shift + alt - h:     yabai -m window --warp west
+shift + alt - left:  yabai -m window --warp west
+shift + alt - j:     yabai -m window --warp south
+shift + alt - down:  yabai -m window --warp west
+shift + alt - k:     yabai -m window --warp north
+shift + alt - up:    yabai -m window --warp west
+shift + alt - l:     yabai -m window --warp east
+shift + alt - right: yabai -m window --warp west
 
 # Move focus container to workspace
-shift + alt - m: yabai -m window --space last && yabai -m space --focus last
-shift + alt - p: yabai -m window --space prev && yabai -m space --focus prev
-shift + alt - n: yabai -m window --space next && yabai -m space --focus next
-shift + alt - 1: yabai -m window --space 1 && yabai -m space --focus 1
-shift + alt - 2: yabai -m window --space 2 && yabai -m space --focus 2
-shift + alt - 3: yabai -m window --space 3 && yabai -m space --focus 3
-shift + alt - 4: yabai -m window --space 4 && yabai -m space --focus 4
-shift + alt - 5: yabai -m window --space 5 && yabai -m space --focus 5
-shift + alt - 6: yabai -m window --space 6 && yabai -m space --focus 6
+shift + alt - p:     yabai -m window --space prev && yabai -m space --focus prev
+shift + alt - n:     yabai -m window --space next && yabai -m space --focus next
+shift + alt - 1:     yabai -m window --space 1 && yabai -m space --focus 1
+shift + alt - 2:     yabai -m window --space 2 && yabai -m space --focus 2
+shift + alt - 3:     yabai -m window --space 3 && yabai -m space --focus 3
+shift + alt - 4:     yabai -m window --space 4 && yabai -m space --focus 4
+shift + alt - 5:     yabai -m window --space 5 && yabai -m space --focus 5
+shift + alt - 6:     yabai -m window --space 6 && yabai -m space --focus 6
 
 # Reload config
-shift + alt - r: launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai" && brew services restart skhd
+shift + alt - r:     launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
 # Fullscreen
-alt - f:         yabai -m window --toggle zoom-fullscreen
-shift + alt - f: yabai -m window --toggle native-fullscreen
+alt - f:             yabai -m window --toggle zoom-fullscreen
+shift + alt - f:     yabai -m window --toggle native-fullscreen
 
 # Launch iTerm
-alt - return:    osascript -e 'tell application "iTerm2" to create window with default profile'
+alt - return:        /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+alt - b:             /Applications/Firefox.app/Contents/MacOS/firefox --new-window
+shift + alt - b:     /Applications/Firefox.app/Contents/MacOS/firefox --private-window

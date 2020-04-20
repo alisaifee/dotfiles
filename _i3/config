@@ -46,7 +46,8 @@ set $orange #d65d0e
 bindsym $mod+Return exec /home/ali/bin/kitty
 
 # start a browser
-bindsym $mod+Shift+B exec firefox --new-window
+bindsym $mod+B exec firefox --new-window
+bindsym $mod+Shift+B exec firefox --private-window
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -100,10 +101,10 @@ bindsym $mod+a focus parent
 
 # switch to workspace
 
-set $ws1 1: work
-set $ws2 2: personal
-set $ws3 3: music
-set $ws4 4: comms
+set $ws1 1: chaos
+set $ws2 2: work
+set $ws3 3: comms
+set $ws4 4: music
 set $ws5 5: monitoring
 set $ws6 6: frankie
 set $ws7 7: games
@@ -136,11 +137,11 @@ workspace "$ws7" output $mon1
 
 
 # application -> workspace binding
-for_window [class="youtube-music-desktop-app"] move to workspace $ws3
-for_window [class="jetbrains*"] move to workspace $ws1
-for_window [class="Slack"] move to workspace $ws4
-for_window [title="WhatsApp - Mozilla Firefox"] move to workspace $ws4
-for_window [class="Gnome-calendar"] move to workspace $ws4
+for_window [class="youtube-music-desktop-app"] move to workspace $ws4
+for_window [class="jetbrains*"] move to workspace $ws2
+for_window [class="Slack"] move to workspace $ws3
+for_window [title="WhatsApp - Mozilla Firefox"] move to workspace $w3
+for_window [class="Gnome-calendar"] move to workspace $ws3
 for_window [class="GlancesMonitoring"] move to workspace $ws5
 for_window [class="org.remmina.Remmina" title="frankie"] move to workspace $ws6
 for_window [title="Steam"] move to workspace $ws7
