@@ -140,7 +140,7 @@ workspace "$ws7" output $mon1
 for_window [class="youtube-music-desktop-app"] move to workspace $ws4
 for_window [class="jetbrains*"] move to workspace $ws2
 for_window [class="Slack"] move to workspace $ws3
-for_window [title="WhatsApp - Mozilla Firefox"] move to workspace $w3
+for_window [title="WhatsApp - Mozilla Firefox"] move to workspace $ws3
 for_window [class="Gnome-calendar"] move to workspace $ws3
 for_window [class="GlancesMonitoring"] move to workspace $ws5
 for_window [class="org.remmina.Remmina" title="frankie"] move to workspace $ws6
