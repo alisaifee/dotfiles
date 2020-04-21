@@ -25,7 +25,10 @@ smart_gaps inverse_outer
 smart_borders on
 for_window [class=".*"] border pixel 2
 floating_modifier Mod1
-font pango:FiraGO Nerd Font Medium 10
+
+# fonts
+font pango:FiraGO Nerd Font Book 10
+
 # gruvbox colors
 set $bg #282828
 set $red #cc241d
