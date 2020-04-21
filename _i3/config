@@ -2,32 +2,17 @@
 # i3 config file
 
 set $mon1 "HDMI-0"
+set $mod Mod4
+set strip_workspace_numbers yes
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id "zsh -c 'rofi -show combi'"
-
-# startup applications
-exec --no-startup-id youtube-music-desktop-app
-exec --no-startup-id firefox --new-window https://web.whatsapp.com
-exec --no-startup-id solaar
-exec --no-startup-id gnome-keyring-daemon --start
-exec --no-startup-id blueman-applet
-exec --no-startup-id nm-applet
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
-exec --no-startup-id gnome-flashback
-exec --no-startup-id redshift-gtk
-exec --no-startup-id /home/ali/bin/kitty --class=GlancesMonitoring glances
-
-# Theme
+# theme
 gaps inner 10
 gaps outer 10
 smart_gaps inverse_outer
 smart_borders on
 for_window [class=".*"] border pixel 2
 floating_modifier Mod1
-
-# fonts
-font pango:FiraGO Nerd Font Book 10
+font pango:FiraGO Nerd Font Medium 10
 
 # gruvbox colors
 set $bg #282828
@@ -44,6 +29,69 @@ set $darkgray #1d2021
 set $fg #ebdbb2
 set $orange #d65d0e
 
+# set wallpaper
+exec_always --no-startup-id feh --bg-scale /home/ali/_dev/_git/dotfiles/wallpapers/texture.png
+
+# horizontal screen menu bar
+bar {
+  output $mon1
+  status_command py3status -d -l /var/tmp/py3status.log
+  i3bar_command i3bar -t
+  separator_symbol  "|"
+  position top
+  colors {
+    background $bg
+    statusline $fg
+    focused_workspace    $aqua $aqua $darkgray
+    inactive_workspace   $darkgray $darkgray $fg
+    active_workspace     $darkgray $darkgray $aqua
+    urgent_workspace     $red $red $bg
+  }
+}
+
+client.focused          $aqua $aqua $darkgray $aqua $aqua
+client.focused_inactive $darkgray $gray $darkgray $darkgray $darkgray
+client.unfocused        $darkgray $gray $darkgray $darkgray $darkgray
+client.urgent           $red $red $white $red $red
+
+# label workspaces
+set $ws1 1: 
+set $ws2 2: 
+set $ws3 3: 
+set $ws4 4: 
+set $ws5 5: 
+set $ws6 6: 
+set $ws7 7: 
+
+## global bindings
+# start dmenu (a program launcher)
+bindsym $mod+d exec --no-startup-id "zsh -c 'rofi -show combi'"
+
+# enter resize mode
+bindsym $mod+r mode "resize"
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace
+bindsym $mod+Shift+r restart
 
 # start a terminal
 bindsym $mod+Return exec /home/ali/bin/kitty
@@ -55,27 +103,21 @@ bindsym $mod+Shift+B exec firefox --private-window
 # kill focused window
 bindsym $mod+Shift+q kill
 
-set $mod Mod4
+# lock screen
+bindsym $mod+Mod1+L exec ~/.i3/lock.sh
 
+## navigation bindings
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+l focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # split in horizontal orientation
 bindsym $mod+Shift+H split h
@@ -99,19 +141,7 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-# focus the child container
-#bindsym $mod+d focus child
-
 # switch to workspace
-
-set $ws1 1: chaos
-set $ws2 2: work
-set $ws3 3: comms
-set $ws4 4: music
-set $ws5 5: monitoring
-set $ws6 6: frankie
-set $ws7 7: games
-
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -129,6 +159,17 @@ bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
 
+# startup applications
+exec --no-startup-id spotify
+exec --no-startup-id firefox --new-window https://web.whatsapp.com
+exec --no-startup-id solaar
+exec --no-startup-id gnome-keyring-daemon --start
+exec --no-startup-id blueman-applet
+exec --no-startup-id nm-applet
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
+exec --no-startup-id gnome-flashback
+exec --no-startup-id redshift-gtk
+exec --no-startup-id /home/ali/bin/kitty --class=GlancesMonitoring glances
 
 workspace "$ws1" output $mon1
 workspace "$ws2" output $mon1
@@ -137,7 +178,6 @@ workspace "$ws4" output $mon1
 workspace "$ws5" output $mon1
 workspace "$ws6" output $mon1
 workspace "$ws7" output $mon1
-
 
 # application -> workspace binding
 for_window [class="youtube-music-desktop-app"] move to workspace $ws4
@@ -150,57 +190,6 @@ for_window [class="org.remmina.Remmina" title="frankie"] move to workspace $ws6
 for_window [title="Steam"] move to workspace $ws7
 for_window [class="steam_app*"] move to workspace $ws7
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace
-bindsym $mod+Shift+r restart
-# enter fullscreen mode for the focused container
-
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
-bindsym $mod+r mode "resize"
-
-#  horizontal screen
-bar {
-  output $mon1
-  status_command zsh -c "py3status -d -l /var/tmp/py3status.log"
-  i3bar_command i3bar -t
-  separator_symbol  "|"
-  position top
-  colors {
-    background $bg
-    statusline $fg
-    focused_workspace    $aqua $aqua $darkgray
-    inactive_workspace   $darkgray $darkgray $fg
-    active_workspace     $darkgray $darkgray $aqua
-    urgent_workspace     $red $red $bg
-  }
-}
-
-client.focused          $aqua $aqua $darkgray $aqua $aqua
-client.focused_inactive $darkgray $gray $darkgray $darkgray $darkgray
-client.unfocused        $darkgray $gray $darkgray $darkgray $darkgray
-client.urgent           $red $red $white $red $red
-
-# Set wallpaper 
-exec_always --no-startup-id feh --bg-scale /home/ali/_dev/_git/dotfiles/wallpapers/texture.png
-
 # Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%-
@@ -212,8 +201,6 @@ exec_always --no-startup-id ~/.i3/touchpad.sh
 exec_always --no-startup-id ~/.screenlayout/default.sh
 # notifications
 exec_always --no-startup-id if pgrep dunst; then pkill dunst; fi && dunst -config ~/.dunstrc
-# lock screen
-bindsym $mod+Mod1+L exec ~/.i3/lock.sh
 exec_always --no-startup-id xautolock -detectsleep -time 5 -locker ~/.i3/lock.sh -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
 # compositing
 exec_always --no-startup-id if pgrep compton; then pkill compton; fi && compton --config ~/.config/compton.conf

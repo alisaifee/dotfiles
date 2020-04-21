@@ -1,12 +1,8 @@
-# Navigation
+# navigation
 alt - h:             yabai -m window --focus west
-alt - left:          yabai -m window --focus west
 alt - j:             yabai -m window --focus south
-alt - up:            yabai -m window --focus south
 alt - k:             yabai -m window --focus north
-alt - down:          yabai -m window --focus north
 alt - l:             yabai -m window --focus east
-alt - right:         yabai -m window --focus east
 
 alt - p:             yabai -m space --focus prev
 alt - n:             yabai -m space --focus next
@@ -17,17 +13,11 @@ alt - 4:             yabai -m space --focus 4
 alt - 5:             yabai -m space --focus 5
 alt - 6:             yabai -m space --focus 6
 
-# Moving windows
+# moving windows
 shift + alt - h:     yabai -m window --warp west
-shift + alt - left:  yabai -m window --warp west
 shift + alt - j:     yabai -m window --warp south
-shift + alt - down:  yabai -m window --warp west
 shift + alt - k:     yabai -m window --warp north
-shift + alt - up:    yabai -m window --warp west
 shift + alt - l:     yabai -m window --warp east
-shift + alt - right: yabai -m window --warp west
-
-# Move focus container to workspace
 shift + alt - p:     yabai -m window --space prev && yabai -m space --focus prev
 shift + alt - n:     yabai -m window --space next && yabai -m space --focus next
 shift + alt - 1:     yabai -m window --space 1 && yabai -m space --focus 1
@@ -37,14 +27,14 @@ shift + alt - 4:     yabai -m window --space 4 && yabai -m space --focus 4
 shift + alt - 5:     yabai -m window --space 5 && yabai -m space --focus 5
 shift + alt - 6:     yabai -m window --space 6 && yabai -m space --focus 6
 
-# Reload config
+# rreload config
 shift + alt - r:     launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
-# Fullscreen
+# fullscreen
 alt - f:             yabai -m window --toggle zoom-fullscreen
 shift + alt - f:     yabai -m window --toggle native-fullscreen
 
-# Launch iTerm
+# common application launchers
 alt - return:        /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
 alt - b:             /Applications/Firefox.app/Contents/MacOS/firefox --new-window
 shift + alt - b:     /Applications/Firefox.app/Contents/MacOS/firefox --private-window

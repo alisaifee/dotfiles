@@ -71,11 +71,12 @@ function patch_fonts() {
     else
         font_dir="$HOME/.local/share/fonts"
     fi
-    pushd .
-    cd fonts/nerd-fonts
-    find ../firago -name \*.otf  | grep -E 'FiraGO-(Regular|Medium|Bold|Italic|Book).otf' | parallel -I% fontforge -script ./font-patcher % -c -out $font_dir
-    ./install.sh -A FiraCode
+    pushd /var/tmp
+    curl -Lv https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip -O FiraCode.zip
+    unzip -o FiraCode.zip -d firacode
+    cp firacode/* $font_dir
     popd
+    cp ./fonts/patched/* $font_dir
 }
 
 # ensure config directory exists
