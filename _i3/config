@@ -35,7 +35,7 @@ exec_always --no-startup-id feh --bg-scale /home/ali/_dev/_git/dotfiles/wallpape
 # horizontal screen menu bar
 bar {
   output $mon1
-  status_command py3status -d -l /var/tmp/py3status.log
+  status_command zsh -c "py3status -d -l /var/tmp/py3status.log"
   i3bar_command i3bar -t
   separator_symbol  "|"
   position top
