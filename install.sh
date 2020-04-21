@@ -67,19 +67,15 @@ function install_rofi() {
 
 function patch_fonts() {
     if [[ $(uname) == 'Darwin' ]]; then
-        brew tap homebrew/cask-fonts
-        brew search nerd-font | grep -E 'f[u|i]ra' | xargs -n 1 brew cask install
+        font_dir="$HOME/Library/Fonts"
     else
-        pushd .
-        cd /var/tmp
-        if [ ! -e nerd-fonts ]; then
-            git clone https://github.com/ryanoasis/nerd-fonts --depth 1
-        fi
-        cd nerd-fonts
-        git pull
-        ./install.sh
-        popd
+        font_dir="$HOME/.local/share/fonts"
     fi
+    pushd .
+    cd fonts/nerd-fonts
+    find ../firago -name \*.otf  | grep -E 'FiraGO-(Regular|Medium|Bold|Italic|Book).otf' | parallel -I% fontforge -script ./font-patcher % -c -out $font_dir
+    ./install.sh -A FiraCode
+    popd
 }
 
 # ensure config directory exists
