@@ -202,3 +202,9 @@
 [submodule "_vim/bundle/YouCompleteMe"]
 	path = _vim/bundle/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe
+[submodule "fonts/nerd-fonts"]
+	path = fonts/nerd-fonts
+	url = git@github.com:alisaifee/nerd-fonts
+[submodule "fonts/firago"]
+	path = fonts/firago
+	url = git@github.com:bBoxType/FiraGO.git
