@@ -18,3 +18,4 @@ antigen apply
 [ -f ~/.shell/fzf.zsh ] && source ~/.shell/fzf.zsh
 [ -f ~/.shell/utilities.zsh ] && source ~/.shell/utilities.zsh
 [ -f ~/.shell/prompt.zsh ] && source ~/.shell/prompt.zsh
+[ -f ~/.secrets.zsh ] && source ~/.secrets.zsh

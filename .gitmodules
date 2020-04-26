@@ -137,9 +137,6 @@
 [submodule "_vim/bundle/neocomplete.vim"]
     path = _vim/bundle/neocomplete.vim
     url = https://github.com/Shougo/neocomplete.vim
-[submodule "_vim/bundle/powerline_mem_segment"]
-    path = _vim/bundle/powerline_mem_segment
-    url = https://github.com/mKaloer/powerline_mem_segment
 [submodule "_vim/bundle/fzf"]
     path = _vim/bundle/fzf
     url = https://github.com/junegunn/fzf
@@ -161,10 +158,6 @@
 [submodule "_vim/bundle/vim-buftabline"]
 	path = _vim/bundle/vim-buftabline
 	url = https://github.com/ap/vim-buftabline
-[submodule "_vim/bundle/SQLUtilities"]
-	path = _vim/bundle/SQLUtilities
-	url = git@github.com:vim-scripts/SQLUtilities
-	ignore = dirty
 [submodule "_vim/bundle/Align"]
 	path = _vim/bundle/Align
 	url = https://github.com/vim-scripts/Align
@@ -172,9 +165,6 @@
 [submodule "_vim/bundle/vim-devicons"]
 	path = _vim/bundle/vim-devicons
 	url = https://github.com/ryanoasis/vim-devicons
-[submodule "_vim/bundle/emmet-vim"]
-	path = _vim/bundle/emmet-vim
-	url = https://github.com/mattn/emmet-vim
 [submodule "_vim/bundle/nerdcommenter"]
 	path = _vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter
@@ -202,3 +192,6 @@
 [submodule "_vim/bundle/YouCompleteMe"]
 	path = _vim/bundle/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe
+[submodule "_vim/bundle/i3config.vim"]
+	path = _vim/bundle/i3config.vim
+	url = https://github.com/mboughaba/i3config.vim
