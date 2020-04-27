@@ -1,5 +1,5 @@
 [global]
-    font                 = FiraGO Nerd Font 12
+    font                 = FiraGO Nerd Font Book 12
     markup               = full
     plain_text           = no
     format               = "<b>%s</b>\n%b"
