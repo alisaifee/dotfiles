@@ -85,18 +85,16 @@ mkdir -p ~/.config
 if [ "$1" == "bootstrap" ]; then
     # mac specific bootstrap
     if [[ $(uname) == 'Darwin' ]]; then
-        if [ ! "$(type brew)" ]; then
+        if [ ! $(command -v brew) ]; then
             ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         fi
         brew tap homebrew/cask-versions
         brew install cmake ctags-exuberant node-build ruby-build coreutils wget unison readline jq xz ripgrep reattach-to-user-namespace
         brew install grep
         brew install gawk
-        # homebrew vim
         brew install vim
+        brew install tmux
 
-        # temporary workaround as tmux 2.5 isn't supported by tmuxinator
-        brew install https://raw.githubusercontent.com/Homebrew/brew/2d2034afc6e4dfab0a1c48f5edd2c5478576293b/Formula/tmux.rb
         # Terminal
         brew cask install kitty
 
@@ -192,7 +190,7 @@ if [ "$1" == "bootstrap" ]; then
     for version in 10.19.0 13.11.0; do
         nodenv install $version
     done
-    nodenv global 9
+    nodenv global 13
 elif [ "$1" = "vim" ]; then
     for i in _vim*; do
         link_file $i
