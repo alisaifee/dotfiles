@@ -59,7 +59,7 @@ yabai -m rule --add                         label="Calculator" app="^Calculator$
 yabai -m rule --add                         label="Dictionary" app="^Dictionary$" manage=off
 yabai -m rule --add                         label="Contexts" app="^Contexts$" manage=off
 yabai -m rule --add                         label="Disk Utility" app="^Disk Utility$" manage=off
-yabai -m rule --add                         label="Zoom" app="^Zoom$" manage=off
+yabai -m rule --add                         label="Zoom" app="^zoom.us$" manage=off
 yabai -m rule --add                         label="Calendar" app="^Calendar$" manage=off
 yabai -m rule --add                         label="JetBrains Toolbox" app="^JetBrains Toolbox$" manage=off
 
@@ -67,7 +67,8 @@ yabai -m rule --add                         label="JetBrains Toolbox" app="^JetB
 yabai -m rule --add                         app="^WhatsApp$" space=chat
 yabai -m rule --add                         app="^Messages.*$" space=chat
 yabai -m rule --add                         app="^Slack$" space=chat
-yabai -m rule --add                         app="^zoom.us$" space=chat
 yabai -m rule --add                         title="^Inbox.*Mail$" space=mail
 yabai -m rule --add                         app="^YouTube Music Desktop App$" space=music
 yabai -m rule --add                         app="^Photos$" space=photos
+yabai -m rule --add                         app="^(WebStorm|RubyMine|PyCharm)$" space=work
+yabai -m rule --add                         title="^glances$" space=monitoring
