@@ -150,7 +150,7 @@
 	path = _vim/bundle/gruvbox
 	url = https://github.com/morhetz/gruvbox
 [submodule "misc/gruvbox-idea"]
-	path = misc/gruvbox-idea
+	path = jetbrains-themes/gruvbox-idea
 	url = git@github.com:caleb/gruvbox-idea
 [submodule "_vim/bundle/lightline.vim"]
 	path = _vim/bundle/lightline.vim
