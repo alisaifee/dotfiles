@@ -5,3 +5,5 @@
 open -a Whatsapp.app
 open -a Contexts.app
 open -a 'YouTube Music Desktop App.app'
+sleep 10
+launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
