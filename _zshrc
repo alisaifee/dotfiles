@@ -1,3 +1,4 @@
+#zmodload zsh/zprof
 source ~/antigen.zsh
 antigen use prezto
 antigen bundle git
@@ -7,7 +8,6 @@ antigen bundle therealklanni/purity
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
 antigen bundle tarruda/zsh-autosuggestions
-antigen bundle thewtex/tmux-mem-cpu-load
 antigen apply
 
 [ -f ~/.shell/vars.zsh ] && source ~/.shell/vars.zsh
@@ -19,3 +19,4 @@ antigen apply
 [ -f ~/.shell/utilities.zsh ] && source ~/.shell/utilities.zsh
 [ -f ~/.shell/prompt.zsh ] && source ~/.shell/prompt.zsh
 [ -f ~/.secrets.zsh ] && source ~/.secrets.zsh
+#zprof
