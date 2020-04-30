@@ -98,8 +98,9 @@ if [ "$1" == "bootstrap" ]; then
         # Terminal
         brew cask install kitty
 
-        # Yabai
+        # Yabai, Spacebar & Skhd
         brew install koekeishiya/formulae/yabai
+        brew install somdoron/formulae/spacebar
         brew install koekeishiya/formulae/skhd
 
         brew cask install java8

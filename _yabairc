@@ -17,18 +17,8 @@ yabai -m config mouse_modifier              fn
 yabai -m config mouse_action1               move
 yabai -m config mouse_action2               resize
 
-# status bar settings
-yabai -m config status_bar                  on
-yabai -m config status_bar_text_font        "FiraGO Nerd Font:Book:14.0"
-yabai -m config status_bar_icon_font        "FiraGO Nerd Font:Book:14.0"
-yabai -m config status_bar_background_color 0xff202020
-yabai -m config status_bar_foreground_color 0xffa8a8a8
-yabai -m config status_bar_space_icon_strip        
-yabai -m config status_bar_power_icon_strip  
-yabai -m config status_bar_space_icon       
-yabai -m config status_bar_clock_icon       
-
 # general space settings
+yabai -m config top_padding                 26
 yabai -m config layout                      bsp
 yabai -m config top_padding                 10
 yabai -m config bottom_padding              10
