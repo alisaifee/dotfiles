@@ -105,10 +105,11 @@ if [ "$1" == "bootstrap" ]; then
 
         brew cask install java
         brew cask install firefox
+        brew cask install google-backup-and-sync
         brew cask install whatsapp
         brew cask install cloudapp
-        brew cask install google-backup-and-sync
         brew cask install jetbrains-toolbox
+        brew cask install keybase
         brew cask install istat-menus
 
         # lameness for python builds to find openssl
