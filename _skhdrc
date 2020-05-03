@@ -37,6 +37,6 @@ alt - f:             yabai -m window --toggle zoom-fullscreen
 shift + alt - f:     yabai -m window --toggle native-fullscreen
 
 # common application launchers
-alt - return:        /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+shift + alt - return:        /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
 alt - b:             /Applications/Firefox.app/Contents/MacOS/firefox --new-window
 shift + alt - b:     /Applications/Firefox.app/Contents/MacOS/firefox --private-window
