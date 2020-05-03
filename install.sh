@@ -103,8 +103,13 @@ if [ "$1" == "bootstrap" ]; then
         brew install somdoron/formulae/spacebar
         brew install koekeishiya/formulae/skhd
 
-        brew cask install java8
-        brew cask install google-chrome slack
+        brew cask install java
+        brew cask install firefox
+        brew cask install whatsapp
+        brew cask install cloudapp
+        brew cask install google-backup-and-sync
+        brew cask install jetbrains-toolbox
+
 
         # lameness for python builds to find openssl
         export CFLAGS="-I$(brew --prefix openssl)/include"
