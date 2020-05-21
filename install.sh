@@ -89,11 +89,8 @@ if [ "$1" == "bootstrap" ]; then
             ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         fi
         brew tap homebrew/cask-versions
-        brew install cmake ctags-exuberant node-build ruby-build coreutils wget unison readline jq xz ripgrep reattach-to-user-namespace
-        brew install grep
-        brew install gawk
-        brew install vim
-        brew install tmux
+        brew install cmake ctags-exuberant node-build ruby-build coreutils wget unison readline jq xz ripgrep reattach-to-user-namespace entr
+        brew install grep gawk vim tmux
 
         # Terminal
         brew cask install kitty
@@ -122,7 +119,7 @@ if [ "$1" == "bootstrap" ]; then
             echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-5.x.list
         fi
         sudo apt-get update
-        sudo apt-get -y install keychain zsh vim-nox curl tmux ctags-exuberant cargo
+        sudo apt-get -y install keychain zsh vim-nox curl tmux ctags-exuberant cargo entr
         # window manager
         sudo apt-get install -y dunst py3status i3
         install_i3_gaps
