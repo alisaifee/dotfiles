@@ -24,12 +24,13 @@
     df = diff
     lg = log --graph --pretty=oneline --abbrev-commit --all --decorate
     up = !sh -c 'git pull --rebase --prune && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
-    backout = reset --hard HEAD
+    fuckit = reset --hard HEAD
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     ls = ls-files
     cleanstage = !bash -c 'git diff -w --no-color | git apply --cached'
-    cleanadd = !bash -c 'git diff -w --no-color \"$@\" | git apply --cached' -
+    cleanadd = !bash -c 'git diff -w --no-color \"$@\" | git apply --cached'
+    optimize = "!bash -c 'git remote -v | awk \"{print \\$1}\" | sort | uniq | xargs -n 1 git remote prune; git gc'"
 
 [branch]
 	autosetuprebase = always
