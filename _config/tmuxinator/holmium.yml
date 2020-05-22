@@ -1,0 +1,20 @@
+name: holmium
+root: ~/_dev/_git/holmium.core
+
+on_project_first_start:
+ - pyenv local holmium
+ - pip install -r requirements/dev.txt
+ - git fetch
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - vim .
+        - pwd
+  - qa:
+      layout: even-vertical
+      panes:
+        - find . -name \*.py | entr -c nosetests
+        - find . -name \*.py | entr -c flake8 --count
+        - sphinx-autobuild -p 18002 doc/source doc/build/html

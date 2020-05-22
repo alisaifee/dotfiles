@@ -1,0 +1,26 @@
+name: limits
+root: ~/_dev/_git/limits
+
+on_project_first_start:
+ - pyenv local limits
+ - pip install -r requirements/dev.txt
+
+on_project_start:
+ - git fetch
+ - make setup-test-backends
+
+on_project_exit:
+ - docker-compose down
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - vim .
+        - git status
+  - qa:
+      layout: even-vertical
+      panes:
+        - find . -name '*.py' | grep -v google_appengine | entr -c nosetests tests
+        - find . -name '*.py' | grep -v google_appengine | entr -c flake8
+        - sphinx-autobuild -p 18003 doc/source doc/build/html
