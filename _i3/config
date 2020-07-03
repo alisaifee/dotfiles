@@ -1,19 +1,20 @@
 # vim:filetype=i3config
 
-set $mon1 "HDMI-0"
+set $mon1 "DP-1-1-8"
+set $mon2 "DP-0.1"
 set $mod Mod4
-focus_follows_mouse yes 
+focus_follows_mouse yes
 
 # theme
-for_window [class=".*"] border pixel 0 
+for_window [class=".*"] border pixel 2
 smart_borders on
 smart_gaps inverse_outer
-gaps inner 10 
-gaps outer 40
+gaps inner 10
+gaps outer 5
 
 
 floating_modifier Mod1
-font pango:FiraGO Nerd Font Book 12
+font pango:FiraGO Nerd Font Book 10
 
 # gruvbox colors
 set $bg #282828
@@ -31,9 +32,9 @@ set $fg #ebdbb2
 set $orange #d65d0e
 
 # set wallpaper
-exec_always --no-startup-id feh --bg-scale /home/ali/_dev/_git/dotfiles/wallpapers/texture.png
+exec_always --no-startup-id feh --bg-scale /home/ali/_dev/_git/dotfiles/wallpapers/texture-portait.png
 
-# horizontal screen menu bar
+# primary screen menu bar
 bar {
   output $mon1
   status_command zsh -c "py3status -d -l /var/tmp/py3status.log"
@@ -52,8 +53,28 @@ bar {
   }
 }
 
+# secondary screen menu bar
+bar {
+  output $mon2
+  status_command zsh -c "py3status -c ~/.i3status-mini.conf  -d -l /var/tmp/py3status-mini.log"
+  i3bar_command i3bar -t
+  separator_symbol  "|"
+  position top
+  strip_workspace_numbers yes
+  colors {
+    background $bg
+    statusline $fg
+    # format: border backgr text
+    focused_workspace    $brightgreen $brightgreen $darkgray
+    inactive_workspace   $bg $bg $fg
+    active_workspace     $bg $darkgray $fg
+    urgent_workspace     $orange $orange $fg
+  }
+}
+
+
 # format: border|backgr|text|indicator|child_border
-client.focused          $darkgray $brightgreen $darkgray $brightgreen $darkgray
+client.focused          $brightgreen $brightgreen $darkgray $brightgreen $brightgreen
 client.focused_inactive $gray $gray $darkgray $darkgray $darkgray
 client.unfocused        $gray $gray $darkgray $darkgray $darkgray
 client.urgent           $red $red $fg $red $red
@@ -67,6 +88,7 @@ set $ws5 5: 
 set $ws6 6: 
 set $ws7 7: 
 set $ws8 8: 
+set $ws9 9: 
 
 ## global bindings
 # start dmenu (a program launcher)
@@ -97,7 +119,7 @@ bindsym $mod+Shift+c reload
 
 # restart i3 inplace
 bindsym $mod+Shift+r restart
-
+bindsym $mod+Shift+m exec /home/ali/.screenlayout/default.sh
 # start a terminal
 bindsym $mod+Return exec /home/ali/bin/kitty
 
@@ -106,13 +128,14 @@ bindsym $mod+B exec firefox --new-window
 bindsym $mod+Shift+B exec firefox --private-window
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym Mod1+Q kill
 
 # lock screen
-bindsym $mod+Mod1+L exec ~/.i3/lock.sh
+bindsym Ctrl+Mod1+Q exec ~/.i3/lock.sh
+bindsym Shift+Mod1+Q exec i3-msg exit
 bindsym $mod+Print exec gnome-screenshot -i
 
-## navigation bindings
+## navigation bindinigs
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+l focus left
@@ -125,10 +148,14 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
+# move focused window to next monitor
+bindsym $mod+Mod1+h move container to output left;focus output left
+bindsym $mod+Mod1+l move container to output right;focus output right
+
 # split in horizontal orientation
-bindsym $mod+Mod1+H split h
+bindsym $mod+Mod1+Shift+H split h
 # split in vertical orientation
-bindsym $mod+Mod1+V split v
+bindsym $mod+Mod1+Shift+V split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -156,6 +183,7 @@ bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -166,37 +194,40 @@ bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
 
 # startup applications
 exec --no-startup-id /usr/lib/gsd-xsettings
 exec --no-startup-id gnome-flashback
 exec --no-startup-id youtube-music-desktop-app
-exec --no-startup-id firefox --new-window https://web.whatsapp.com
+exec --no-startup-id whatsdesk
 exec --no-startup-id firefox --new-window https://mail.google.com
 exec --no-startup-id dbus-launch solaar
 exec --no-startup-id dbus-launch blueman-applet
 exec --no-startup-id dbus-launch nm-applet
 exec --no-startup-id dbus-launch redshift-gtk
-exec --no-startup-id gnome-keyring-daemon --start
-exec --no-startup-id /home/ali/bin/kitty --class=GlancesMonitoring glances
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
+exec --no-startup-id /home/ali/bin/kitty --class=ytop zsh -c ytop
 
 workspace "$ws1" output $mon1
 workspace "$ws2" output $mon1
 workspace "$ws3" output $mon1
 workspace "$ws4" output $mon1
 workspace "$ws5" output $mon1
-workspace "$ws6" output $mon1
+workspace "$ws6" output $mon2
 workspace "$ws7" output $mon1
 workspace "$ws8" output $mon1
+workspace "$ws9" output $mon2
 
 # application -> workspace binding
 for_window [class="jetbrains*"] move to workspace $ws2
 for_window [class="Slack"] move to workspace $ws3
-for_window [title="WhatsApp - Mozilla Firefox"] move to workspace $ws3
+for_window [class="whatsdesk"] move to workspace $ws3
+for_window [title="Zoom *"] move to workspace $ws3
 for_window [title="Inbox.*Mail - Mozilla Firefox"] move to workspace $ws4
 for_window [class="Gnome-calendar"] move to workspace $ws4
 for_window [class="youtube-music-desktop-app"] move to workspace $ws5
-for_window [class="GlancesMonitoring"] move to workspace $ws6
+for_window [class="ytop"] move to workspace $ws6
 for_window [class="org.remmina.Remmina" title="frankie"] move to workspace $ws7
 for_window [title="Steam"] move to workspace $ws8
 for_window [class="steam_app*"] move to workspace $ws8
@@ -219,3 +250,4 @@ exec_always --no-startup-id if pgrep dunst; then pkill dunst; fi && dunst -confi
 exec_always --no-startup-id xautolock -detectsleep -time 5 -locker ~/.i3/lock.sh -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
 # compositing
 exec_always --no-startup-id if pgrep compton; then pkill compton; fi && compton --config ~/.config/compton.conf
+exec_always --no-startup-id /usr/libexec/goa-daemon --replace

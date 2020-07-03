@@ -7,18 +7,14 @@ yellow=d79921ff
 fg=ebdbb2ff
 bg=28282800
 font="FiraGO Nerd Font"
-size=60
+size=40
 iconsize=120
 /usr/local/bin/i3lock \
     -k \
-    -t -i ~/_dev/_git/dotfiles/wallpapers/texture.png \
-    --greeter-font="$font"\
+    -t -i ~/_dev/_git/dotfiles/wallpapers/texture-portrait.png \
     --layout-font="$font"\
-    --greetersize=$iconsize\
     --modsize=30\
     --modifpos="x+(w/2):y+(5*h/6)"\
-    --greetercolor=$fg\
-    --greetertext=" "\
     --ringcolor=$bg\
     --linecolor=$bg \
     --insidecolor=$bg\
@@ -27,7 +23,6 @@ iconsize=120
     --ring-width=10\
     --radius=140\
     --indpos="x+(w/2):y+(3*h/4)"\
-    --greeterpos="x+120:y+120"\
     --noinputtext="﯊"\
     \
     --datecolor=$fg\
@@ -54,6 +49,7 @@ iconsize=120
     --verif-font="$font"\
     --separatorcolor=$bg\
     --verifsize=$iconsize\
-    --veriftext="羽"\
-
+    --veriftext="羽"
+sleep 15
+xset dpms force off
 
