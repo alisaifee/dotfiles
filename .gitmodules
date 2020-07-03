@@ -195,3 +195,6 @@
 [submodule "_vim/bundle/i3config.vim"]
 	path = _vim/bundle/i3config.vim
 	url = https://github.com/mboughaba/i3config.vim
+[submodule "_vim/bundle/vim-todo-lists"]
+	path = _vim/bundle/vim-todo-lists
+	url = https://github.com/aserebryakov/vim-todo-lists
