@@ -149,6 +149,7 @@ let g:ale_fixers = {
 \   'json': ['jq'],
 \   'javascript': ['eslint', 'prettier'],
 \   'javascript.jsx': ['eslint', 'prettier'],
+\   'javascriptreact': ['eslint', 'prettier'],
 \   'python': ['yapf', 'autopep8'],
 \   'ruby': ['rubocop'],
 \   'go': ['gofmt'],
