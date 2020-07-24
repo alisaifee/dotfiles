@@ -14,57 +14,6 @@ function link_file() {
     ln -sf ${source} ${target}
 }
 
-function install_i3_gaps() {
-    pushd .
-    cd /var/tmp
-    if [ ! -e i3-gaps ]; then
-        git clone https://github.com/Airblader/i3 i3-gaps
-    fi
-    cd i3-gaps
-    git pull
-    sudo apt-get install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
-        libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev \
-        libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev \
-        libxkbcommon-dev libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake \
-        gnome-fallback fontforge
-    autoreconf --force --install
-    rm -rf build/
-    mkdir -p build && cd build/
-    ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
-    make
-    sudo make install
-    pushd +3
-}
-
-function install_rofi() {
-    pushd .
-    cd /var/tmp/
-    sudo apt-get install -y flex libjson-glib-dev
-    if [ ! -e rofi ]; then
-        git clone --recursive https://github.com/davatorium/rofi
-    fi
-    cd rofi
-    git pull
-    git submodule update --init
-    autoreconf -i
-    mkdir build && cd build
-    ../configure --disable-check
-    sudo make install
-    pushd +2
-    if [ ! -e rofi-blocks ]; then
-        git clone git@github.com:fogine/rofi-blocks.git
-    fi
-    cd rofi-blocks
-    git pull
-    git checkout next
-    autoreconf -i
-    mkdir -p build && cd build
-    ../configure
-    make
-    sudo make install
-    pushd +3
-}
-
 function patch_fonts() {
     if [[ $(uname) == 'Darwin' ]]; then
         font_dir="$HOME/Library/Fonts"
@@ -89,7 +38,7 @@ if [ "$1" == "bootstrap" ]; then
             ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         fi
         brew tap homebrew/cask-versions
-        brew install cmake ctags-exuberant node-build ruby-build coreutils wget unison readline jq xz ripgrep reattach-to-user-namespace entr
+        brew install cmake autoconf ctags-exuberant node-build ruby-build coreutils wget unison readline jq xz ripgrep reattach-to-user-namespace entr
         brew install grep gawk vim tmux
 
         # Terminal
@@ -113,40 +62,38 @@ if [ "$1" == "bootstrap" ]; then
         export CFLAGS="-I$(brew --prefix openssl)/include"
         export LDFLAGS="-L$(brew --prefix openssl)/lib"
     else
-        if [ ! -e /etc/apt/sources.list.d/elastic-5.x.list ]; then
-            wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
-            sudo apt-get install apt-transport-https
-            echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-5.x.list
-        fi
-        sudo apt-get update
-        sudo apt-get -y install keychain zsh vim-nox curl tmux ctags-exuberant cargo entr
-        # window manager
-        sudo apt-get install -y dunst py3status i3
-        install_i3_gaps
+        sudo apt update
         # development deps
-        sudo apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev libffi-dev libgdbm-dev ruby-dev libnurses5 libncurses5-dev
-        sudo apt-get -y install gnupg2 gnupg
-        sudo apt-get -y install openjdk-8-jre
-        sudo apt-get -y install postgresql postgresql-contrib libpq-dev
-        sudo apt-get -y install mysql-server mysql-client libmysqlclient-dev
-        sudo apt-get -y install memcached redis-server
-        sudo apt-get -y install nginx
-        sudo apt-get -y install awscli
-        sudo apt-get -y install elasticsearch
-        sudo apt-get -y install jq
+        sudo apt -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6 \
+            libreadline6-dev zlib1g zlib1g-dev libffi-dev libgdbm-dev ruby-dev libnurses5 libncurses5-dev
+        # development tools
+        sudo apt -y install gnupg2 gnupg
+        sudo apt -y install openjdk-8-jre
+        sudo apt -y install postgresql postgresql-contrib libpq-dev
+        sudo apt -y install mysql-server mysql-client libmysqlclient-dev
+        sudo apt -y install memcached redis-server
+        sudo apt -y install nginx
+        sudo apt -y install awscli
+        sudo apt -y install jq
+        sudo apt -y install keychain zsh vim-nox curl tmux exuberant-ctags cargo entr
         cargo install ripgrep
+
+        # apps
+        sudo apt -y install slack
+        sudo snap install youtube-music-desktop-app
+
     fi
 
-    # patch fonts
-    patch_fonts
+    patch fonts
+
     if [ ! -e ~/antigen.zsh ]; then
         curl -L git.io/antigen >~/antigen.zsh
     fi
 
     if [ ! -e ~/.rbenv ]; then
         git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-        mkdir -p "$(rbenv root)"/plugins
-        git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+        mkdir -p ~/.rbenv/plugins
+        git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
     fi
     if [ ! -e ~/.pyenv ]; then
         git clone https://github.com/pyenv/pyenv.git ~/.pyenv
@@ -156,6 +103,7 @@ if [ "$1" == "bootstrap" ]; then
     fi
     if [ ! -e ~/.nodenv ]; then
         git clone https://github.com/nodenv/nodenv.git ~/.nodenv
+        mkdir -p ~/.nodenv/plugins
         git clone https://github.com/nodenv/nodenv-aliases.git ~/.nodenv/plugins/nodenv-aliases
     fi
 
