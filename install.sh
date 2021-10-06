@@ -75,12 +75,16 @@ if [ "$1" == "bootstrap" ]; then
         sudo apt -y install nginx
         sudo apt -y install awscli
         sudo apt -y install jq
-        sudo apt -y install keychain zsh vim-nox curl tmux exuberant-ctags cargo entr
+        sudo apt -y install keychain zsh vim-nox curl tmux exuberant-ctags entr
+        if [ !$(command -v rustup) ]; then
+            curl https://sh.rustup.rs -sSf | sh -s -- -y
+        fi
         cargo install ripgrep
-
-        # apps
-        sudo apt -y install slack
-        sudo snap install youtube-music-desktop-app
+        cargo install fd
+        cargo install bat
+        cargo install hyperfine
+        cargo install git-delta
+        cargo install starship
 
     fi
 
