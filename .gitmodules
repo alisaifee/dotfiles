@@ -203,6 +203,3 @@
 [submodule "_vim/bundle/vimspector"]
 	path = _vim/bundle/vimspector
 	url = https://github.com/puremourning/vimspector
-[submodule "_vim/bundle/vim-github-link"]
-	path = _vim/bundle/vim-github-link
-	url = https://github.com/knsh14/vim-github-link
