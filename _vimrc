@@ -93,17 +93,22 @@ set incsearch               " Incrementally search while typing a /regex
 """"""""""""""'
 " plugin setup
 """"""""""""""'
-let g:pyenv#auto_activate = 1
-let g:ycm_python_interpreter_path = '~/.pyenv/shims/python'
 let g:ycm_python_sys_path = []
 let g:ycm_extra_conf_vim_data = [
-  \  'g:ycm_python_interpreter_path',
   \  'g:ycm_python_sys_path'
   \]
 let g:ycm_global_ycm_extra_conf = '~/.vim/local/ycm_extra.py'
 let g:pathogen_disabled = ['pydoc']
 call pathogen#infect()
 call pathogen#helptags()
+
+let NERDTreeShowBookmarks=1
+let g:vimspector_enable_mappings = 'HUMAN'
+let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools', 'CodeLLDB' ]
+nmap <S-F5> :VimspectorReset<CR>
+vmap <Leader><F10> <Plug>VimspectorReset
+nmap <Leader>di <Plug>VimspectorBalloonEval
+vmap <Leader>di <Plug>VimspectorBalloonEval
 
 
 """"""""""""""'
@@ -130,7 +135,9 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 autocmd BufWritePre *.* :%s/\s\+$//e
 " Filetype overrides
 autocmd BufNewFile,BufRead *.mako,*.mak,*.jinja2,*.jxml setlocal ft=html
-autocmd BufNewFile,BufRead *.task setlocal ft=ruby
+autocmd BufNewFile,BufRead *.task,*.pp setlocal ft=ruby
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript
+autocmd BufNewFile,BufRead *.jsx set filetype=javascript
 autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 " Ensure crontab can be saved when edited with vim
 autocmd filetype crontab setlocal nobackup nowritebackup
@@ -147,10 +154,11 @@ highlight link ALEErrorSign Title
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'json': ['jq'],
-\   'javascript': ['eslint', 'prettier'],
-\   'javascript.jsx': ['eslint', 'prettier'],
-\   'javascriptreact': ['eslint', 'prettier'],
-\   'python': ['yapf', 'autopep8'],
+\   'javascript': ['eslint'],
+\   'javascript.jsx': ['eslint'],
+\   'javascriptreact': ['eslint'],
+\   'typescript': ['eslint'],
+\   'python': ['yapf', 'autopep8', 'black'],
 \   'ruby': ['rubocop'],
 \   'go': ['gofmt'],
 \   'elixir': ['credo'],
@@ -305,5 +313,8 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+" Align tables
+au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
+
 
 set t_RV=

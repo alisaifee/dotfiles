@@ -76,9 +76,6 @@
 [submodule "_vim/bundle/vimwiki"]
     path = _vim/bundle/vimwiki
     url = https://github.com/vimwiki/vimwiki.git
-[submodule "_pyenv"]
-    path = _pyenv
-    url = https://github.com/yyuu/pyenv.git
 [submodule "_vim/bundle/colorschemes"]
     path = _vim/bundle/colorschemes
     url = https://github.com/flazz/vim-colorschemes.git
@@ -91,10 +88,6 @@
 [submodule "_vim/bundle/python-mode"]
     path = _vim/bundle/python-mode
     url = git://github.com/klen/python-mode.git
-[submodule "_vim/bundle/vim-pyenv"]
-    path = _vim/bundle/vim-pyenv
-    url = https://github.com/lambdalisue/vim-pyenv.git
-    ignore = dirty
 [submodule "_vim/bundle/jedi-vim"]
     path = _vim/bundle/jedi-vim
     url = https://github.com/davidhalter/jedi-vim
@@ -198,3 +191,18 @@
 [submodule "_vim/bundle/vim-todo-lists"]
 	path = _vim/bundle/vim-todo-lists
 	url = https://github.com/aserebryakov/vim-todo-lists
+[submodule "_vim/bundle/vim-jsx-typescript"]
+	path = _vim/bundle/vim-jsx-typescript
+	url = https://github.com/peitalin/vim-jsx-typescript
+[submodule "_vim/bundle/starlark.vim"]
+	path = _vim/bundle/starlark.vim
+	url = https://github.com/cappyzawa/starlark.vim
+[submodule "_vim/bundle/thrift.vim"]
+	path = _vim/bundle/thrift.vim
+	url = https://github.com/solarnz/thrift.vim
+[submodule "_vim/bundle/vimspector"]
+	path = _vim/bundle/vimspector
+	url = https://github.com/puremourning/vimspector
+[submodule "_vim/bundle/vim-github-link"]
+	path = _vim/bundle/vim-github-link
+	url = https://github.com/knsh14/vim-github-link
