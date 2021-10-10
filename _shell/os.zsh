@@ -5,6 +5,7 @@ then
     eval `dircolors ~/.dircolors`
     alias copy='xclip -selection clipboard'
     alias paste='xclip -o -selection clipboard'
+    alias open='xdg-open'
 else
     eval `gdircolors ~/.dircolors`
     alias ctags="`brew --prefix`/bin/ctags"
