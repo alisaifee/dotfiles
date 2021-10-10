@@ -1,2 +1,3 @@
 eval `dircolors ~/.dircolors`
-prompt pure
+eval $(starship init zsh)
+bindkey -v
