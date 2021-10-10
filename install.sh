@@ -80,6 +80,7 @@ if [ "$1" == "bootstrap" ]; then
             curl https://sh.rustup.rs -sSf | sh -s -- -y
         fi
         cargo install ripgrep
+        cargo install exa
         cargo install fd
         cargo install bat
         cargo install hyperfine
