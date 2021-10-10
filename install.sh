@@ -95,23 +95,6 @@ if [ "$1" == "bootstrap" ]; then
         curl -L git.io/antigen >~/antigen.zsh
     fi
 
-    if [ ! -e ~/.rbenv ]; then
-        git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-        mkdir -p ~/.rbenv/plugins
-        git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-    fi
-    if [ ! -e ~/.pyenv ]; then
-        git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-    fi
-    if [ ! -e ~/.pyenv/plugins/pyenv-virtualenv ]; then
-        git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
-    fi
-    if [ ! -e ~/.nodenv ]; then
-        git clone https://github.com/nodenv/nodenv.git ~/.nodenv
-        mkdir -p ~/.nodenv/plugins
-        git clone https://github.com/nodenv/nodenv-aliases.git ~/.nodenv/plugins/nodenv-aliases
-    fi
-
     # make the virtualenvs available in bash
     export PATH=$PATH:~/.pyenv/bin/:~/.rbenv/bin/:~/.nodenv/bin/
     eval "$(pyenv init -)"
@@ -128,26 +111,6 @@ if [ "$1" == "bootstrap" ]; then
     else
         export PYTHON_CONFIGURE_OPTS="--enable-shared"
     fi
-    # default pythons
-    for version in 2.7.17 3.7.7 3.8.2; do
-        if [ ! -e ~/.pyenv/versions/$version ]; then
-            pyenv install $version
-        fi
-    done
-
-    # default rubies
-    for version in 2.5.3 2.6.1; do
-        if [ ! -e ~/.rbenv/versions/$version ]; then
-            rbenv install $version
-        fi
-    done
-
-    # default nodes
-    nodenv alias --auto
-    for version in 10.19.0 13.11.0; do
-        nodenv install $version
-    done
-    nodenv global 13
 elif [ "$1" = "vim" ]; then
     for i in _vim*; do
         link_file $i
