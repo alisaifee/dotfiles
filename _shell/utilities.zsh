@@ -9,3 +9,9 @@ function set-aws-credentials
         echo "Unable to located $1 credentials";
     fi;
 }
+
+
+export PATH="$HOME/.antigen/bundles/bigH/git-fuzzy/bin:$PATH"
+export GF_PREFERRED_PAGER="delta --theme=gruvbox --highlight-removed -w __WIDTH__"
+export GF_BAT_THEME=gruvbox
+
