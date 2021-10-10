@@ -1,3 +1,2 @@
-eval "$(pyenv init -)"
-eval "$(rbenv init -)"
-eval "$(nodenv init -)"
+eval "$(direnv hook zsh)"
+. $HOME/.asdf/asdf.sh

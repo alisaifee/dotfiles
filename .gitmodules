@@ -206,3 +206,6 @@
 [submodule "_vim/bundle/vim-gitgutter"]
 	path = _vim/bundle/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter
+[submodule "_asdf"]
+	path = _asdf
+	url = https://github.com/asdf-vm/asdf.git
