@@ -24,13 +24,14 @@ _gen_fzf_default_opts() {
 }
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 [ -f ~/.shell/fzf_git.zsh ] && source ~/.shell/fzf_git.zsh
-# disable sort when completing `git checkout`
+
+# fzf-tab style customizations
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
 zstyle ':completion:*:descriptions' format '[%d]'
 # set list-colors to enable filename colorizing
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # preview directory's content with exa when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath --icons'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
