@@ -94,9 +94,11 @@ set incsearch               " Incrementally search while typing a /regex
 " plugin setup
 """"""""""""""'
 let g:ycm_python_sys_path = []
+let g:ycm_python_interpreter_path = '~/.asdf/shims/python'
 let g:ycm_extra_conf_vim_data = [
-  \  'g:ycm_python_sys_path'
-  \]
+ \  'g:ycm_python_interpreter_path',
+ \  'g:ycm_python_sys_path'
+\]
 let g:ycm_global_ycm_extra_conf = '~/.vim/local/ycm_extra.py'
 let g:pathogen_disabled = ['pydoc']
 call pathogen#infect()
