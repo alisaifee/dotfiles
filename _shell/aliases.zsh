@@ -1,2 +1,3 @@
-alias ls="ls --color=auto"
+alias ls="exa --icons"
+alias cat="bat"
 alias mux=tmuxinator

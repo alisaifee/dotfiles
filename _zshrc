@@ -1,26 +1,36 @@
-[ -f ~/.shell/fzf.zsh ] && source ~/.shell/fzf.zsh
 source ~/antigen.zsh
+
+[ -f ~/.shell/vars.zsh ] && source ~/.shell/vars.zsh
+[ -f ~/.shell/venvs.zsh ] && source ~/.shell/venvs.zsh
+[ -f ~/.shell/path.zsh ] && source ~/.shell/path.zsh
+[ -f ~/.shell/completions.zsh ] && source ~/.shell/completions.zsh
+
+[ -f ~/.shell/aliases.zsh ] && source ~/.shell/aliases.zsh
+[ -f ~/.shell/os.zsh ] && source ~/.shell/os.zsh
+[ -f ~/.shell/utilities.zsh ] && source ~/.shell/utilities.zsh
+[ -f ~/.shell/prompt.zsh ] && source ~/.shell/prompt.zsh
+[ -f ~/.secrets.zsh ] && source ~/.secrets.zsh
+
 antigen bundle bigH/git-fuzzy path:bin kind:path
 antigen use oh-my-zsh
+antigen bundle fd
 antigen bundle git
 antigen bundle kubernetes
 antigen bundle kubectl
+antigen bundle vi-mode
 antigen bundle mafredri/zsh-async
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
 antigen bundle tarruda/zsh-autosuggestions
 antigen bundle wfxr/forgit
 antigen bundle Aloxaf/fzf-tab
+antigen bundle paulirish/git-open
+antigen bundle jeffreytse/zsh-vi-mode
 antigen apply
 
-[ -f ~/.shell/vars.zsh ] && source ~/.shell/vars.zsh
-[ -f ~/.shell/venvs.zsh ] && source ~/.shell/venvs.zsh
-[ -f ~/.shell/path.zsh ] && source ~/.shell/path.zsh
-[ -f ~/.shell/aliases.zsh ] && source ~/.shell/aliases.zsh
-[ -f ~/.shell/os.zsh ] && source ~/.shell/os.zsh
-[ -f ~/.shell/utilities.zsh ] && source ~/.shell/utilities.zsh
-[ -f ~/.shell/prompt.zsh ] && source ~/.shell/prompt.zsh
-[ -f ~/.shell/completions.zsh ] && source ~/.shell/completions.zsh
-[ -f ~/.secrets.zsh ] && source ~/.secrets.zsh
+function zvm_after_init() {
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+}
 
 enable-fzf-tab
+

@@ -79,6 +79,9 @@ if [ "$1" == "bootstrap" ]; then
         if [ !$(command -v rustup) ]; then
             curl https://sh.rustup.rs -sSf | sh -s -- -y
         fi
+        if [ ! $(command -v brew) ]; then
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        fi
         cargo install ripgrep
         cargo install exa
         cargo install fd
