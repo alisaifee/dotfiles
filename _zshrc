@@ -5,7 +5,6 @@ source ~/antigen.zsh
 [ -f ~/.shell/path.zsh ] && source ~/.shell/path.zsh
 [ -f ~/.shell/completions.zsh ] && source ~/.shell/completions.zsh
 
-[ -f ~/.shell/aliases.zsh ] && source ~/.shell/aliases.zsh
 [ -f ~/.shell/os.zsh ] && source ~/.shell/os.zsh
 [ -f ~/.shell/utilities.zsh ] && source ~/.shell/utilities.zsh
 [ -f ~/.shell/prompt.zsh ] && source ~/.shell/prompt.zsh
@@ -33,4 +32,4 @@ function zvm_after_init() {
 }
 
 enable-fzf-tab
-
+[ -f ~/.shell/aliases.zsh ] && source ~/.shell/aliases.zsh
