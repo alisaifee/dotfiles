@@ -298,13 +298,6 @@ vmap <C-c> :w !pbcopy<CR><CR>"
 " exit from insert to normal mode
 :inoremap jk <esc>
 
-" Testing
-nmap <silent> t<C-n> :TestNearest<CR>
-nmap <silent> t<C-f> :TestFile<CR>
-nmap <silent> t<C-s> :TestSuite<CR>
-nmap <silent> t<C-l> :TestLast<CR>
-nmap <silent> t<C-g> :TestVisit<CR>
-
 " Devicons
 if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
@@ -312,7 +305,6 @@ endif
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
-
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 " Align tables
