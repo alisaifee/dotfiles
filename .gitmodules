@@ -209,3 +209,15 @@
 [submodule "_asdf"]
 	path = _asdf
 	url = https://github.com/asdf-vm/asdf.git
+[submodule "_vim/bundle/vim-rhubarb"]
+	path = _vim/bundle/vim-rhubarb
+	url = https://github.com/tpope/vim-rhubarb
+[submodule "_vim/bundle/vim-yaml-folds"]
+	path = _vim/bundle/vim-yaml-folds
+	url = https://github.com/pedrohdz/vim-yaml-folds
+[submodule "_vim/bundle/vim-markdown"]
+	path = _vim/bundle/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown
+[submodule "_vim/bundle/vim-gh-line"]
+	path = _vim/bundle/vim-gh-line
+	url = https://github.com/ruanyl/vim-gh-line
