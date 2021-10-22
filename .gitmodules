@@ -155,9 +155,6 @@
 	path = _vim/bundle/Align
 	url = https://github.com/vim-scripts/Align
 	ignore = dirty
-[submodule "_vim/bundle/vim-devicons"]
-	path = _vim/bundle/vim-devicons
-	url = https://github.com/ryanoasis/vim-devicons
 [submodule "_vim/bundle/nerdcommenter"]
 	path = _vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter
