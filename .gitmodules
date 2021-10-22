@@ -218,3 +218,6 @@
 [submodule "_vim/bundle/vim-gh-line"]
 	path = _vim/bundle/vim-gh-line
 	url = https://github.com/ruanyl/vim-gh-line
+[submodule "_vim/bundle/vim-devicons"]
+	path = _vim/bundle/vim-devicons
+	url = https://github.com/ryanoasis/vim-devicons
