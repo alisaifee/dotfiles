@@ -62,25 +62,26 @@ if [ "$1" == "bootstrap" ]; then
         export CFLAGS="-I$(brew --prefix openssl)/include"
         export LDFLAGS="-L$(brew --prefix openssl)/lib"
     else
-        sudo apt update
-        # development deps
-        sudo apt -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6 \
-            libreadline6-dev zlib1g zlib1g-dev libffi-dev libgdbm-dev ruby-dev libnurses5 libncurses5-dev
-        # development tools
-        sudo apt -y install gnupg2 gnupg
-        sudo apt -y install openjdk-8-jre
-        sudo apt -y install postgresql postgresql-contrib libpq-dev
-        sudo apt -y install mysql-server mysql-client libmysqlclient-dev
-        sudo apt -y install memcached redis-server
-        sudo apt -y install nginx
-        sudo apt -y install awscli
-        sudo apt -y install jq
-        sudo apt -y install keychain zsh vim-nox curl tmux exuberant-ctags entr
+        if [[ -v BARE_SETUP ]]; then
+            # development deps
+            sudo apt -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6 \
+                libreadline6-dev zlib1g zlib1g-dev libffi-dev libgdbm-dev ruby-dev libnurses5 libncurses5-dev
+            # development tools
+            sudo apt -y install gnupg2 gnupg
+            sudo apt -y install openjdk-8-jre
+            sudo apt -y install postgresql postgresql-contrib libpq-dev
+            sudo apt -y install mysql-server mysql-client libmysqlclient-dev
+            sudo apt -y install memcached redis-server
+            sudo apt -y install nginx
+            sudo apt -y install awscli
+            sudo apt -y install jq
+            sudo apt -y install keychain zsh vim-nox curl tmux exuberant-ctags entr
+            if [ ! $(command -v brew) ]; then
+                /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            fi
+        fi
         if [ !$(command -v rustup) ]; then
             curl https://sh.rustup.rs -sSf | sh -s -- -y
-        fi
-        if [ ! $(command -v brew) ]; then
-            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         fi
         cargo install ripgrep
         cargo install exa
@@ -96,17 +97,6 @@ if [ "$1" == "bootstrap" ]; then
 
     if [ ! -e ~/antigen.zsh ]; then
         curl -L git.io/antigen >~/antigen.zsh
-    fi
-
-    # make the virtualenvs available in bash
-    export PATH=$PATH:~/.pyenv/bin/:~/.rbenv/bin/:~/.nodenv/bin/
-    eval "$(pyenv init -)"
-    eval "$(rbenv init -)"
-    eval "$(nodenv init -)"
-
-    # tmuxinator
-    if [ ! "$(type tmuxinator)" ]; then
-        sudo gem install tmuxinator
     fi
 
     if [[ $(uname) == 'Darwin' ]]; then
