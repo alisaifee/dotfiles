@@ -88,7 +88,7 @@ if [ "$1" == "bootstrap" ]; then
         fi
         cargo install ripgrep
         cargo install exa
-        cargo install fd
+        cargo install fd-find
         cargo install bat
         cargo install hyperfine
         cargo install git-delta
