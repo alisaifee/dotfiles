@@ -83,6 +83,9 @@ if [ "$1" == "bootstrap" ]; then
         if [ !$(command -v rustup) ]; then
             curl https://sh.rustup.rs -sSf | sh -s -- -y
         fi
+        if [ ! -e ~/.asdf ]; then
+            git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
+        fi
         cargo install ripgrep
         cargo install exa
         cargo install fd
