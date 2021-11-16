@@ -1,7 +1,9 @@
 if [[ `uname` == 'Linux' ]];
 then
-    /usr/bin/keychain -q $HOME/.ssh/id_rsa
-    source $HOME/.keychain/`hostname`-sh
+    if type "keychain" > /dev/null 2>&1; then
+        /usr/bin/keychain -q $HOME/.ssh/id_rsa
+        source $HOME/.keychain/`hostname`-sh
+    fi
     eval `dircolors ~/.dircolors`
     alias copy='xclip -selection clipboard'
     alias paste='xclip -o -selection clipboard'
