@@ -107,6 +107,10 @@ call pathogen#helptags()
 let NERDTreeShowBookmarks=1
 let g:vimspector_enable_mappings = 'HUMAN'
 let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools', 'CodeLLDB' ]
+let g:vimspector_sign_priority = {
+  \    'vimspectorBP':         666,
+  \    'vimspectorBPCond':     666,
+  \ }
 nmap <S-F5> :VimspectorReset<CR>
 vmap <Leader><F10> <Plug>VimspectorReset
 nmap <Leader>di <Plug>VimspectorBalloonEval
