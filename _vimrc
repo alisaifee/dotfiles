@@ -152,6 +152,8 @@ autocmd filetype crontab setlocal nobackup nowritebackup
 """"""""""""""""""""""'
 " plugin configurations
 """""""""""""""""""""""'
+" vim-go
+let g:go_def_mapping_enabled = 0
 " ALE
 let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
@@ -182,11 +184,14 @@ let g:formatter_yapf_style = 'pep8'
 
 " Search
 let g:rg_command = '
-            \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always" --vimgrep
-            \ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf}"
+            \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
+            \ -g "*.{js,json,php,md,styl,jade,html,config,py,pyi,cpp,c,go,hs,rb,conf,tilt,star}"
             \ -g "!{.git,node_modules,vendor}/*" '
+"
+"command! -bang -nargs=* Rg call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', '~/.vim/bundle/fzf.vim/bin/preview.sh {}']}, <bang>0)
 
-command! -bang -nargs=* Rg call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
 
 " Lightline
 "
@@ -249,7 +254,11 @@ cmap W! w !sudo tee % >/dev/null
 " TagBarOpen
 nmap <leader>o :TagbarToggle<CR>
 " Code completion
-nnoremap <Leader>] :YcmCompleter GoTo<CR>
+nnoremap <C-]> :YcmCompleter GoTo<CR>
+nnoremap <C-LeftMouse> :YcmCompleter GoTo<CR>
+
+nnoremap <C-RightMouse> :YcmCompleter GoToReferences<CR>
+
 nnoremap <Leader>rr :YcmCompleter RefactorRename
 " Code completion
 nnoremap <silent> <Leader>= :ALEFix<CR>
@@ -278,7 +287,7 @@ map <leader>v :e ~/.vimrc<CR><C-W>_
 map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 " close current buffer
 " map <leader>x :bd<CR>
-nnoremap <leader>x :bp<cr>:bd #<cr>
+nnoremap <C-X> :bp<cr>:bd #<cr>
 " close current window
 nnoremap <leader>q :q<CR>
 " hide matches on <leader>space
