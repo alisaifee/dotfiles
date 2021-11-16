@@ -1,3 +1,5 @@
 alias ls="exa --icons"
+alias ll="ls -alsnew"
 alias cat="bat"
-alias mux=tmuxinator
+alias find="fd"
+alias mux="tmuxinator"

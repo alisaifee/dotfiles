@@ -1,28 +1,8 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-_gen_fzf_default_opts() {
-  local base03="234"
-  local base02="235"
-  local base01="240"
-  local base00="241"
-  local base0="244"
-  local base1="245"
-  local base2="254"
-  local base3="230"
-  local yellow="136"
-  local orange="166"
-  local red="160"
-  local magenta="125"
-  local violet="61"
-  local blue="33"
-  local cyan="37"
-  local green="64"
-  export FZF_DEFAULT_OPTS="
-    --color fg:-1,bg:-1,hl:$blue,fg+:$base2,bg+:$base02,hl+:$blue
-    --color info:$yellow,prompt:$yellow,pointer:$base3,marker:$base3,spinner:$yellow
-  "
-}
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+  --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
+  --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
 [ -f ~/.shell/fzf_git.zsh ] && source ~/.shell/fzf_git.zsh
 
 # fzf-tab style customizations
@@ -33,5 +13,14 @@ zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # preview directory's content with exa when completing cd
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath --icons'
+# expand environment variables
+zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' \
+	fzf-preview 'echo ${(P)word}'
+zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview \
+	'case "$group" in
+	"modified file") git diff $word | delta ;;
+	"recent commit object name") git show --color=always $word | delta ;;
+	*) git log --color=always $word -n 5;;
+	esac'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
