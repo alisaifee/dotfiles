@@ -157,6 +157,9 @@ let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
+let g:ale_linters = {
+\    "python": ["mypy", "flake8", "black"]
+\}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'json': ['jq'],
@@ -164,7 +167,7 @@ let g:ale_fixers = {
 \   'javascript.jsx': ['eslint'],
 \   'javascriptreact': ['eslint'],
 \   'typescript': ['eslint'],
-\   'python': ['yapf', 'autopep8', 'black'],
+\   'python': ['yapf', 'autopep8', 'black', 'add_blank_lines_for_python_control_statements', 'reorder-python-imports'],
 \   'ruby': ['rubocop'],
 \   'go': ['gofmt'],
 \   'elixir': ['credo'],
