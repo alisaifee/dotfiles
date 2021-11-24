@@ -62,7 +62,7 @@ if [ "$1" == "bootstrap" ]; then
         export CFLAGS="-I$(brew --prefix openssl)/include"
         export LDFLAGS="-L$(brew --prefix openssl)/lib"
     else
-        if [[ -v BARE_SETUP ]]; then
+        if [ -n "$BARE_SETUP" ]; then
             # development deps
             sudo apt -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6 \
                 libreadline6-dev zlib1g zlib1g-dev libffi-dev libgdbm-dev ruby-dev libnurses5 libncurses5-dev
