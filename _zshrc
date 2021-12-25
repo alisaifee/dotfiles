@@ -4,12 +4,11 @@ source ~/antigen.zsh
 [ -f ~/.shell/venvs.zsh ] && source ~/.shell/venvs.zsh
 [ -f ~/.shell/path.zsh ] && source ~/.shell/path.zsh
 [ -f ~/.shell/completions.zsh ] && source ~/.shell/completions.zsh
-
 [ -f ~/.shell/colors.zsh ] && source ~/.shell/colors.zsh
 [ -f ~/.shell/os.zsh ] && source ~/.shell/os.zsh
 [ -f ~/.shell/utilities.zsh ] && source ~/.shell/utilities.zsh
-[ -f ~/.shell/prompt.zsh ] && source ~/.shell/prompt.zsh
 [ -f ~/.secrets.zsh ] && source ~/.secrets.zsh
+[ -f ~/.shell/prompt.zsh ] && source ~/.shell/prompt.zsh
 
 antigen bundle bigH/git-fuzzy path:bin kind:path
 antigen use oh-my-zsh
@@ -31,7 +30,7 @@ antigen apply
 
 function zvm_after_init() {
   [ -f ~/.shell/fzf.zsh ] && source ~/.shell/fzf.zsh
+  [ -f ~/.shell/history.zsh ] && source ~/.shell/history.zsh
 }
 
 enable-fzf-tab
-

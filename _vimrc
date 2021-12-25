@@ -144,6 +144,7 @@ autocmd BufNewFile,BufRead *.mako,*.mak,*.jinja2,*.jxml setlocal ft=html
 autocmd BufNewFile,BufRead *.task,*.pp setlocal ft=ruby
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript
 autocmd BufNewFile,BufRead *.jsx set filetype=javascript
+autocmd BufNewFile,BufRead *.zsh set filetype=sh
 autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 " Ensure crontab can be saved when edited with vim
 autocmd filetype crontab setlocal nobackup nowritebackup
@@ -157,25 +158,32 @@ let g:go_def_mapping_enabled = 0
 " ALE
 let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
+let g:ale_use_global_executables = 1
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
 let g:ale_linters = {
-\    "python": ["mypy", "flake8", "black"]
+\    "rst": ["proselint", "write-good"],
+\    "python": ["mypy", "flake8", "black"],
+\    "yaml": ["yamllint"],
+\    "zsh": ["shfmt", "shellcheck"],
+\    "sh": ["shfmt", "shellcheck"],
 \}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'css': ['prettier', 'stylelint'],
 \   'json': ['jq'],
 \   'javascript': ['eslint'],
 \   'javascript.jsx': ['eslint'],
 \   'javascriptreact': ['eslint'],
 \   'typescript': ['eslint'],
-\   'python': ['yapf', 'autopep8', 'black', 'add_blank_lines_for_python_control_statements', 'reorder-python-imports'],
+\   'python': ['black', 'isort', 'add_blank_lines_for_python_control_statements', 'reorder-python-imports'],
 \   'ruby': ['rubocop'],
 \   'go': ['gofmt'],
 \   'elixir': ['credo'],
 \   'html': ['prettier'],
 \   'rust': ['rustfmt'],
-\   'sh': ['shfmt']
+\   'sh': ['shfmt'],
+\   'zsh': ['shfmt'],
 \}
 " FZF
 let g:fzf_history_dir = "~/.fzf"

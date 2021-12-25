@@ -86,12 +86,14 @@ if [ "$1" == "bootstrap" ]; then
         if [ ! -e ~/.asdf ]; then
             git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
         fi
-        cargo install ripgrep
+        cargo install bat
         cargo install exa
         cargo install fd-find
-        cargo install bat
-        cargo install hyperfine
         cargo install git-delta
+        cargo install hyperfine
+        cargo install mcfly
+        cargo install ripgrep
+        cargo install sd
         cargo install starship
 
     fi
