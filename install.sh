@@ -38,25 +38,23 @@ if [ "$1" == "bootstrap" ]; then
             ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         fi
         brew tap homebrew/cask-versions
-        brew install cmake autoconf ctags-exuberant node-build ruby-build coreutils wget unison readline jq xz ripgrep reattach-to-user-namespace entr
+        brew install cmake autoconf ctags-exuberant node-build ruby-build coreutils wget readline jq xz reattach-to-user-namespace
         brew install grep gawk vim tmux
 
         # Terminal
-        brew cask install kitty
+        brew install kitty
 
         # Yabai, Spacebar & Skhd
         brew install koekeishiya/formulae/yabai
         brew install somdoron/formulae/spacebar
         brew install koekeishiya/formulae/skhd
 
-        brew cask install java
-        brew cask install firefox
-        brew cask install google-backup-and-sync
-        brew cask install whatsapp
-        brew cask install cloudapp
-        brew cask install jetbrains-toolbox
-        brew cask install keybase
-        brew cask install istat-menus
+        brew install java
+        brew install firefox
+        brew install whatsapp
+        brew install jetbrains-toolbox
+        brew install keybase
+        brew install istat-menus
 
         # lameness for python builds to find openssl
         export CFLAGS="-I$(brew --prefix openssl)/include"
@@ -86,19 +84,16 @@ if [ "$1" == "bootstrap" ]; then
         if [ ! -e ~/.asdf ]; then
             git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
         fi
-        cargo install bat
-        cargo install exa
-        cargo install fd-find
-        cargo install git-delta
-        cargo install hyperfine
-        cargo install mcfly
-        cargo install ripgrep
-        cargo install sd
-        cargo install starship
-
     fi
-
-    patch fonts
+    cargo install bat
+    cargo install exa
+    cargo install fd-find
+    cargo install git-delta
+    cargo install hyperfine
+    cargo install mcfly
+    cargo install ripgrep
+    cargo install sd
+    cargo install starship
 
     if [ ! -e ~/antigen.zsh ]; then
         curl -L git.io/antigen >~/antigen.zsh
@@ -109,6 +104,8 @@ if [ "$1" == "bootstrap" ]; then
     else
         export PYTHON_CONFIGURE_OPTS="--enable-shared"
     fi
+elif [ "$1" == "fonts" ]; then
+    patch_fonts
 elif [ "$1" = "vim" ]; then
     for i in _vim*; do
         link_file $i
