@@ -1,5 +1,5 @@
-name: limits
-root: ~/_dev/_git/limits
+name: coredis
+root: ~/_dev/_git/coredis
 
 on_project_first_start:
  - asdf local python 3.10.1
@@ -9,7 +9,7 @@ on_project_start:
  - git fetch
 
 on_project_exit:
- - docker-compose down
+ - echo "Bye"
 
 windows:
   - editor:
@@ -20,6 +20,6 @@ windows:
   - qa:
       layout: even-vertical
       panes:
-        - find -g '*.py' | entr pytest
-        - find -g '*.py' | make lint-fix
-        - sphinx-autobuild --port 18004 doc/source doc/build/html
+        - find -g '*.py' | entr -c pytest
+        - find -g '*.py' | entr -c make lint-fix
+        - sphinx-autobuild --port 18005 docs/source docs/build/html --watch coredis

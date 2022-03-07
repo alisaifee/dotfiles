@@ -2,12 +2,11 @@ name: flask-limiter
 root: ~/_dev/_git/flask-limiter
 
 on_project_first_start:
- - pyenv local flask-limiter
+ - asdf local python 3.9.7
  - pip install -r requirements/dev.txt
 
 on_project_start:
  - git fetch
- - docker-compose up -d
 
 on_project_exit:
  - docker-compose down
@@ -17,10 +16,10 @@ windows:
       layout: main-horizontal
       panes:
         - vim .
-        - git st
+        - lazygit
   - qa:
       layout: even-vertical
       panes:
-        - find . -name '*.py' | entr -c nosetests tests
-        - find . -name '*.py' | entr -c flake8
-        - sphinx-autobuild -p 18001 doc/source doc/build/html
+        - find -g '*.py' | entr -c pytest
+        - find -g '*.py' | entr -c make lint-fix
+        - sphinx-autobuild --port 18003 doc/source doc/build/html

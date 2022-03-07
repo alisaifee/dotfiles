@@ -221,3 +221,9 @@
 [submodule "_vim/bundle/vim-nerdtree-syntax-highlight"]
 	path = _vim/bundle/vim-nerdtree-syntax-highlight
 	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight
+[submodule "_vim/bundle/spelunker.vim"]
+	path = _vim/bundle/spelunker.vim
+	url = https://github.com/kamykn/spelunker.vim
+[submodule "_vim/bundle/vim-autoimport"]
+	path = _vim/bundle/vim-autoimport
+	url = https://github.com/wookayin/vim-autoimport
