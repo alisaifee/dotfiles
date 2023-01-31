@@ -88,9 +88,6 @@
 [submodule "_vim/bundle/jedi-vim"]
     path = _vim/bundle/jedi-vim
     url = https://github.com/davidhalter/jedi-vim
-[submodule "_vim/bundle/vim-rbenv"]
-    path = _vim/bundle/vim-rbenv
-    url = git://github.com/tpope/vim-rbenv.git
 [submodule "_vim/bundle/alchemist"]
     path = _vim/bundle/alchemist
     url = https://github.com/slashmili/alchemist.vim.git
