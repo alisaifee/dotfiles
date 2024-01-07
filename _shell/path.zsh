@@ -7,7 +7,6 @@ else
     manpath=(/usr/local/opt/coreutils/libexec/gnuman $manpath)
     manpath=(/usr/local/opt/grep/libexec/gnuman $manpath)
 fi
-path=(${KREW_ROOT:-$HOME/.krew}/bin $path)
 if type "go" > /dev/null 2>&1; then
     export GOPATH=~/gohome
     path=(~/gohome/bin $path)
