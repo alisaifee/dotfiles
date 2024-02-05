@@ -35,7 +35,7 @@ if [ "$1" == "bootstrap" ]; then
     # mac specific bootstrap
     if [[ $(uname) == 'Darwin' ]]; then
         if [ ! $(command -v brew) ]; then
-            ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         fi
         brew tap homebrew/cask-versions
         brew install cmake autoconf ctags-exuberant node-build ruby-build coreutils wget readline jq xz reattach-to-user-namespace
