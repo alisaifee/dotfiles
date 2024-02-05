@@ -51,10 +51,7 @@ if [ "$1" == "bootstrap" ]; then
 
         brew install java
         brew install firefox
-        brew install whatsapp
         brew install jetbrains-toolbox
-        brew install keybase
-        brew install istat-menus
 
         # lameness for python builds to find openssl
         export CFLAGS="-I$(brew --prefix openssl)/include"
