@@ -1,4 +1,4 @@
-alias ls="exa --icons"
+alias ls="eza --icons"
 alias ll="ls -alsnew"
 alias cat="bat"
 alias find="fd"

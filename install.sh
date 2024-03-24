@@ -83,7 +83,7 @@ if [ "$1" == "bootstrap" ]; then
         fi
     fi
     cargo install bat
-    cargo install exa
+    cargo install eza
     cargo install fd-find
     cargo install git-delta
     cargo install hyperfine
