@@ -87,7 +87,6 @@ if [ "$1" == "bootstrap" ]; then
     cargo install fd-find
     cargo install git-delta
     cargo install hyperfine
-    cargo install mcfly
     cargo install ripgrep
     cargo install sd
     cargo install starship
