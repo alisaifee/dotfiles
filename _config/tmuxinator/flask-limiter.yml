@@ -3,7 +3,7 @@ root: ~/_dev/_git/flask-limiter
 
 on_project_first_start:
  - asdf local python 3.9.7
- - pip install -r requirements/dev.txt
+ - uv sync --all-extras --group dev
 
 on_project_start:
  - git fetch
@@ -20,6 +20,6 @@ windows:
   - qa:
       layout: even-vertical
       panes:
-        - find -g '*.py' | entr -c pytest
+        - find -g '*.py' | entr -c uv run pytest
         - find -g '*.py' | entr -c make lint-fix
-        - sphinx-autobuild --port 18003 doc/source doc/build/html
+        - uv run sphinx-autobuild --port 18003 doc/source doc/build/html

@@ -1,5 +1,5 @@
 alias ls="eza --icons"
 alias ll="ls -alsnew"
 alias cat="bat"
-alias find="fd"
+alias find="fd -I"
 alias mux="tmuxinator"

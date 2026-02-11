@@ -50,7 +50,6 @@ if [ "$1" == "bootstrap" ]; then
         brew install koekeishiya/formulae/skhd
 
         brew install java
-        brew install firefox
         brew install jetbrains-toolbox
 
         # lameness for python builds to find openssl

@@ -2,12 +2,13 @@ name: coredis
 root: ~/_dev/_git/coredis
 
 on_project_first_start:
- - asdf local python 3.10.1
- - pip install -r requirements/dev.txt
+ - asdf local python 3.13.0
+ - rm -rf .venv
+ - UV_PYTHON=3.13 uv sync --all-extras --group dev
 
 on_project_start:
  - git fetch
-
+ - docker-compose up -d redis-basic
 on_project_exit:
  - echo "Bye"
 
@@ -16,10 +17,22 @@ windows:
       layout: main-horizontal
       panes:
         - vim .
-        - lazygit
   - qa:
       layout: even-vertical
       panes:
-        - find -g '*.py' | entr -c pytest
+        - find -g '*.py' | entr -c uv run pytest
         - find -g '*.py' | entr -c make lint-fix
-        - sphinx-autobuild --port 18005 docs/source docs/build/html --watch coredis
+        - uv run --group docs sphinx-autobuild --port 18005 docs/source docs/build/html --watch coredis
+        - redis-cli monitor
+  - benjy:
+      layout: main-vertical
+      panes:
+        - main:
+          - ssh benjy.local
+          - cd ~/_dev/_git/coredis
+        - redis-monitor:
+          - ssh benjy.local
+          - sleep 1
+          - cd ~/_dev/_git/coredis
+          - redis-cli monitor
+

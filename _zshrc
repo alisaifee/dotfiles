@@ -1,8 +1,8 @@
 source ~/antigen.zsh
 
+[ -f ~/.shell/venvs.zsh ] && source ~/.shell/venvs.zsh
 [ -f ~/.shell/completions.zsh ] && source ~/.shell/completions.zsh
 [ -f ~/.shell/vars.zsh ] && source ~/.shell/vars.zsh
-[ -f ~/.shell/venvs.zsh ] && source ~/.shell/venvs.zsh
 [ -f ~/.shell/path.zsh ] && source ~/.shell/path.zsh
 [ -f ~/.shell/colors.zsh ] && source ~/.shell/colors.zsh
 [ -f ~/.shell/os.zsh ] && source ~/.shell/os.zsh

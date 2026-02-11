@@ -2,8 +2,8 @@ name: limits
 root: ~/_dev/_git/limits
 
 on_project_first_start:
- - asdf local python 3.10.1
- - pip install -r requirements/dev.txt
+ - asdf local python 3.11.0
+ - uv sync --all-extras --group dev --group docs
 
 on_project_start:
  - git fetch
@@ -16,10 +16,9 @@ windows:
       layout: main-horizontal
       panes:
         - vim .
-        - lazygit
+        - pwd
   - qa:
       layout: even-vertical
       panes:
-        - find -g '*.py' | entr pytest
-        - find -g '*.py' | make lint-fix
-        - sphinx-autobuild --port 18004 doc/source doc/build/html
+        - find -g '*.py' | entr make lint-fix
+        - uv run sphinx-autobuild --port 18004 doc/source doc/build/html

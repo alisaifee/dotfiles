@@ -35,7 +35,7 @@ set pumheight=6             " Keep a small completion window
 
 """ Moving Around/Editing
 set cursorline              " have a line indicate the cursor location
-set colorcolumn=79            " have a line indicate the cursor location
+set colorcolumn=100            " have a line indicate the cursor location
 set ruler                   " show the cursor position all the time
 set nostartofline           " Avoid moving cursor to BOL when jumping around
 set virtualedit=block       " Let cursor move past the last char in <C-v> mode
@@ -89,6 +89,9 @@ set smarttab                " Handle tabs more intelligently
 set hlsearch                " Highlight searches by default.
 set incsearch               " Incrementally search while typing a /regex
 
+" Copy to clipboard
+
+set clipboard=unnamed
 
 """"""""""""""'
 " plugin setup
@@ -162,21 +165,22 @@ let g:ale_use_global_executables = 1
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
 let g:ale_linters = {
-\    "rst": ["proselint", "write-good"],
-\    "python": ["mypy", "flake8", "black"],
-\    "yaml": ["yamllint"],
-\    "zsh": ["shfmt", "shellcheck"],
-\    "sh": ["shfmt", "shellcheck"],
+\    'rst': ['proselint', 'write-good'],
+\    'python': ['mypy', 'flake8', 'black', 'ruff'],
+\    'javascript': ['eslint', 'prettier'],
+\    'yaml': ['yamllint'],
+\    'zsh': ['shfmt', 'shellcheck'],
+\    'sh': ['shfmt', 'shellcheck'],
 \}
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'css': ['prettier', 'stylelint'],
 \   'json': ['jq'],
-\   'javascript': ['eslint'],
-\   'javascript.jsx': ['eslint'],
-\   'javascriptreact': ['eslint'],
+\   'javascript': ['eslint', 'prettier'],
+\   'javascript.jsx': ['eslint', 'prettier'],
+\   'javascriptreact': ['eslint', 'prettier'],
 \   'typescript': ['eslint'],
-\   'python': ['black', 'isort', 'add_blank_lines_for_python_control_statements', 'reorder-python-imports'],
+\   'python': ['black', 'isort', 'add_blank_lines_for_python_control_statements', 'reorder-python-imports', 'ruff'],
 \   'ruby': ['rubocop'],
 \   'go': ['gofmt'],
 \   'elixir': ['credo'],

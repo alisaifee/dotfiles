@@ -1,20 +1,20 @@
 #!/usr/bin/env zsh
 
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
 
 green=0xff98971a
 grey=0xff282828
+
+borders active_color=$green inactive_color=$grey width=5.0 &
 
 # global settings
 yabai -m config mouse_follows_focus         off
 yabai -m config focus_follows_mouse         autofocus
 yabai -m config window_placement            second_child
-yabai -m config window_topmost              on
 yabai -m config window_opacity              on
 yabai -m config window_opacity_duration     0.0
 yabai -m config window_shadow               on
-yabai -m config window_border               on
-yabai -m config active_window_border_color  $green
-yabai -m config normal_window_border_color  $grey
 yabai -m config active_window_opacity       1.0
 yabai -m config normal_window_opacity       0.90
 yabai -m config split_ratio                 0.50
@@ -33,17 +33,20 @@ yabai -m config window_gap                  10
 
 # spaces
 # create extra spaces
-pending_spaces=$(echo 7 - $(yabai -m query --spaces | jq '.[] | .id' | wc -l) | bc)
+pending_spaces=$(echo 8 - $(yabai -m query --spaces | jq '.[] | .id' | wc -l) | bc)
 for i in `seq $pending_spaces`; do
     yabai -m space --create;
 done
 yabai -m space 1                            --label trash
 yabai -m space 2                            --label work
-yabai -m space 3                            --label mail
-yabai -m space 4                            --label chat
-yabai -m space 5                            --label music
-yabai -m space 6                            --label photos
-yabai -m space 7                            --label monitoring
+yabai -m space 3                            --label 3d
+yabai -m space 4                            --label mail
+yabai -m space 5                            --label chat
+yabai -m space 6                            --label music
+yabai -m space 7                            --label photos
+yabai -m space 8                            --label games
+
+yabai -m space 3 --layout stack
 
 # disable tiling for floating applications
 yabai -m rule --add                         label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
@@ -57,13 +60,23 @@ yabai -m rule --add                         label="Disk Utility" app="^Disk Util
 yabai -m rule --add                         label="Zoom" app="^zoom.us$" manage=off
 yabai -m rule --add                         label="Calendar" app="^Calendar$" manage=off
 yabai -m rule --add                         label="JetBrains Toolbox" app="^JetBrains Toolbox$" manage=off
+yabai -m rule --add                         app="^Chess$" manage=off
 
 # pin common apps to dedicated space
-yabai -m rule --add                         app="^WhatsApp$" space=chat
+yabai -m rule --add                         app="WhatsApp" space=chat
+yabai -m rule --add                         app="Signal" space=chat
 yabai -m rule --add                         app="^Messages.*$" space=chat
 yabai -m rule --add                         app="^Slack$" space=chat
 yabai -m rule --add                         title="^Inbox.*Mail$" space=mail
-yabai -m rule --add                         app="^YouTube Music Desktop App$" space=music
+yabai -m rule --add                         app="Gmail" space=mail
+yabai -m rule --add                         app="YouTube Music" space=music
 yabai -m rule --add                         app="^Photos$" space=photos
 yabai -m rule --add                         app="^(WebStorm|RubyMine|PyCharm)$" space=work
-yabai -m rule --add                         title="^glances$" space=monitoring
+yabai -m rule --add                         app="Bambu Studio" space=3d
+yabai -m rule --add                         app="Meshmixer" space=3d
+yabai -m rule --add                         app="Chess" space=games
+
+
+# re run rules whenever a new application is launched
+yabai -m signal --add event=application_launched action='yabai -m rule --apply'
+yabai -m rule --apply
